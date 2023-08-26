@@ -96,9 +96,9 @@ Find the order of each element of $ \ZZ _ 6 $
 \item 
 \begin{enumerate}[(a)]
 \item 
-    $ \langle \overline 0 \rangle  = \{ \overline 0 \} $ so $ \lvert \langle \overline 0 \rangle \rvert = 1 $ It seems there is some ambiguity on the order of the identity, but setting it to $ 1 $ means each divisor including $1$ and $n$ of $n$ get their own subgroup.  
+    $ \langle \overline 0 \rangle  = \{ \overline 0 \} $ and $ \lvert \langle \overline 0 \rangle \rvert = 1 $ It seems there is some ambiguity on the order of the identity, but setting it to $ 1 $ means each divisor including $1$ and $n$ of $n$ get their own subgroup.  
   \item
-    $ \langle \overline 1 \rangle  = \{ \overline 0, \overline 1, \overline 2, \overline 3, \overline 4, \overline 5 \} $ so $ \lvert \langle \overline 1 \rangle \rvert = 6 $
+    $ \langle \overline 1 \rangle  = \{ \overline 0, \overline 1, \overline 2, \overline 3, \overline 4, \overline 5 \} $ so $ \lvert \langle \overline 1 \rangle \rvert = 6 $ (the set is just 0, 1, 1 + 1, 1 + 1 + 1, etc. till it repeats).
   \item
     $ \langle \overline 2 \rangle  = \{ \overline 0, \overline  2, \overline  4 \} $ so $ \lvert \langle \overline 2 \rangle \rvert = 3 $
   \item
@@ -156,7 +156,7 @@ Find the order of each element of $ \ZZ _ 6 $
   \bigcup K $ and $ H \bigcup K $ is not closed under group
   multiplication and so not a group.
 \item
-  There are two cases to consider, when one of $H$ or $K$ is a subset of
+  There are two cases to consider, one when one of $H$ or $K$ is a subset of
   the other.  Assume, without loss of generality, that $ K \subset H $.
   Then, $ K \bigcup H = H$.  But since $H$ is a proper subgroup, there is a
   $ g \in G$ where $g \notin H$, so therefore $H \bigcup K \neq G$.
