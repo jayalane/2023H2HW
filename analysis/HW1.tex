@@ -72,7 +72,9 @@
 
 
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{11pt}
+\setlength{\parskip}{11pt
+}
+\newtheorem{lemma}{Lemma}
 
 \begin{document}
 
@@ -83,17 +85,191 @@ Let $ f : [a, b] \to \RR$. Prove: If $f$ is Riemann integrable on $[a, b]$, then
 
 \end{exercise}
 \begin{solution}
-  Proof by contraction.  Suppose $f$ is unbounded.
+  Proof by contraction.  Suppose $f$ is unbounded by in the positive direction;
+  the unbounded below case is similar, replacing $\inf$ for $\sup$, $>$ for $<$,
+  and $ - \infty $ for $ \infty$.  
   \begin{lemma}
-    If $ f $ is bounded on all segments of a partion $P$ of $[a, b]$, it is bounded on $[a,b]$.
-  \end{lemma}
+    Given a (finite) partition $ P $ of $ [ a, b] $,  if
+    $ \sup \limits_{[p_{i-1}, p_i]}f < \infty $ on all segments of a partion
+    $P$ of $[a, b]$, then $\sup \limits_{[a,b]} f < \infty $
+\end{lemma}
   \begin{proof}
-    $ \sup\limits_{[a, b]} f = \max\limits_{i} \{ \sup\limits_{[p _ {i-1}, p _ i]} \{ f \} \}$
-    That is, the least upper bound of a finite union is the max of the least upper bounds. 
+    Otherwise, $ \max \limits_{i} \{ \sup \limits_{[x_{i-1}, x_ i]} f \} $
+    would be the supremum.
+
+    To be more explicit, for the partition $ P = \{ a= p_0, p_1, ... p_n = b \}$,
+    $ \sup\limits_{[a, b]} f = \max\limits_{i} \{ \sup\limits_{[p _ {i-1}, p _ i]} f \}$
+    That is, the least upper bound of a finite union is the max of the least upper bounds.
+
+    If $ \max \limits_i \{ \sup \limits_{[p_{i-1}, p_i]} f \} $ is less than $ \sup \limits_{[a,b]} f $
+    then the $\sup$ isn't a least upper bound. 
+    If $ \max \limits_i \{ \sup \limits_{[p_{i-1}, p_i]} f \} $ is greater
+    than $ \sup \limits_{[a,b]}$ then it
+    isn't an upper bound. So they must be equal.  
   \end{proof}
-    
+
+  So, if $f$ were unbounded, then every partition $P$ of $[a,b]$ would
+  contain one segment where $\sup \limits_{[x _ {i-1}, x_ i]} = \infty$,
+  so $ U ( f, P) = \infty $, so
+  the $ \overline \int _ { a} ^ {b} $ does not exist, and
+  therefore the Riemann integral of $f$ does not exist on $ [a , b]$.   
 \end{solution}
 
+\begin{exercise}
+  \begin{enumerate}[(a),start=3]
+    \item
+    If $P$ and $Q$ are any partition of $[a,b]$, then
+    $$
+    L(f, P) \leq U(f, Q)
+    $$
+  \item
+    $$
+    \underline \int _ {a} ^ {b} f \leq  \overline \int _ {a} ^ {b} f
+    $$    
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}[(a),start=3]
+  \item
+    If $P$ and $Q$ are partitions of $[a,b]$, let $R = P \bigcup Q$.
+
+    By property (a), $L(f, R) \leq U(f, R)$.
+
+    $ P \subseteq R$, so by property (b),
+    $$
+    L(f, P) \leq L(f, R)
+    $$
+    and 
+    $$
+    U(f, R) \leq U(f, P)
+    $$
+
+    Likewise, $ Q \subseteq R$, so by property (b),
+    $$
+    L(f, Q) \leq L(f, R)
+    $$
+    and
+    $$ 
+    U(f, R) \leq U(f, Q)
+    $$
+    Combining these,
+    $$
+    L(f,P) \leq L(f, R) \leq U(f, R) \leq U(f, Q)
+    $$
+    \qed
+  \item
+
+    We want to show that 
+    $$ \underline \int _ a ^ b f \leq \overline \int _ a ^ b  f $$
+
+    For all $P, Q$ partitions,
+    $$
+    L(f,P) \leq U(f, Q)
+    $$
+    by (c).  So
+    $$
+    \sup \limits_ {\text{P in all partitions}} \{ L(f, P) \} \leq \inf \limits_{\text{Q in all partitions }} \{ U(f, Q) \}
+    $$
+    Suppose, in contradiction, that $ \sup L > \inf U$.
+    Then, there is an $ \epsilon $ such that $\sup L > \inf U + \epsilon$.
+    So there is a partition $P$ such that
+    $$
+    L(f, P) \geq \inf \limits_{\text{Q in all partitions }} \{ U(f, Q) \} + \epsilon
+    $$
+    (otherwise the upper bound is not a least upper bound) or to regain strict inequality, 
+    $$
+    L(f, P) > \inf \limits_{\text{Q in all partitions }} \{ U(f, Q) \} + \frac{\epsilon}{2} 
+    $$
+    So there is a partition $Q$ such that
+    $$
+    L(f, P) \geq U(f, Q) + \frac{\epsilon}{2}
+    $$
+    (otherwise the lower bound is not a greatest lower bound) Or, restoring strict inequality, 
+    $$
+    L(f, P) >  U(f, Q) + \frac{\epsilon}{4}
+    $$
+    But this contradicts (a), so therefore:
+    $$
+    \underline \int _ a ^ b f \leq \overline \int _ a ^ b  f
+    $$
+    
+\end{enumerate}
+\end{solution}
+\begin{exercise}
+  \begin{enumerate}[(a)]
+  \item
+    If $P$ is any partition of $[a,b]$, then $L(f, P) + L(g, P) \leq L(f+g) $ and
+    $U(f+g, P) \leq U(f,P) + U(g, P)$.
+  \item
+    $ \underline \int _ a ^ b f + \underline \int _a ^b g \leq \underline \int _ a ^ b (f + g) $ and
+    $ \overline \int _ a ^ b (f + g) \leq \overline \int _ a ^ b f + \overline \int _a ^b g $.
+  \end{enumerate}
+    
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+
+  \begin{lemma}
+    Given a $f$, $g$ on closed interval $[x_0, x_1]$,
+    $$
+    \sup \limits_{[x_0, x_1]} f + \sup \limits_{[x_0, x_1]} g \leq   \sup \limits_{[x_0, x_1]}  ( f + g)
+    $$
+  \end{lemma}
+  \begin{proof}
+    For all $ x \in [x_0, x_1]$, $f(x) \leq \sup \limits_{[x_0, x_1]} f$ and
+    $g(x) \leq \sup \limits_{[x_0, x_1]} g$.
+    So
+    $$
+    f(x) + g(x) \leq  \sup \limits_{[x_0, x_1]} f + \sup \limits_{[x_0, x_1]} g
+    $$
+    and therefore the least upper bound is also less:
+    $$
+    \sup \limits_{[x_0, x_1]} ( f + g ) \leq \sup \limits_{[x_0, x_1]} f + \sup \limits_{[x_0, x_1]} g
+    $$
+  \end{proof}
+  
+  So, given a particular partition $P$,
+  $$
+  \sum _{ i = 1} ^ { n} \sup \limits_{[x_{i-1}, x_i]} (f + g) \leq \sum _ { i = 1} ^ {n}  \sup \limits_{[x_{i-1}, x_i]} f +  \sum _{ i = 1} ^ {n}  \sup \limits_{[x_{i-1}, x_i]}
+  $$
+  Or
+  $$
+  L(f, P) + L(g, P) \leq L(f+g, P)
+  $$
+  
+  Likewise for the upper bounds with $U$ substituted for $U$, and $>$ for $<$.
+  
+\item
+  Given a partition $P$,
+  $$
+  L(f, P) + L(g, P) \leq L( f + g, P)
+  $$
+  from (a), so
+  $$
+  \sup \limits_{P} \{ L(f, P) \} + \sup \limits_ { P} \{ L(g, P) \} \leq \sup \limits_{P} \{ L(f + g, P) \}
+  $$
+  (Otherwise, if it were larer, then there would be an $ \epsilon $ and a partition Q such that
+  $\sup \limits_{P} L(F, p) + L(g, Q) > \sup \limits_{P} L(f + g, P)$
+  To prove it for each, each $\sup$ needs one more application of the specific partition and an $\epsilon$ to
+  go from least upper bound to a contradiction.  
+\item
+  $R \int _ a ^ b f$ exists and $ R \int _a ^ b g $ exist, then
+  $$
+ R \int _a ^b  f  \leq \underline \int _a ^b f \leq \overline \int _a ^b f \leq R \int _a ^b  f
+  $$
+  and 
+  $$
+  R \int _a ^b  g \leq \underline \int _a ^b g \leq \overline \int _a ^b g \leq R \int _a ^b  g
+  $$
+  Then the series of inequalities comes from those and from (b) :
+  $$
+  R \int _a ^b f + R \int _a ^b g \leq \underline \int  _a ^b f + \underline \int _a ^b g \leq
+  \underline \int _a ^b ( f + g ) \leq \overline \int _a ^b ( f + g ) \leq \overline \int _a ^b f + \overline \int _a ^b g \leq R \int _a ^b f + R \int _a ^b g
+  $$
+  so they are all equal.  
+\end{enumerate}
+\end{solution}
 
 \begin{comment}
 \begin{exercise}
