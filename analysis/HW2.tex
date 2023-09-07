@@ -1,0 +1,155 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+
+
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+%\def\NN{\mathbb{Z}_{> 0}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+%\def\sp{\mathrm{span}} %messes up align enviroment
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt
+}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\textbf{HW 2 - MATH 231A - Fall 2023 - Chris Lane}
+\begin{exercise}
+  Prove if $f:[a, b] \mapsto \RR $ is bounded and $f$ is continuous
+  except at finitely many points of $[a,b]$, then $f$ is Riemann integrable on $[a,b ]$
+\end{exercise}
+\begin{solution}
+  The proof of integrability will be using the Riemann integrability
+  criterion from class, where given an $\epsilon$ one must find a
+  partition such that the difference between $U(f, P)$ and $L(f, P)$
+  is smaller than $\epsilon$. $D$ is the number of points of
+  discontinuity plus 1.
+
+  Since each section between the points of discontinuity, $f$ is
+  continuous and bounded, it is uniformly continuous, that is for
+  $\frac{\epsilon}{n}$ (where $n$ is the number of points of
+  discontinuity plus one), and for each $I_i$ interval, one can find a
+  $\delta _ i$ such that if we divide those intervals into $\delta_i$
+  sized sub-intervals $I_{ik}$, then $ \sup \limits_{x \in I_{ik}}
+  M_{ik} - m_{ik} $ will be less than $\epsilon$, allowing us to show
+  that $U(f, I_{ij}) \leq L(, I_{ij}) + \epsilon / D$, for each
+  integrable piece.  Adding them up, we get a partition $P$, of
+  $\delta_{i} $ sized segments in each of the $D$ continuous segments,
+  and
+  $$
+  L(f, p) = \sum _{l=1}^D L(f, I_i) \leq \sum _{l=1}^D ( U(f, I_i) + \epsilon / D )
+  $$
+  So
+  $$
+  L(f, P) \leq U(f, P) \leq D * \epsilon / D = U(f, P) + \epsilon
+  $$
+  Showing by the Riemann Integrability criterion in class, that
+  $\int _ a ^ b f$ exists and is finite.
+  
+  
+\end{solution}
+
+\begin{exercise}
+  Define $f : [a,b ] \mapsto \RR $ as:
+  $$
+  f(x) = \begin{cases}
+    0 & \text{if} \quad x \in \RR \setminus \QQ \\
+    \frac{1}{n} & \text{if} \quad x \in \QQ, \text{where}\ \  x = \frac{m}{n}, \ \ 
+    \text{with no common factors} \\
+  \end{cases}
+  $$
+  Show that $f$ is Riemann integrable and compute $\int _ {a} ^ {b} f$.  
+\end{exercise}
+\begin{solution}
+  We'll use the Riemann integrability criterion and construct a
+  partition such that $L(f, P) \leq U(f, P) + \epsilon$ showing that
+  the integral exists.  Additionally, we'll
+  calculate $\underline \int _{a} ^ {b} f = 0$ showing
+  that the integral is in fact $0$ for all $[a,b]$.
+
+  So given an $\epsilon$, we choose two types of intervals
+  
+\end{solution}
+
+
+\begin{comment}
+\begin{exercise}
+  problem
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  first answer
+\end{enumerate}
+\end{solution}
+\end{comment}
+
+
+
+
+\end{document}
