@@ -1,0 +1,498 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+
+
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+%\def\NN{\mathbb{Z}_{> 0}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+%\def\sp{\mathrm{span}} %messes up align enviroment
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt}
+
+
+%\title{\parbox{14cm}{\centering{  Interior points of circle and sphere packings}}}
+\begin{document}
+
+\textbf{HW 2 - MATH 221A - Fall 2023 - Chris Lane}
+
+% \tiny{
+%   \input{/home/jayalane/hw/.git/refs/heads/main}
+%}
+
+\begin{exercise}
+  Consier the dihedral group $D_8$ as the group of symmetries of the square labeled so that as we move counterclockwise around the square we encounter the vertices A, B, C, D in turn.
+  \begin{enumerate}[(a)]
+    \item
+      List all the elements of $D_8$. Write each as a product of the
+      generators $R$, $F$ and also give its cycle decomposition. For
+      example, one element is $RF = (A, B)(C, D)$. (Note: $R$ is the
+      counter-clockwise rotation by $2 \pi / n = 2 \pi / 4 = \pi / 2 $
+      radians. $F$ is the reflection (flip) about the line joing the
+      center to the first vertex (A).)
+    \item
+      Find the order of each element of $D_8$.
+  \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+  First, the four rotations: 
+  \begin{enumerate}[(a)]
+  \item
+    \begin{align*}
+    \begin{pmatrix}
+      A & B & C & D \\ 
+      A & B & C & D
+    \end{pmatrix} & = E \text{(the identity)} & \\
+    \begin{pmatrix}
+      A & B & C & D \\ 
+      B & C & D & A 
+    \end{pmatrix} & = (A B C D) = R & \\
+    \begin{pmatrix}
+      A & B & C & D \\ 
+      C & D & A & B
+    \end{pmatrix} & = (A C)(B D) = R^2 & \\
+    \begin{pmatrix}
+      A & B & C & D \\ 
+      D & A & B & C
+    \end{pmatrix} & = (A D C B))  = R ^ 3 = R ^ {-1} &
+    \end{align*}
+    
+    Then the same four preceded by a flip, F:
+
+    \begin{align*}
+    \begin{pmatrix}
+      A & B & C & D \\ 
+      A & D & C & B
+    \end{pmatrix} & = (B D) = F \\ 
+    \begin{pmatrix}
+      A & B & C & D \\ 
+      B & C & D & A 
+    \end{pmatrix} & = (A B) (C D) = RF \\ 
+    \begin{pmatrix}
+      A & B & C & D \\ 
+      C & D & A & B
+    \end{pmatrix} & = (A C) = R^2 F  \\ 
+    \begin{pmatrix}
+      A & B & C & D \\ 
+      D & A & B & C
+    \end{pmatrix} & = (A D)(B C)  = R ^ 3 F  = R ^ {-1} F \\
+    \end{align*}
+  \item
+    The members that aren't a four-cycle are all either one 
+    transposition or two disjoint transposition, both of which
+    are order two.
+    \begin{align*}
+      |E| & = 1 & \\
+      |R| & = 4 & \\
+      |R^2| &= 2 & \\
+      |R^3| & = | R ^{-1} | = | R | = 4 & 
+    \end{align*}
+    The other four members are a flip followed by one of the above rotations, which are
+    order 2 by the above cycle decomposition:
+    \begin{align*}
+      |F| & = 2 & \\
+      |R F| & = 2 & \\
+      |R^2 F| &= 2 & \\
+      |R^3 F| & = 2 & 
+    \end{align*}
+  \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+  For $n \geq 3$, show that $S _n $ is not abelian.
+\end{exercise}
+
+\begin{solution}
+  Let $A$ be 
+  
+  $$ 
+  \begin{pmatrix}
+    1 & 2 & 3 \\
+    2 & 3 & 1 
+  \end{pmatrix}
+  $$
+  Let $B$ be 
+  $$
+  \begin{pmatrix}
+    1 & 2 \\
+    2 & 1
+  \end{pmatrix}
+  $$
+
+  So then $ A B $ is:
+  
+  $$
+  \begin{pmatrix}
+    1 & 2 & 3 \\
+    3 & 2 & 1 
+  \end{pmatrix}
+  $$
+  
+  But $ B A $ is:
+  
+  $$
+  \begin{pmatrix}
+    1 & 2 & 3 \\
+    1 & 3 & 2
+  \end{pmatrix}
+  $$
+  So $A B \neq B A$.
+  
+  But writing these permutations in cycle notation for $S_n, n > 3$ (allowing
+  $\sigma(n) = n$, for all $n > 3$, where $\sigma$ is the permutation
+  at hand).  $ (1 2 3) ( 1 2 ) = ( 1 3) $ and $ ( 1 2 ) ( 1 2 3) = ( 2
+  3) $ is an example of a non-Abelian pair in all $S_n$ for $n \geq
+  3$.
+\end{solution}
+\begin{exercise}
+  Let $V \subset S _n$ be generated by all pairs of disjoint
+  transpositions. Show that this is homomorphic to the Klein group of
+  $2 \times 2$ diagonal matrices with diagonal values taken from
+  $+1, -1$.
+\end{exercise}
+\begin{solution}
+  The generators of $V$ are
+
+  \begin{align*}
+    a & = (1 2) ( 3 4) & \\
+    b & = (1 3) ( 2 4) & \\
+    c & = (1 4) ( 2 3)
+  \end{align*}
+
+  The identity is:
+  $$
+    e = (1)
+  $$
+  
+  As they are disjoint transpositions,
+  $$
+  a^2 = b ^ 2 = c ^ 2 = e
+  $$
+  
+  The other multiplications are:
+  \begin{align*}
+    a b & = (1 4 ) ( 2 3) = c & \\
+    b a & = (1 4 ) ( 2 3)  = c & \\
+    a c & = (1 3) (2 4) = b & \\
+    c a & = (1 3) (2 4)  = b & \\
+    b c & = (1 2) (3 4) = a& \\
+    c b & = (1 2) (3 4) = a
+  \end{align*}
+
+  The full table (using the labels e, a, b, c) is:
+
+  \begin{center}
+    \begin{tabular}{ |c|c|c|c|c| }
+      \hline
+          {$\times$} & $e$ & $a$ & $b$ & $c$ \\
+          \hline
+          $e$      & $e$ & $a$ & $b$ & $c$ \\
+          $a$      & $a$ & $e$ & $c$ & $b$ \\
+          $b$      & $b$ & $c$ & $e$ & $a$ \\
+          $c$      & $c$ & $b$ & $a$ & $e$ \\
+          \hline
+    \end{tabular}
+  \end{center}
+
+  For the Klein group, the members are:
+  \begin{align*}
+    E = \begin{bmatrix} 1 & 0 \\
+                        0 & 1 
+    \end{bmatrix}
+    A = \begin{bmatrix} -1 & 0 \\
+                        0 & 1 
+    \end{bmatrix}
+    B = \begin{bmatrix} 1 & 0 \\
+                        0 & -1 
+    \end{bmatrix}
+    C = \begin{bmatrix} -1 & 0 \\
+                        0 & -1 
+    \end{bmatrix}
+  \end{align*}
+  As E is the identity of matrix multiplication, the operations involving E are: 
+$ E  A = A = A E$, $ E B = B = B E$, $E C = C = C E$.  
+
+\begin{align*}
+  A B = \begin{bmatrix}
+    -1 \times 1 + 0 \times 0 & -1 \times 0 + 0 \times -1 \\
+    0 \times 1 + 1 \times 0 & 0 \times 0 + 1 \times -1
+  \end{bmatrix}
+  = \begin{bmatrix}
+    -1 & 0 \\
+    0 & -1
+    \end{bmatrix} = C
+\end{align*}
+\begin{align*}
+  B A = \begin{bmatrix}
+    1 \times -1 + 0 \times 0 & 1 \times 0 + 0 \times 1 \\
+    0 \times -1 + -1 \times 0 & 0 \times 0 + -1 \times 1
+  \end{bmatrix}
+  = \begin{bmatrix}
+    -1 & 0 \\
+    0 & -1
+    \end{bmatrix} = C
+\end{align*}
+
+\begin{align*}
+  B C = \begin{bmatrix}
+    1 \times -1 + 0 \times 0 & 1 \times 0 + 0 \times -1 \\
+    0 \times -1 + -1 \times 0 & 0 \times 0 + -1 \times -1
+  \end{bmatrix}
+  = \begin{bmatrix}
+    -1 & 0 \\
+    0 & 1
+    \end{bmatrix} = A
+\end{align*}
+
+\begin{align*}
+  C B = \begin{bmatrix}
+    -1 \times 1 + 0 \times 0 & 1 \times 0 + 0 \times -1 \\
+    0 \times -1 + -1 \times 0 & 0 \times 0 + -1 \times -1
+  \end{bmatrix}
+  = \begin{bmatrix}
+    -1 & 0 \\
+    0 & 1
+    \end{bmatrix} = A
+\end{align*}
+
+\begin{align*}
+  A C = \begin{bmatrix}
+    -1 \times -1 + 0 \times 0 & -1 \times 0 + 0 \times -1 \\
+    0 \times -1 + -1 \times 0 & 0 \times 0 + 1 \times -1
+  \end{bmatrix}
+  = \begin{bmatrix}
+    1 & 0 \\
+    0 & -1
+    \end{bmatrix} = B
+\end{align*}
+\begin{align*}
+  C A = \begin{bmatrix}
+    -1 \times -1 + 0 \times 0 & 0 \times -1 + -1 \times 0 \\
+    -1 \times 0 + 0 \times -1 & 0 \times 0 + -1 \times 1
+  \end{bmatrix}
+  = \begin{bmatrix}
+    1 & 0 \\
+    0 & -1
+    \end{bmatrix} = B
+\end{align*}
+
+The squares are like this:
+\begin{align*}
+  A A = \begin{bmatrix}
+    -1 \times -1 + 0 \times 0 & 0 \times 1 + -1 \times 0 \\
+    -1 \times 0 + 0 \times 1 & 0 \times 0 + 1 \times 1
+  \end{bmatrix}
+  = \begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+    \end{bmatrix} = E
+\end{align*}
+\begin{align*}
+  B B = \begin{bmatrix}
+    1 \times 1 + 0 \times 0 & 0 \times -1 + 1 \times 0 \\
+    1 \times 0 + 0 \times -1 & 0 \times 0 + -1 \times -1
+  \end{bmatrix}
+  = \begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+    \end{bmatrix} = E
+\end{align*}
+\begin{align*}
+  C C = \begin{bmatrix}
+    -1 \times -1 + 0 \times 0 & 0 \times -1 + -1 \times 0 \\
+    -1 \times 0 + 0 \times -1 & 0 \times 0 + -1 \times -1
+  \end{bmatrix}
+  = \begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+    \end{bmatrix} = E
+\end{align*}
+
+Yielding a multiplication table like this:
+
+  \begin{center}
+    \begin{tabular}{ |c|c|c|c|c| }
+      \hline
+          {$\times$} & $E$ & $A$ & $B$ & $C$ \\
+          \hline
+          $E$      & $E$ & $A$ & $B$ & $C$ \\
+          $A$      & $A$ & $E$ & $C$ & $B$ \\
+          $B$      & $B$ & $C$ & $E$ & $A$ \\
+          $C$      & $C$ & $B$ & $A$ & $E$ \\
+          \hline
+    \end{tabular}
+  \end{center}
+
+  Which by inspection is the same as the operation matrix for the
+  permutation group.
+\end{solution}
+\begin{exercise}
+  Suppose that $H$ is a subgroup of $A _n $ with the property that for
+  all $\sigma \in A_n$, $\sigma ^ 2 \in H$.  Prove that all three-cycles
+  are in $H$.
+\end{exercise}
+\begin{solution}
+  Let $\tau$ be a three cycle.  Then there exist $x_1, x_2, x_3 $ such
+  that $\tau = ( x_1, x_2, x_3)$.  By assumption, $\tau ^2 \in H$.
+  But $\tau ^2 = (x_1, x_3, x_2)$. Since $H$ is a subgroup,
+  $\tau ^2 \times \tau ^2 \in H$.  But $\tau ^2 \times \tau ^2$
+  is $ (x_1, x_2, x_3)$ which is $\tau$ itself, so
+  therefore for any three cycle, it is contained in $H$.
+  \qed
+  
+
+\end{solution}
+
+\begin{exercise}
+  Given
+  \begin{center}
+  $$
+  \pi = \begin{bmatrix}
+    1 & 2 & 3 & 4 & 5 \\
+    2 & 4 & 5 & 1 & 3
+  \end{bmatrix}
+  $$
+  \end{center}
+Count the number of inversions of $\pi$. (An inversion is a pair of
+integrats in the second row of $\pi$ that are out of their natural
+order, i.e., a pair $(\pi(i), \pi(j))$ where $i < j$ and $\pi(i) > \pi(j)$.
+What is the parity of the number of inversions of $\pi$? What is the parity of $\pi$?
+\end{exercise}
+\begin{solution}
+  For reference, $\pi = (1 2 4) (3 5)$
+
+  First I will list the pairs involved:
+  
+  \begin{tabular}{| c | c | c |}
+      \hline 
+    Pair & $\pi(\text{pair})$ & 1 if swapped, 0 if natural \\
+      \hline 
+    (1, 2) & (2, 4) & 0 \\
+    (1, 3) & (2, 5) & 0 \\
+    (1, 4) & (2, 1) & 1 \\
+    (1, 5) & (2, 3) & 0 \\
+    (2, 3) & (4, 5) & 0 \\
+    (2, 4) & (4, 1) & 1 \\
+    (2, 5) & (4, 3) & 1 \\
+    (3, 4) & (5, 1) & 1 \\
+    (3, 5) & (5, 3) & 1 \\
+    (4, 5) & (1, 3) & 0 \\
+\hline
+  \end{tabular}
+
+  The number of inversions is 5, which is odd parity.  From the cycle
+  decomposition, (a 3-cycle and a 2-cycle, which has 1 even cycle) the
+  permutation is an odd permutation.
+  
+\end{solution}
+\begin{exercise}
+For an arbitrary (finite) permutation $\sigma$, the parity of the
+permutation is equal to the parity of the number of inversions of
+$\sigma$.  
+\end{exercise}
+\begin{solution}
+  By induction on the number of transpositions in a permutation.
+
+  Base case: the identity has zero transpositions, and also is an
+  order preserving map of $\NN_n$ to itself, and hence has zero
+  inversions.
+
+  Induction case: $\sigma$ has an expression as $n$
+  transpositions. Let $(a _ 1, a_2, a_3, ... a_k)$ be a cycle in its
+  representation. Replace it with $(a_1) (a_2,. ... a_k)$ (where $k$
+  might be 2).  This $ \sigma ' $ has one less transposition than $\sigma$, and so the parity
+  of this permutation matches the parity of the inversions.
+
+  The changes in the inversions are due to the changes in:
+  \begin{align*}
+    \sigma ( a_1 ) = & a_2  \text{but}  \sigma ' (a_1) = a_1 \\
+    \sigma ( a_k) = & a_1 \text{but} \sigma ' (a_k) = a_2
+  \end{align*}
+  In which case, the pair $(a_1, a_2) $ is moved to $(a_2, a_1)$ which
+  reverses the sense of the comparison, hence altering the parity by
+  one.  It also switched all the pairs $(a_j, a_1)$ and $(a_j, a_2)$.
+  In no case does the switch alter the number of inversions. The
+  distinct pairs are still less than or greater than as they were.  
+\end{solution}
+
+\begin{comment}
+  \begin{exercise}
+    problem
+  \end{exercise}
+  \begin{solution}
+    \begin{enumerate}[(a)]
+    \item
+      first answer
+    \end{enumerate}
+  \end{solution}
+\end{comment}
+
+
+
+
+\end{document}
