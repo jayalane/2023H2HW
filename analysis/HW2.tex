@@ -84,42 +84,6 @@
   except at finitely many points of $[a,b]$, then $f$ is Riemann integrable on $[a,b ]$
 \end{exercise}
 \begin{solution}
-  \begin{comment}
-  The proof of integrability will be using the Riemann integrability
-  criterion from class, where given an $\varepsilon$ one must find a
-  partition such that the difference between $U(f, P)$ and $L(f, P)$
-  is smaller than $\varepsilon$. $D$ is the number of points of
-  discontinuity plus 1.
-
-  Since on each section between the points of discontinuity, $f$ is
-  continuous and bounded, $f$ is uniformly continuous, that is for
-  $\frac{\varepsilon}{n}$ (where $n$ is the number of points of
-  discontinuity plus one), and for each $I_i$ interval, one can find a
-  $\delta _ i$ such that if we divide those intervals into $\delta_i$
-  sized sub-intervals $I_{ik}$, then $ \sup \limits_{x \in I_{ik}}  M_{ik} - m_{ik} $
-  will be less than $\varepsilon$, allowing us to show
-  that $U(f, I_{ij}) \leq L(, I_{ij}) + \varepsilon / D$, for each
-  integrable piece.  Adding them up, we get a partition $P$, of
-  $\delta_{i}$ sized segments in each of the $D$ continuous segments,
-  and
-  $$
-  L(f, p) = \sum _{l=1}^D L(f, I_i) \leq \sum _{l=1}^D ( U(f, I_i) + \varepsilon / D )
-  $$
-  So
-  $$
-  L(f, P) \leq U(f, P) \leq D * \varepsilon / D = U(f, P) + \varepsilon
-  $$
-  Showing by the Riemann Integrability criterion in class, that
-  $\int _ a ^ b f$ exists and is finite.
-
-  (Note: the above was what I had written before we reviewed the
-  problem in class; I was planning to hand-wave away the points of
-  discontinuity by replacing $f$ on $[x_{i-1}, x_i]$ with $f'_i$ that was
-  continuous and arguing that the $L(f', P)$ and $U(f', P)$ were equal to
-  $L(f,P)$ and $U(f, P)$ 
-  with reference to the narrow strip argument from earlier in class;
-  but I'm happy to do a more rigorous and explicit argument.)
-  \end{comment}
   We'll use the Riemann integrability criterion and construct a
   partition such that $L(f, P) \leq U(f, P) + \varepsilon$ showing that
   the integral exists.  Additionally, we'll calculate $\underline \int
@@ -128,18 +92,38 @@
   choose two types of intervals, ones around the points of
   discontinuity, call them $c_i$ for $i$ from 1 to $k$, and ones
   splitting up the sections of continuity up into very
-  small $\delta_{\varepsilon}$ strips.  $P = B \cup D$ where $B$ is:
+  small $\delta_{\varepsilon}$ strips.
   $$
-  B = \{ max(a, c_i - \rho), min(c_i + \rho, b), \quad \text{for each} \ \  i, 1 \leq i \leq k \}
+  P = B \cup D
+  $$
+  where $B$ is:
+  $$
+  B = \{ \max(a, c_i - \rho), \min(c_i + \rho, b), \quad \text{for each} \ \  i, 1 \leq i \leq k \}
   $$
   And $D$ is:
   $$
   D = \{ a + i \frac{(b - a)}{n}, 0 \leq i \leq n, i \in \ZZ \}
   $$
-  The two free parameters above $n$ and $\rho$ need to be calculated.
-
-  $n$ comes from the 
-  
+  The two free parameters above $n$ and $\rho$ need to be calculated.  Let $M_f$ be the
+  $ \sup \limits_{[a,b]} f$ and $m_f$ be the $ \inf \limits_{[a,b]} f$.  Then $\sigma$ should be
+    small enough that the $k$ points of continuity of max $M_i - m_i < M_f - m_f$ difference between
+    $L$ and $U$ contribute less than say $\frac{\varepsilon}{3}$.
+    $$ k (2 \sigma) (M_f - m_f) < \frac{\varepsilon}{3} $$
+    So let 
+    $$
+    \sigma < {\frac{\varepsilon}{3} \over 2k (M_f - m_f)}
+    $$
+    
+    For the strips in the wider, we have a finite number of open intervals on which $f$ is continuous.  $f$ is also
+    bounded, so on each of these intervals, $f$ is uniformly continuous.  That means, for each such interval $I_i$, for
+    all $\frac{\varepsilon}{3}$, and for all $x_1, x_2 \in I_i$, there is a $\delta_i$ such that
+    $$
+    | x_1 - x_2 | < \delta_i \implies | f(x_1) - f(x_2) < \frac{\varepsilon}{3}
+    $$
+    Then, let $\delta = \min \limits_i \delta_i$, and then for all of the intervals $I_i$ on which the function $f$
+    is continuous, 
+    
+    
   
 \end{solution}
 
@@ -154,17 +138,15 @@
   $$
   Show that $f$ is Riemann integrable and compute $\int _ {a} ^ {b} f$.  
 \end{exercise}
+
+
 \begin{solution}
-
-  
-
-  For $\underline \int _a ^b$, the $\inf \limits_{\text{any
-      partition}} L(f, P)$ is $0$; for any interval I in the
+  For $\underline \int _a ^b$,
+  the $\inf \limits_{\text{any partition}} L(f, P)$ is $0$;
+  for any interval I in the
   partition, $\inf \limits _ {x \in I} f(x) = 0$ as there are
-  irrational numbers, and hence places where $f(x) = 0$ between any
+  irrational numbers, and hence places where $f(x) = 0$, between any
   two interval endpoints.
-
-  
 \end{solution}
 
 \begin{exercise}
@@ -208,7 +190,7 @@
       \bigcup _ {n=1}^\infty C_n = & \bigcup _ {n=1}^\infty D_n^c \\ 
       = &  \{ \bigcap _{n=1}^\infty D_n \} ^ c
       \end{align*}
-      By DeMorgan's law, and the countable intersection of the $D_n$ is
+      By DeMorgan's law.  The countable intersection of the $D_n$ is
       also countable, so
       $$
       \bigcup _ {n=1}^\infty C_n \in \calA
@@ -249,8 +231,5 @@
 \end{enumerate}
 \end{solution}
 \end{comment}
-
-
-
 
 \end{document}
