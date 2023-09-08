@@ -109,10 +109,10 @@
     $$ k (2 \rho) (M_f - m_f) < \frac{\varepsilon}{3(b-a)} $$
     So let 
     $$
-    \rho < {\frac{\varepsilon}{3} \over 2k (M_f - m_f)}
+    \rho < {\frac{\varepsilon}{6k (M_f - m_f)(b-a)} }
     $$
     
-    For the strips in the wider, we have a finite number of open intervals on which $f$ is continuous.  $f$ is also
+    For the wider strips, we have a finite number of open intervals on which $f$ is continuous.  $f$ is also
     bounded, so on each of these intervals, $f$ is uniformly continuous.  That means, for each such interval $I_i$, for
     all $\frac{\varepsilon}{3(b-a)}$, and for all $x_1, x_2 \in I_i$, there is a $\delta_i$ such that
     $$
@@ -132,19 +132,19 @@
     $$
     And for the sum:
     $$
-    \sum \limits_{I_i} (M_i - m_i) (x_i - x_{i-1}) \leq \frac{\varepsilon}{3} (b -a)
+    \sum \limits_{I_i} (M_i - m_i) (x_i - x_{i-1}) \leq \frac{\varepsilon}{3}
     $$
     For the second sum,
     \begin{align*}
-      \sum \limits _k (M_k - m_k) (2 \rho) & < \sum \limits _k (M_f - m_f) {\frac{\varepsilon}{3} \over 2k (M_f - m_f)}  & \\
-      & < \frac{(M_f - m_f) \varepsilon}{3(M_f - m_f)} & \\
-      & < \frac{\varepsilon}{3}  & \\
+      \sum \limits _k (M_k - m_k) (2 \rho) & \leq \sum \limits _k (M_f - m_f) {\frac{\varepsilon}{3} \over 2k (M_f - m_f)}  & \\
+      & \leq \frac{(M_f - m_f) \varepsilon}{3(M_f - m_f)} & \\
+      & \leq \frac{\varepsilon}{3}  & \\
     \end{align*}
     $(M_k - m_k) \leq (M_f - m_f)$ because the $\sup$ over a smaller set is smaller, and the $\inf$ over a smaller set is larger,
     so the difference over the smaller set is smaller (or equal) to the difference over the larger set.
     So, combining the two sums,
     $$
-    U(f, P) - U(f, P) \leq \frac{\varepsilon}{3} + \frac{\varepsilon}{3} < \varepsilon
+    U(f, P) - L(f, P) \leq \frac{\varepsilon}{3} + \frac{\varepsilon}{3} < \varepsilon
     $$
     So we have construction a partition for our $\varepsilon$ and hence fulfilled the conditions of the
     Riemann integrability condition.  \qed
@@ -169,28 +169,27 @@
 \begin{solution}
 
   We'll use the Riemann integrability condition theorem and given an $\varepsilon$ will produce
-  a partition $P$ such that $U(f, P) - L(f,P) < \varepsilon, proving the integral exists.  
+  a partition $P$ such that $U(f, P) - L(f,P) < \varepsilon$, proving the integral exists.  
   
-  Additionally, we'll calculate $\underline \int
-  _{a} ^ {b} f = 0$ showing that the integral is in fact $0$ for all
-  $[a,b]$.    
+  Additionally, we'll calculate $\underline \int  _{a} ^ {b} f = 0$ showing
+  that the integral is in fact $0$ for all $[a,b]$.    
 
 
   Let $\varepsilon > 0$.  $L(f,P)$ is identically $0$ across all
   paritions, as every interval contains irrational numbers $x$ where $f(x) = $,
-  so the $ \inf \limits_{segment of partition} = 0$.
+  so the $ \inf \limits_{\text{segment of partition}} = 0$.
 
-  So the condition reduces to $U(f, P) < \varepsilon.
+  So the condition reduces to $U(f, P) < \varepsilon$.
 
-  Let $n$ be such that $ n > \frac{1}{\varepsilon}.  Divide
+  Let $n$ be such that $ n > \frac{1}{\varepsilon}$.  Divide
   the $[a,b]$ interval into very small intervals around the numbers
   expressable as $m/n$ with no common factors.  Let $c_1$ be the
   smallest number in $[a,b]$ such that $c_1 = m/n$ where $m$ and $n$
   have no common factors.
 
   $$
-  P = { a, \max(a, c_1 - \delta), \min(c_i + \delta), \min(c_1 + 1/n - \delta), ... , \min(c_1 + (b-a)/n, b)
-    $$
+  P = \{ a, \max(a, c_1 - \delta), \min(c_i + \delta, b), \min(c_1 + 1/n - \delta, b), \min(c_1 + 1/n + \delta), ... , \min(c_1 + k/n + \delta, b), b \}
+  $$
 
   
   For $\underline \int _a ^b$,
@@ -199,6 +198,30 @@
   partition, $\inf \limits _ {x \in I} f(x) = 0$ as there are
   irrational numbers, and hence places where $f(x) = 0$, between any
   two interval endpoints.
+
+  As above, there are two types of strips, ones that contain rationals
+  of the form $k/n$ and those which only contain rationals with smaller denominators.
+  So
+  \begin{align*}
+    U(f, P) & = \sum \limits_{(b-a)/n \text{intervals}} M_i 2 \delta + \sum \limits_{wider intervals}M_i (x_i - x_{i-1}) & \\
+    & \leq \sum \limits_{(b-a)/n \text{intervals}} 2 \delta + (b-a) * 1/n & \\
+  \end{align*}
+  So $ U(f,P) < 2 \delta (b-a)/n + (b-a)/n$.  We want this to be $< \varepsilon / 2$, so this means:
+  \begin{align*}
+    2 \delta (b -a ) / n + (b-a) /n & < \varepsilon / 2 & \\
+    (2 \delta + 1) (b - a) /n & < \varepsilon / 2 & \\
+    2 \delta + 1 & < \frac{ \varepsilon n }{2(b-a)} & \\
+      2\delta & < \frac{n \varepsilon - 2(b-a)}{2(b-a)} & \\
+      \delta & < \frac{n \varepsilon - 2(b-a)}{4(b-a)} & \\
+  \end{align*}
+
+  So if we choose $n$ so that $n > 2(b-a)$ and $\delta$ as above, then the U(f, P) for the resultant partition is less than $\varepsilon$, and the conditions are met,
+  the integrals exist, and by the calculation on L(f, P),
+  $$
+  \underline \int _a ^b f = \overline \int _a ^b f = \text{R} \int _a ^b f = 0
+  $$
+  \qed
+  
 \end{solution}
 
 \begin{exercise}
