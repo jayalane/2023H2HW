@@ -86,9 +86,7 @@
 \begin{solution}
   We'll use the Riemann integrability criterion and construct a
   partition such that $L(f, P) \leq U(f, P) + \varepsilon$ showing that
-  the integral exists.  Additionally, we'll calculate $\underline \int
-  _{a} ^ {b} f = 0$ showing that the integral is in fact $0$ for all
-  $[a,b]$.  (part finished prior to class) So given an $\varepsilon$, we
+  the integral exists.  (part finished prior to class) So given an $\varepsilon$, we
   choose two types of intervals, ones around the points of
   discontinuity, call them $c_i$ for $i$ from 1 to $k$, and ones
   splitting up the sections of continuity up into very
@@ -105,23 +103,51 @@
   D = \{ a + i \frac{(b - a)}{n}, 0 \leq i \leq n, i \in \ZZ \}
   $$
   The two free parameters above $n$ and $\rho$ need to be calculated.  Let $M_f$ be the
-  $ \sup \limits_{[a,b]} f$ and $m_f$ be the $ \inf \limits_{[a,b]} f$.  Then $\sigma$ should be
+  $ \sup \limits_{[a,b]} f$ and $m_f$ be the $ \inf \limits_{[a,b]} f$.  Then $\rho$ should be
     small enough that the $k$ points of continuity of max $M_i - m_i < M_f - m_f$ difference between
-    $L$ and $U$ contribute less than say $\frac{\varepsilon}{3}$.
-    $$ k (2 \sigma) (M_f - m_f) < \frac{\varepsilon}{3} $$
+    $L$ and $U$ contribute less than say $\frac{\varepsilon}{3(b-a)}$.
+    $$ k (2 \rho) (M_f - m_f) < \frac{\varepsilon}{3(b-a)} $$
     So let 
     $$
-    \sigma < {\frac{\varepsilon}{3} \over 2k (M_f - m_f)}
+    \rho < {\frac{\varepsilon}{3} \over 2k (M_f - m_f)}
     $$
     
     For the strips in the wider, we have a finite number of open intervals on which $f$ is continuous.  $f$ is also
     bounded, so on each of these intervals, $f$ is uniformly continuous.  That means, for each such interval $I_i$, for
-    all $\frac{\varepsilon}{3}$, and for all $x_1, x_2 \in I_i$, there is a $\delta_i$ such that
+    all $\frac{\varepsilon}{3(b-a)}$, and for all $x_1, x_2 \in I_i$, there is a $\delta_i$ such that
     $$
-    | x_1 - x_2 | < \delta_i \implies | f(x_1) - f(x_2) < \frac{\varepsilon}{3}
+    | x_1 - x_2 | < \delta_i \implies | f(x_1) - f(x_2) < \frac{\varepsilon}{3(b-a)}
     $$
-    Then, let $\delta = \min \limits_i \delta_i$, and then for all of the intervals $I_i$ on which the function $f$
-    is continuous, 
+    Then, let $\delta = \min \limits_i \delta_i$.  Now, set $n$ in the partition so that $\frac{(b-a)}{n} \leq \delta$.
+
+    Now,
+    $$ L(f,P) = \sum \limits _ { I_i } m_i (x_i - x_{i-1}) + \sum \limits _k m_k (2 * \rho) $$
+    and
+    $$ U(f,P) = \sum \limits _ { I_i } M_i (x_i - x_{i-1}) + \sum \limits _k M_k (2 \rho) $$
+    So
+    $$ U(f,P) - L(f,P) = \sum \limits_{I_i} (M_i - m_i) ( x_i - x_{i-1}) + \sum \limits _k (M_k - m_k) (2 \rho) $$
+    But, $ (M_i - m_i) = f(x_1) - f(x_2) $ for some $ x_1, x_2 \in I_i$, and so, by the above uniform continuity,
+    $$
+    (M_i - m_i) \leq \frac{\varepsilon}{3(b-a)} (b-a) \leq \frac{\varepsilon}{3}
+    $$
+    And for the sum:
+    $$
+    \sum \limits_{I_i} (M_i - m_i) (x_i - x_{i-1}) \leq \frac{\varepsilon}{3} (b -a)
+    $$
+    For the second sum,
+    \begin{align*}
+      \sum \limits _k (M_k - m_k) (2 \rho) & < \sum \limits _k (M_f - m_f) {\frac{\varepsilon}{3} \over 2k (M_f - m_f)}  & \\
+      & < \frac{(M_f - m_f) \varepsilon}{3(M_f - m_f)} & \\
+      & < \frac{\varepsilon}{3}  & \\
+    \end{align*}
+    $(M_k - m_k) \leq (M_f - m_f)$ because the $\sup$ over a smaller set is smaller, and the $\inf$ over a smaller set is larger,
+    so the difference over the smaller set is smaller (or equal) to the difference over the larger set.
+    So, combining the two sums,
+    $$
+    U(f, P) - U(f, P) \leq \frac{\varepsilon}{3} + \frac{\varepsilon}{3} < \varepsilon
+    $$
+    So we have construction a partition for our $\varepsilon$ and hence fulfilled the conditions of the
+    Riemann integrability condition.  \qed
     
     
   
@@ -141,6 +167,32 @@
 
 
 \begin{solution}
+
+  We'll use the Riemann integrability condition theorem and given an $\varepsilon$ will produce
+  a partition $P$ such that $U(f, P) - L(f,P) < \varepsilon, proving the integral exists.  
+  
+  Additionally, we'll calculate $\underline \int
+  _{a} ^ {b} f = 0$ showing that the integral is in fact $0$ for all
+  $[a,b]$.    
+
+
+  Let $\varepsilon > 0$.  $L(f,P)$ is identically $0$ across all
+  paritions, as every interval contains irrational numbers $x$ where $f(x) = $,
+  so the $ \inf \limits_{segment of partition} = 0$.
+
+  So the condition reduces to $U(f, P) < \varepsilon.
+
+  Let $n$ be such that $ n > \frac{1}{\varepsilon}.  Divide
+  the $[a,b]$ interval into very small intervals around the numbers
+  expressable as $m/n$ with no common factors.  Let $c_1$ be the
+  smallest number in $[a,b]$ such that $c_1 = m/n$ where $m$ and $n$
+  have no common factors.
+
+  $$
+  P = { a, \max(a, c_1 - \delta), \min(c_i + \delta), \min(c_1 + 1/n - \delta), ... , \min(c_1 + (b-a)/n, b)
+    $$
+
+  
   For $\underline \int _a ^b$,
   the $\inf \limits_{\text{any partition}} L(f, P)$ is $0$;
   for any interval I in the
@@ -176,7 +228,7 @@
       $ \bigcup _ {n =1} ^ \infty A_n $ is in $\calA$ by construction.
 
       In the second case, at least one of $A_n$ is not countable, but
-      the complement of a countable set.  Split the union in to two,
+      the complement of a countable set.  Split the union into two,
       $B_1, ... $ where $B_n$ is countable, and $C_1, C_2,...$ where
       each $C_n^c$ is countable.
 
