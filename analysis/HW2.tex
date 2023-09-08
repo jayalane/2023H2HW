@@ -136,6 +136,75 @@
   
 \end{solution}
 
+\begin{exercise}
+  Let $X$ be a set. Let $ \calA = \{A \subset X : A \ \ \text{is 
+    countable or} \ \ A^c \ \ \text{is countable} \}$.  Prove $\calA$ is a
+    $\sigma$-algebra on $X$. (Note: Finite sets are countable. So
+    $\varnothing$ is countable.)
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}[(i)]
+    \item
+      As noted, $\varnothing $ is countable, and $\varnothing \in \calA$
+    \item
+      If $A \in \calA$, then by construction, $A^c \in \calA$.
+    \item
+      Given a sequence of sets
+      $$
+      A_1, A_2, ... \in \calA
+      $$
+      is
+      $$ \bigcup _ {n =1} ^ \infty A_n
+      $$ in $\calA$?
+
+      There are two cases.  Each $A \in \calA$ is either countable or
+      a complement of a countable set.  Case one is $A_n$ is countable
+      for all $n$.  In this case, the union of a countable set is again countable, and
+      $ \bigcup _ {n =1} ^ \infty A_n $ is in $\calA$ by construction.
+
+      In the second case, at least one of $A_n$ is not countable, but
+      the complement of a countable set.  Split the union in to two,
+      $B_1, ... $ where $B_n$ is countable, and $C_1, C_2,...$ where
+      each $C_n^c$ is countable.
+
+      Consider the union of the $C_n$
+      $$
+      \bigcup _ {n=1}^\infty C_n
+      $$
+
+      Let $D_n = C_n ^c$.  
+      \begin{align*}
+      \bigcup _ {n=1}^\infty C_n = & \bigcup _ {n=1}^\infty D_n^c \\ 
+      = &  \{ \bigcap _{n=1}^\infty D_n \} ^ c
+      \end{align*}
+      By DeMorgan's law, and the countable intersection of the $D_n$ is
+      also countable, so
+      $$
+      \bigcup _ {n=1}^\infty C_n \in \calA
+      $$
+      Call the countable set in its complement $ \{ a_1, a_2, ... \}$
+      Also, take the union of all the $B_n$, the union of countable sets
+      is countable, so for some enumeration
+      $$
+      \bigcup _{n-1}^\infty B_n = \{ b_1, b_2, b_3, ... \}
+      $$
+      So the whole union is now
+      $$
+      ( X - \{a_1, a_2, a_3, ... \} \bigcup \{b_1, b_2, ... \}
+      $$
+      But for sets, $A, B, C$
+      $$
+      ( A - B) \bigcup C = (A \bigcup C) - (B \bigcup C)
+      $$
+      In this case,
+      $$
+      (X - \{ a_1, a_2, ... \} ) \bigcup \{b_1, b_2, b_3, ... \} = ( X \bigcup \{b_1, b_2, b_3, ... \}) - (\{ a_1, a_2, ... \} \bigcup \{ b_1, b_2 ... \} )
+      $$
+      
+      
+  \end{enumerate}
+
+\end{solution}
 
 \begin{comment}
 \begin{exercise}
