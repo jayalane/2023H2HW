@@ -87,6 +87,23 @@
   Prove that the index is multiplicative. That is, prove that if $K \leq H \leq G$, then $[G:K] = [G:H][H:K]$. 
 \end{exercise}
 \begin{solution}
+  The cosets of $K$ in $G$ lie within cosets of $H$ in $G$.
+
+  $$
+  (aK) \subseteq (aH)
+  $$
+
+  since $K \subseteq H$, $\{ ak : k \in K\} \subseteq \{ ah : k \in H\}$
+  So the $K$ cosets of $K$ in $H$ partition $H$ into $[H:K]$ sets, and
+  the $K$ cosets of $K$ in $G$ partition the cosets of $H$ into
+  $[H:K]$ sets each; in the finite case, a counting argument shows
+  that each $H$ in $G$ coset generates $[H:K]$ sets, making the total
+  number of $K$ cosets partitioned into $[G:H]$ sets each of $[H:K]$
+  subsets.
+
+  There is said to be a more general argument constructing a bijection
+  between the various cosets but I could not find it.
+  
 \end{solution}
 
 \begin{exercise}
@@ -222,14 +239,14 @@
 
       \begin{align*}
         (1)H & = \{ (1), (1, 2) \} & \\
-        (1, 3)H = \{ (1,3), (1,3)(1,2) \} = \{ (1,3), (1, 2, 3) \} & \\
-        (2, 3)H = \{ (2,3), (2, 3)(1, 2) \} = \{ (2, 3), (1, 3, 2) \} & \\
+        (1, 3)H & = \{ (1,3), (1,3)(1,2) \} = \{ (1,3), (1, 2, 3) \} & \\
+        (2, 3)H & = \{ (2,3), (2, 3)(1, 2) \} = \{ (2, 3), (1, 3, 2) \} & \\
       \end{align*}
       (That's all six members).  The right cosets of $H$ are:
       \begin{align*}
         H(1) & = \{ (1), (1, 2) \} & \\
-        H(1, 3) = \{ (1,3), (1,2)(1,3) \} = \{ (1,3), 1, 3, 2)) \} & \\
-        H(2, 3) = \{ (2,3), (1, 2)(2, 3) \} = \{ (2, 3), (1, 2, 3) \} & \\
+        H(1, 3) &= \{ (1,3), (1,2)(1,3) \} = \{ (1,3), 1, 3, 2)) \} & \\
+        H(2, 3) & = \{ (2,3), (1, 2)(2, 3) \} = \{ (2, 3), (1, 2, 3) \} & \\
       \end{align*}
     \item
       The right coset $H (2, 3) = \{ (2, 3), (1, 2, 3) \} $ is not a left coset, so
