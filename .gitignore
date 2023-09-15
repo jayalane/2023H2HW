@@ -1,0 +1,8 @@
+*.pdf
+*.dvi
+*.log
+comment.cut
+.DS_Store
+*.out
+*.aux
+\#.*
