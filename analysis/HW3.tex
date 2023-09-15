@@ -87,8 +87,8 @@
     Continuity from Below: If $A_1, A_2, ... \in \mathcal{A}$ and $A_1 \subseteq A_2 \subseteq ...$, then
     $\mu ( \bigcup \limits _{n=1} ^\infty A_n ) = \lim _n  \mu ( A_n)$.
   \item
-    Continuity from Above: If $A_1, A_2, ... \in \mathcal{A}$ and $A_1 \subseteq A_2 \subseteq ...$, then
-    $\mu ( \bigcup \limits _{n=1} ^\infty A_n ) = \lim _n \mu(A_n)$.
+    Continuity from Above: If $A_1, A_2, ... \in \mathcal{A}$ and $A_1 \supseteq A_2 \supseteq ...$, then
+    $\mu ( \bigcap \limits _{n=1} ^\infty A_n ) = \lim _n \mu(A_n)$.
   \end{enumerate}
 \end{exercise}
 \begin{solution}
@@ -152,6 +152,45 @@
     \lim _ {n \to \infty} \mu ( A_n ) = \sum \limits _ {i=1} ^ \infty \mu (B_i)
     $$
     As needed to prove the result \qed
+  \item
+    Let $k$ be such that $\mu (A_k) < \infty$.  We can replace the
+    sequence $ A_1, A_2, ..., $ with $ B_k, B_{k+1}, ...$ without
+    affecting the limits or the intersection because
+    $ \bigcap \limits _{i=1}^{k} = A_k$ due to the $A_i$ getting smaller.
+
+    So we are trying to prove that $\mu \bigcap \limits _{i=1}^\infty B_i = \lim \limits_{i \to \infty} \mu ( B_i ) $
+
+    Define $B'_n = B_1 \setminus B_{n+1}$.  Then
+
+    $$
+    \bigcap \limits _{i=1} ^ \infty B_i = B_1 - \bigcup \limits _{i=1} ^ \infty B'_i
+    $$
+
+    Showing the $ \subseteq $ direction: 
+
+    $ x \in \bigcap B_i$ means for all $i$, $ x \in B_i$.  So $x \in B_1$ so if
+    $ x \notin \bigcup B'_i$, then $\subseteq $ direction is
+    proven.  $\bigcup B'_i = \bigcup (B_1 - B_{i+1})$.  But for every $i$, $x \in
+    B_1$ and $x \in B_{i+i}$, so $x \notin B_1 - B_{i+1}$, so $x \in \bigcup (B_1 - B_{i+1})$.
+
+    Showing the $ \supseteq$ direction is just reversing the above deductions.
+
+    So
+    \begin{align*}
+      \bigcap \limits _{i=1} ^ \infty B_i & = B_1 - \bigcup \limits _{i=1} ^ \infty B'_i & \\
+      \mu ( \bigcap \limits _{i=1} ^ \infty B_i ) & = \mu (B_1 - \bigcup \limits _{i=1} ^ \infty B'_i ) & \\
+      \mu ( \bigcap \limits _{i=1} ^ \infty B_i ) & = \mu (B_1) - \mu( \bigcup \limits _{i=1} ^ \infty B'_i ) \ \ \text(disjoint difference) & \\
+      \mu ( \bigcap \limits _{i=1} ^ \infty B_i ) & = \mu (B_1) - \lim \limits _{i \to \infty}  B'_i & \ \ \text{by $1$}. & \\
+      \mu ( \bigcap \limits _{i=1} ^ \infty B_i ) & = \mu (B_1) - \lim \limits _{i \to \infty}  B_0 - B_{i+1} & \\
+      \mu ( \bigcap \limits _{i=1} ^ \infty B_i ) & = \mu (B_1) - \mu(B_1) +  \lim \limits _{i \to \infty}  B_{i+1} & \\
+      \mu ( \bigcap \limits _{i=1} ^ \infty B_i ) & = \lim \limits _{i \to \infty}  B_{i+1} & \\ 
+    \end{align*}
+
+    As desired \qed
+    
+    
+    
+    
   \end{enumerate}
 \end{solution}
 
