@@ -1,0 +1,253 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+
+
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+%\def\NN{\mathbb{Z}_{> 0}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+%\def\sp{\mathrm{span}} %messes up align enviroment
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt
+}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\textbf{HW 3 - MATH 231A - Fall 2023 - Chris Lane}
+
+\begin{exercise}
+  Let $(X, \mathcal{A}, \mu)$ be a measure space.  Prove:
+  \begin{enumerate}
+  \item
+    Continuity from Below: If $A_1, A_2, ... \in \mathcal{A}$ and $A_1 \subseteq A_2 \subseteq ...$, then
+    $\mu ( \bigcup \limits _{n=1} ^\infty A_n ) = \lim _n  \mu ( A_n)$.
+  \item
+    Continuity from Above: If $A_1, A_2, ... \in \mathcal{A}$ and $A_1 \subseteq A_2 \subseteq ...$, then
+    $\mu ( \bigcup \limits _{n=1} ^\infty A_n ) = \lim _n \mu(A_n)$.
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}
+  \item
+    Let $B_i$ be defined as
+    \begin{align*}
+      B_1 &= A_1 & \\
+      B_2 &= A_2 \setminus A_1 & \\
+      B_3 &= A_3 \setminus A_2 & \\
+      ...\\
+      B_i & = A_i \setminus A_{i-i} & \\
+      ...\\
+    \end{align*}
+    Then $\bigcup \limits _{n=1} ^ \infty B_i = \bigcup \limits _{n=1}
+    ^ \infty A_i$; if $x \in \bigcup \limits _ {n=1} ^ \infty A_n$ ,
+    then there is a first $n$ such that $x \in A_n$.  Then $x \in B_n$
+    (and not in $A_{n-1}$ or $n$ wouldn't be the first such $n$;
+    therefore due to the set subtraction and that $A_n \subseteq A_m$,
+    $x \notin B_m$, $m > n$, because $A_n \subseteq A_m$, so $x$ is subtracted out of $B_M$.
+
+    Also note that $A_n = \bigcup \limits _ {i = 1}^n B_i$.  This is easily seen by induction.  The base case is true by defintion, $A_1 = B_1$.
+    For $A_n$, $B_n = A_n \setminus A_{n-1}$.  So, 
+
+    \begin{align*} 
+      \bigcup \limits _ {i=1}^n B_i &= ( A_n \setminus ( A_{n-1} ) \cup \bigcup \limits _ {i=1} ^ {n-1} B_i &\\
+       &= ( A_n \setminus ( A_{n-1} ) \cup A_{n-1} & \\
+       &= A_n \\
+    \end{align*}
+
+    Unlike the $A_i$, the $B_i$ are non-overlapping.
+    
+    Let $x \in B_n$ for some (first) $n$.  Then $x \in A_n$. Then for
+    all $m > n$, $x \notin B_m$, as $B_{m} = A_{m} \setminus A_{m-1}$, and
+    $x \in A_{m-1}$, when $m > n$. 
+
+    So, by (ii) of the definition of a measure space,
+    $$
+    \mu ( \bigcup \limits _ {i=1} ^ \infty B_i ) = \sum \limits _ {i=1} ^ \infty \mu (B_i)
+    $$
+    Since the union of the $A_i$ and the $B_i$ are equal, 
+    $$
+    \mu ( \bigcup \limits _ {i=1} ^ \infty B_i ) =    \mu ( \bigcup \limits _ {i=1} ^ \infty A_i)
+    $$
+    Now we have to show that
+    $$
+    \lim _ {n \to \infty} \mu ( A_n ) = \sum \limits _ {i=1} ^ \infty \mu (B_i)
+    $$
+    However,
+    $$
+    \mu (A_n) =  \mu \bigcup \limits _ {i=1} ^ n (B_i)
+    $$
+    So, 
+    $$
+    \mu(A_n) = \sum \limits _ {i=i} ^ n \mu (B_i).
+    $$
+    Taking limits (the sequences are identical at every term and we are in the extended reals so convergance is not an issue):
+
+    $$
+    \lim _ {n \to \infty} \mu ( A_n ) = \sum \limits _ {i=1} ^ \infty \mu (B_i)
+    $$
+    As needed to prove the result \qed
+  \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+  Let $X$ be a set.  The \textbf{counting measure} for $X$ is the
+  measure $\mu _c: \mathcal{P}(X) \to [0, \infty]$ defined
+  by $\mu_c(A) = \infty$ if $A$ is infinite and $\mu_c (A) = | A | $ if
+  $A$ is finite. Here $|A|$ denotes the cardinality of $A$.
+  Prove $\mu _c$ is (actually) a measure.
+\end{exercise}
+\begin{solution}
+  There are two things to verify:
+  \begin{enumerate}[(i)]
+    \item
+      $\mu_c ( \varnothing ) = 0$: 
+
+      $  | \varnothing | = 0$, so this requirement is true.
+    \item
+      $ \mu _c ( \bigcup \limits_{i=1} ^{\infty} A_i )= \sum \limits _{i=1} ^ \infty \mu_c (A _i)$
+      where $A_1, A_2, ... \in \mathcal(A)$ are disjoint:
+
+      There are three cases for the $A_i$.  If any of
+      the $|A_i| = \infty$, then
+      the $| \bigcup \limits_{i=1} ^ \infty A_i | = \infty$, and the condition is met.
+      
+      If $|A_i| < \infty$, for all the $A_i$, but there are an
+      infinite number of them not equal to the empty set, then the sum
+      of their cardinality diverges to $\infty$ and as well the union
+      is countably infinite (otherwise either they aren't disjoint or are empty).
+
+      So the last case is a finite union of disjoint sets of finite size, which
+      is, by elementary set theory, finite and equal to the sum of the sizes. 
+
+      That is, where $ M$ is sufficiently large that $A_i = \varnothing, i > M $:
+
+      $$
+      | \bigcup \limits _ {i=1} ^ M A_i | = \sum \limits _ { i=1} ^ M | (A_i) |
+      $$
+      or 
+      $$
+      \mu_c ( \bigcup \limits _ {i=1} ^ \infty A_i ) = \sum \limits _ { i=1} ^ \infty \mu_c (A_i) 
+      $$
+
+      as required to be a measure.  \qed
+      
+  \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+  Show that the Lebesgue outer measure $ \lambda ^ *$ is translation invarient.  In other words,
+  show that
+  $$
+  \lambda ^*(A + t) = \lambda ^*(A)
+  $$
+  for all $A \subseteq \RR$ and $t \in \RR$.  Here $A + t = \{ a + t: a \in A \}$.  
+\end{exercise}
+\begin{solution}
+  $$
+  \lambda ^* (A+t) = \inf \{ \sum \limits _ i ^ \infty \ell (I_i) : I_1, I_2, ... \text{such that} \ I_i \ \text{are intervals} \ 
+  A + t \subseteq \bigcup \limits _{i_1} ^ \infty I_i \}
+  $$
+  So looking at the elements of the set over which the $\inf$ is being taken, we have
+  $$
+  \inf \{ \sum \limits _ i ^ \infty \ell (I_i) : I_1, I_2, ... \}
+  $$
+
+  I claim that for each collection of $I_i$s that cover $A+t$,
+  there is a collection of $I'_i$s that cover $A$, and vice versa.  if
+  $I_i = [a_i, b_i]$, then $I'_i = [a_i-t, b_i-t]$.  Let $x \in A + t $.
+  Then there are some $I_i$ s.t. $ x \in I_i$, i.e. $ a_i  \leq x \leq b_i$.
+  But $x = a + t$, for some $a \in A$.  So $ a_i - t \leq a \leq b_i$.  That is,
+  $a \in I'_i$.
+
+  Likewise for $a \in A$.  There are some $I'_i$ such that $a \in I'_i$, i.e.
+  $ a'_i -t  \leq a \leq b'_i - t$.  Then, adding $t$, $a'_i \leq a + t \leq b'_i$, or
+  $ a + t \in \bigcup \limits _ i ^ \infty I_i$.
+
+  Moreover, the values $\ell(I_i) = b - a = b - t - (a - t) = \ell(I'_i)$ are equal for each such
+  covering, and
+  $$ \sum \limits _ {i=1} ^ \infty \ell (I_i) : I_1, I_2, ... \} = 
+  \sum \limits _ {i=1} ^ \infty \ell (I'_i) : I'_1, I'_2, ... \}
+  $$
+  Since the sets are the same, the $\inf$ is the same as well, and the result is shown.  \qed
+  
+\end{solution}
+
+\begin{comment}
+\begin{exercise}
+  problem
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  first answer
+\end{enumerate}
+\end{solution}
+\end{comment}
+
+\end{document}
+p
