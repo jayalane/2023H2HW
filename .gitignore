@@ -6,3 +6,4 @@ comment.cut
 *.out
 *.aux
 \#.*
+*~
