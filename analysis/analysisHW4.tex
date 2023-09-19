@@ -1,0 +1,186 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+
+
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+%\def\NN{\mathbb{Z}_{> 0}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+%\def\sp{\mathrm{span}} %messes up align enviroment
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt
+}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\textbf{HW 4 - MATH 231A - Fall 2023 - Chris Lane}
+\begin{exercise}
+  Let $X$ be a set.  Let $\mathcal{A}$ be a $\sigma$-algebra on $X$.  Let $\phi : \mathcal{A} \to [0, \infty]$.
+  Suppose $ \phi$ satisfies
+  \begin{enumerate}[(i)]
+  \item
+    $$
+    \phi (\varnothing) = 0
+    $$
+  \item
+    (Additivity) If $A$ and $B$ are disjoint sets in $\mathcal{A}$, then $\phi( A \cup B) = \phi(A) + \phi(B).$
+  \item
+    (Continuity From Below) If $A_1, A_2, ... \in \mathcal(A)$ and $A_1 \subseteq A_2 \subseteq ...$, then
+    $\phi ( \bigcup \limits _ {i=1} ^ {\infty} = \lim _{n \to \infty} \phi (A_n)$.
+  \end{enumerate}
+  Prove $\phi$ is a measure on $\mathcal{A}$. 
+\end{exercise}
+\begin{solution}
+  There are 
+
+\end{solution}
+
+
+\begin{exercise}
+  Let $X$ be an infinite set.  For each $A \subseteq X$,
+  define $\mu^* (A) = 0$ if $A$ is empty, $\mu^*(A) = 1$ if
+  $A$ is a non-empty and finite set, and $\mu^*(A) = \infty$
+  if $A$ is infinite.  Prove that $\mu^*$ is an
+  outer measure and that $\mu^*$ is not continuous from below.
+\end{exercise}
+\begin{solution}
+  There are two things to prove for an outer measure.
+  \begin{enumerate}[(a)]
+    \item
+      $$
+      \mu ^ *(\varnothing) = 0
+      $$
+
+    True by definition.
+    \item
+      $      \mu ^ * $ is countably monotone.  That is, if $A_1, A_2, ... \subseteq \mathcal{P}$ and
+      $A \subseteq \bigcup \limits _ {n=1} ^ {\infty} A_n$, then
+      $\mu ^ * (A) \leq \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i)$.
+
+      So given such a sequence of $A_i$, we have three cases of their finitude.
+
+      Case one, at least one of the $A_i$, say $A_k$, is infinite.  In this case,
+      the union is infinite and the $\mu ^ * (A_k) = \infty$ and
+      \begin{align*}
+        \mu ^ * (A) &= \infty  & \\
+        \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i) &= \mu ^* (A_k) + \sum _{i\neq k} ^ \infty \mu ^*  (A_i) & \\
+        & = \infty  &
+      \end{align*}
+      And so,
+      $$
+      \mu ^ * (A) \leq   \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i) 
+      $$
+
+      as needed.
+
+      Case two, all of the $A_i$ are finite, but there are an infinite
+      number of them that have at least one element.
+
+      Then, $\mu ^*(A_i) = 1$ for an infinite number of $i$.  So
+      $   \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i) = \infty$.
+
+      In this case, the union could be finite or infinite, but either way 
+      $$
+      \mu^* (A) \leq \infty =  \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i)
+      $$
+
+      In the third case, all but finitely many of the $A_i$ are zero,
+      and the others (at least one or it would be case 1) are finite.
+      In this case, the union is finite, and $\mu^* (A) = 1 \leq \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i)$.
+
+      In all cases, the definition of an outer measure are fulfilled.
+  \end{enumerate}
+
+  However, $\mu ^*$ is not necessarily continuous from below.  To see
+  this, let $X = \ZZ$, and let $A_i = \{ n \in \ZZ : |n| < i \}$.
+  Then $A = \bigcup \limits _ { i=i } ^ \infty A_i$ has infinite
+  cardinality, so $\mu ^* ( A) = \infty$ but each $A_1$ has finite
+  cardinality, so $\mu ^*(A_i) = 1$, for all i, hence
+
+  $$ \lim _ { i \to \infty } \mu ^* (A_i) = \lim _ { i \to \infty} 1 = 1
+  $$
+  And $ \mu^* ( A) = \infty > \lim _ { i \to \infty } \mu ^* (A_i)$ violating
+  continuity from below.  
+  
+\end{solution}
+
+\begin{comment}
+\begin{exercise}
+  problem
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  first answer
+\end{enumerate}
+\end{solution}
+\end{comment}
+
+
+\end{document}
+
