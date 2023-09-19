@@ -128,12 +128,12 @@
       the union is infinite and the $\mu ^ * (A_k) = \infty$ and
       \begin{align*}
         \mu ^ * (A) &= \infty  & \\
-        \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i) &= \mu ^* (A_k) + \sum _{i\neq k} ^ \infty \mu ^*  (A_i) & \\
-        & = \infty  &
+        \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i) &= \mu ^* (A_k) + \sum _{i\neq k} ^ \infty \mu ^*  (A_i) & \\ 
+        & = \infty  & 
       \end{align*}
       And so,
       $$
-      \mu ^ * (A) \leq   \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i) 
+      \mu ^ * (A) \leq   \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i)  
       $$
 
       as needed.
@@ -142,11 +142,11 @@
       number of them that have at least one element.
 
       Then, $\mu ^*(A_i) = 1$ for an infinite number of $i$.  So
-      $   \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i) = \infty$.
+      $   \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i) = \infty $. 
 
       In this case, the union could be finite or infinite, but either way 
       $$
-      \mu^* (A) \leq \infty =  \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i)
+      \mu^* (A) \leq \infty =  \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i) 
       $$
 
       In the third case, all but finitely many of the $A_i$ are zero,
@@ -175,38 +175,38 @@
   \item
     $\lambda ^* ( \QQ ) = 0 $
   \item
-    For every $ \epsilon > 0$, there exists a subset $F$ of $[0,1]$ such that every element of $F$ is an irrational number,
-    and $ \lambda ^* ( F) > 1 - \epsilon $.
+    For every $ \varepsilon > 0$, there exists a subset $F$ of $[0,1]$ such that every element of $F$ is an irrational number,
+    and $ \lambda ^* ( F) > 1 - \varepsilon $.
     
   \end{enumerate}
 \end{exercise}
 \begin{solution}
-\begin{enumerate}[(a)]
-\item
-  $$
-  \lambda ^* ( \QQ) = \inf \{ \sum _{i=1} ^\infty \ell ( I _ i ) : I_1, I_2, I_3, ... \ \ \text{are intervabls such that} \ \ \QQ \subseteq \bigcup \limits _ {i=1} ^ \infty I_i \}
-  $$
-
-  Given an $\epsilon > 0$, order $\QQ $ into a sequence $ \{ q_1, q_2, q_3, q_4, ... \}$.
-
-  Let $I_i = [q_i - \frac{\epsilon}{2^{i+1}},  q_i + \frac{\epsilon}{2^{i+1}} ]$
-
+  \begin{enumerate}[(a)]
+  \item
+    $$
+    \lambda ^* ( \QQ) = \inf \{ \sum _{i=1} ^\infty \ell ( I _ i ) : I_1, I_2, I_3, ... \ \ \text{are intervals such that} \ \ \QQ \subseteq \bigcup \limits _ {i=1} ^ \infty I_i \} 
+    $$
+    
+    Given an $\varepsilon > 0$, order $\QQ $ into a sequence $ \{ q_1, q_2, q_3, q_4, ... \}$. 
+    
+    Let $I_i = [q_i - \frac{\varepsilon}{2^{i+1}},  q_i + \frac{\varepsilon}{2^{i+1}} ] $ 
+    
     \begin{align*}
-      $\ell [ I_i ] & = q_i + \frac{\epsilon}{2^{i+1}} - q_i +  \frac{\epsilon}{2^{i+1}} & \\
-      &  \frac{\epsilon}{2^{i+1}} & \\
+      \ell [ I_i ] & = q_i + \frac{\varepsilon}{2^{i+1}} - q_i +  \frac{\varepsilon}{2^{i+1}} & \\  
+      &  \frac{\varepsilon}{2^{i+1}} & \\ 
     \end{align*}
-
+    
     So
 
     $$
-    \sum \limits _ { i=1} ^ \infty \ell [I_i] =  \sum \limits _ { i=1} ^ \infty \frac{\epsilon}{2^i} = \epsilon \sum \limits _ {i+1} ^ \infty = \epsilon
+    \sum \limits _ { i=1} ^ \infty \ell [I_i] =  \sum \limits _ { i=1} ^ \infty \frac{\varepsilon}{2^i} = \varepsilon \sum \limits _ {i=1} ^ \infty \frac{1}{2^i}= \varepsilon 
     $$
-    So the $ \inf \{ \text{all such \leq \epsilon$.  Since $\epsilong$ was arbitrary, the $ \inf = 0$.
+    So the $ \inf \{ \text{all such} \} \leq \varepsilon$.  Since $\varepsilon$ was arbitrary, the $ \inf = 0$.
     \item
-      
+      This problem
     
     
-\end{enumerate}
+  \end{enumerate}
 \end{solution}
 
 
