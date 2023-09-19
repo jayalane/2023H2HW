@@ -169,6 +169,47 @@
   
 \end{solution}
 
+\begin{exercise}
+  Prove:
+  \begin{enumerate}[(a)]
+  \item
+    $\lambda ^* ( \QQ ) = 0 $
+  \item
+    For every $ \epsilon > 0$, there exists a subset $F$ of $[0,1]$ such that every element of $F$ is an irrational number,
+    and $ \lambda ^* ( F) > 1 - \epsilon $.
+    
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  $$
+  \lambda ^* ( \QQ) = \inf \{ \sum _{i=1} ^\infty \ell ( I _ i ) : I_1, I_2, I_3, ... \ \ \text{are intervabls such that} \ \ \QQ \subseteq \bigcup \limits _ {i=1} ^ \infty I_i \}
+  $$
+
+  Given an $\epsilon > 0$, order $\QQ $ into a sequence $ \{ q_1, q_2, q_3, q_4, ... \}$.
+
+  Let $I_i = [q_i - \frac{\epsilon}{2^{i+1}},  q_i + \frac{\epsilon}{2^{i+1}} ]$
+
+    \begin{align*}
+      $\ell [ I_i ] & = q_i + \frac{\epsilon}{2^{i+1}} - q_i +  \frac{\epsilon}{2^{i+1}} & \\
+      &  \frac{\epsilon}{2^{i+1}} & \\
+    \end{align*}
+
+    So
+
+    $$
+    \sum \limits _ { i=1} ^ \infty \ell [I_i] =  \sum \limits _ { i=1} ^ \infty \frac{\epsilon}{2^i} = \epsilon \sum \limits _ {i+1} ^ \infty = \epsilon
+    $$
+    So the $ \inf \{ \text{all such \leq \epsilon$.  Since $\epsilong$ was arbitrary, the $ \inf = 0$.
+    \item
+      
+    
+    
+\end{enumerate}
+\end{solution}
+
+
 \begin{comment}
 \begin{exercise}
   problem
