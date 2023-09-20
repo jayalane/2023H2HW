@@ -193,7 +193,7 @@
     
     \begin{align*}
       \ell [ I_i ] & = q_i + \frac{\varepsilon}{2^{i+1}} - q_i +  \frac{\varepsilon}{2^{i+1}} & \\  
-      &  \frac{\varepsilon}{2^{i+1}} & \\ 
+      &  \frac{\varepsilon}{2^{i+1}} & \\  
     \end{align*}
     
     So
@@ -203,9 +203,64 @@
     $$
     So the $ \inf \{ \text{all such} \} \leq \varepsilon$.  Since $\varepsilon$ was arbitrary, the $ \inf = 0$.
     \item
-      This problem
-    
-    
+      The $F_\varepsilon$ is constructed as above, but starting with the full $[0,1]$ and subtracting out the intervals around the members of $\QQ$.
+
+      So enumerate the rationals in $ \QQ \cap [0,1]$ in a sequence $ \{ q_1, q_2, q_3, ... \}$.
+
+      Let $J_i =  [ q_i - \frac{\varepsilon}{2^{i+1}},  q_i + \frac{\varepsilon}{2^{i+1}}]$. 
+      
+      $$
+      F_\varepsilon = [0, 1] - \bigcup \limits _ {i = 1} ^ \infty J_i
+      $$
+
+      Now, to make a statement about $\lambda ^* (F _ \varepsilon)$, we are looking at
+
+      $$
+      \lambda ^ * (F_\varepsilon) = \{ \inf \{ \sum \limits _ { i = 1 } ^ \infty \ell ( I_i ) : \text { intervals I with } \ F_\varepsilon \subseteq \bigcup \limits _ { i = 0 } ^ \infty \}
+      $$
+
+      To prove the $\inf$ is greater than a certain number,
+      $1-\varepsilon$, we can produce for any covering of
+      $F_\varepsilon$ a new covering such that the sum of the lengths
+      is smaller than the given covering and greater than $1 -
+      \varepsilon$.
+          
+      Let $ \{ I_1, I_2, I_,3 ... \}$ be intervals such that
+      $ F _ \varepsilon  \subseteq \bigcup \limits _ {i=1} ^ \infty I_i$.
+
+      We will create a new covering by removing all the $J_i$ from the
+      $I_j$ and making new intervals $K_i,k$
+
+      \begin{tabular}{ |c|c|c|c|c|}
+        \hline
+        \   & $I_1$   & $I_2$ & ... & $I_i$ \\
+        \hline
+        $J_1$ & $I_1 - J_1 (K_1, K_2)$ & $I_2 - J_1 (K_5, K_6)$ & ... & $I_i - J_1 (K_{m_1}, K_{m'_1})$ \\
+        $J_2$ & $I_1 - J_2 (K_3, K_4)$ & $I_2 - J_1 (K_9, K_{10})$ & ... & $I_i - J_1 (K_{m_2}, K_{m'_2})$ \\
+        ... &       &   &  &  \\
+        $J_j$ & $I_1 - J_j (K_{i_1}, K_i'')$ & $I_2 - J_j (K_{i_1}, K_{i_2})$ & ... & $ I_i - J_j (K_{m_n}, K_{m'_n})$ \\
+        ... &       &   &  &  \\
+        \hline
+      \end{tabular}
+      Each $I_i - J_j$ yields 1 or 2 intervals $K_a$ and maybe $K_b$.
+      This is seen by examining the cases of the beginning and
+      endpoints of the two intervals $I_i$ and $J_j$.  If the are
+      non-overlapping, $K_a$ is just $I_i$, and $ \ell(K_a) =
+      \ell(I_i)$.  If $J_j \subset I_i$, then there's two new
+      intervals, $K_a$ and $K_b$ and $\ell (I_i) < \ell (K_a) + \ell
+      (K_b)$.  If $J_j$ overlaps $I_i$, then there's just one $K_a$ and
+      $ \ell (I_i) < \ell (K_a)$.
+
+      Now, in all cases the contribution of $I_i$ is greater than or
+      equal to the contribution of its derived $K_a$s.  
+
+      $$ \ell(I_i) >= \ell(K_a) + \ell(K_a')
+      $$
+      And the sums (in the extended reals) are the same:
+      $$
+      \sum \limits _ {i=1} ^ \infty \ell(I_i) >= \sum \limits _ { i = 1} ^ \infty \ell(K_i )
+      $$
+      
   \end{enumerate}
 \end{solution}
 
