@@ -70,7 +70,6 @@
 \renewcommand{\Im}{\operatorname{Im}}
 \newcommand{\sgn}{\textup{sgn\,}}
 
-
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{11pt
 }
@@ -91,12 +90,45 @@
     (Additivity) If $A$ and $B$ are disjoint sets in $\mathcal{A}$, then $\phi( A \cup B) = \phi(A) + \phi(B).$
   \item
     (Continuity From Below) If $A_1, A_2, ... \in \mathcal(A)$ and $A_1 \subseteq A_2 \subseteq ...$, then
-    $\phi ( \bigcup \limits _ {i=1} ^ {\infty} = \lim _{n \to \infty} \phi (A_n)$.
+    $\phi ( \bigcup \limits _ {i=1} ^ {\infty} A_i)  = \lim _{n \to \infty} \phi (A_n)$.
   \end{enumerate}
   Prove $\phi$ is a measure on $\mathcal{A}$. 
 \end{exercise}
 \begin{solution}
-  There are 
+  We need to show two things.
+
+  \begin{enumerate}[(i)]
+  \item
+    $$
+    \phi(\varnothing) = 0
+    $$
+
+    This is given.
+  \item
+    Given a disjoint sequence of sets in $\mathcal{A}$, $A_i$, we need to show:
+    $$
+    \phi(\bigcup \limits_{i=1}^\infty A_i) = \sum \limits _ {i=1} ^ \infty \phi( A_i)
+    $$
+
+    We'll turn this into an example of continuity from below, starting with setting
+    $ A'_i = \bigcup \limits _{i=1} ^ \infty A_i$.  This makes a chain $ A'_1 \subseteq A'_2 \subseteq A'_3, ... $, so that (iii) above applies.
+
+    $$
+    \phi(\bigcup \limits_{i=1}^\infty A'_i) = \lim \limits _{n \to \infty} \phi(A'_n) 
+    $$
+
+    We know that $\phi(A'_n) = \phi( \bigcup \limits _ {i = 1} ^ n A_i) = \sum \limits _{i=1}^n \phi(A_i) $ exactly, so the limits are also
+    equal in the extended reals.
+
+    That is,
+
+    $$
+    \phi(\bigcup \limits_{i=1}^\infty A_i) = \lim \limits _ {n \to \infty} \phi(A'_n) = \lim \limits_{n \to \infty} \sum \limits _ {i=1} ^n \phi( A_i) = \sum \limits_{i=1} ^\infty \phi(A_i)
+    $$
+
+    \qed
+    
+  \end{enumerate}
 
 \end{solution}
 
@@ -164,7 +196,7 @@
 
   $$ \lim _ { i \to \infty } \mu ^* (A_i) = \lim _ { i \to \infty} 1 = 1
   $$
-  And $ \mu^* ( A) = \infty > \lim _ { i \to \infty } \mu ^* (A_i)$ violating
+  And $ \mu^* ( A) = \infty > \lim \limits_{ i \to \infty } \mu ^* (A_i)$ violating
   continuity from below.  
   
 \end{solution}
@@ -193,7 +225,7 @@
     
     \begin{align*}
       \ell [ I_i ] & = q_i + \frac{\varepsilon}{2^{i+1}} - q_i +  \frac{\varepsilon}{2^{i+1}} & \\  
-      &  \frac{\varepsilon}{2^{i+1}} & \\  
+      & = \frac{\varepsilon}{2^{i+1}} & \\  
     \end{align*}
     
     So
@@ -256,12 +288,35 @@
 
       $$ \ell(I_i) >= \ell(K_a) + \ell(K_a')
       $$
-      And the sums (in the extended reals) are the same:
+      And the sums (in the extended reals) are also smaller:
       $$
       \sum \limits _ {i=1} ^ \infty \ell(I_i) >= \sum \limits _ { i = 1} ^ \infty \ell(K_i )
       $$
+      TODO
       
   \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+  Let $ \phi : \mathcal{P}(\RR) \to [0, \infty]$ and suppose that
+  $\phi$ is translation invarient (i.e. $ \phi ( A + t) = \phi (A) $
+  for all $ A \subseteq \RR, t \in \RR$).  Let $V$ be a subset of $\RR$ such that
+  for each $r \in \RR$ there is exactly one $v \in V$ such that $v - r \in \QQ$.
+  Prove:
+  \begin{enumerate}[(a)]
+  \item
+    If $ \phi$ countably monotone and $ \phi (\RR) > 0$, then $\phi >
+    0$.
+  \item
+    If $\phi$ is monotone, finitely additive, and $\phi(V + V - V) < \infty$, then
+    $\phi(V) = 0$.  ($V + V - V = \{ v_1 + v_2 - v_3 \in V\}$)
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  first answer
+\end{enumerate}
 \end{solution}
 
 
