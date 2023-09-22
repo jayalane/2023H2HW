@@ -172,7 +172,7 @@
       as needed.
 
       Case two, all of the $A_i$ are finite, but there are an infinite
-      number of them that have at least one (new/distinct) element.
+      number of them that have at least one element.
 
       Then, $\mu ^*(A_i) = 1$ for an infinite number of $i$.  So
       $   \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i) = \infty $. 
@@ -182,12 +182,14 @@
       \mu^* (A) \leq \infty =  \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i) 
       $$
 
-      In the third case, all but finitely many of the $A_i$ are zero,
+      In the final case, all but finitely many of the $A_i$ are zero,
       and the others (at least one or it would be case 1) are finite.
       In this case, the union is finite, and $\mu^* (A) = 1 \leq \sum
       \limits _ {i=1} ^ {\infty} \mu ^* ( A_i)$.
 
       In all cases, the definition of an outer measure are fulfilled.
+      \qed
+      
   \end{enumerate}
 
   However, $\mu ^*$ is not necessarily continuous from below.  To see
@@ -294,8 +296,29 @@
       $$
       \sum \limits _ {i=1} ^ \infty \ell(I_i) >= \sum \limits _ { i = 1} ^ \infty \ell(K_i )
       $$
-      
-      
+      Now, all this is going on basically inside $[-\varepsilon,1 + \varepsilon]$.  So,
+      $\ell([-\varepsilon/4,1 + \varepsilon/4] /leq \sum \limits _ {n=1}^\infty \ell(K_n) + \sum \limits _ {n=1}^\infty \ell(J_n)$
+
+      But  $\sum \limits _ {n=1}^\infty \ell(J_n) < \varepsilon$ by construction.
+
+      So we get
+      \begin{align*}
+        1 + \varepsilon /2 & \leq \sum \limits _ {n=1}^\infty \ell(K_n) + \sum \limits _ {n=1}^\infty \ell(J_n)  & \\
+        1 + \varepsilon / 2 - \sum \limits _ {n=1}^\infty \ell(K_n) & \leq \sum \limits _ {n=1}^\infty \ell(J_n)  < \varepsilon \ \textrm{by construction of $J_n$} & \\
+        1 + \varepsilon / 2  -  \sum \limits _ {n=1}^\infty \ell(K_n) & < \varepsilon & \\
+        1 -  \varepsilon /2 & < \sum \limits _ {n=1}^\infty \ell(K_n) &  \\
+        \sum \limits _ {n=1}^\infty \ell(K_n)  > 1 - \varepsilon / 2 \\
+      \end{align*}
+      So we have produced a new smaller covering with total length larger than $1 - \varepsilon  / 2$.
+
+      Hence, $ \lambda^*(F) > 1 - \epsilon$, where $\epsilon = \varepsilon / 2$.
+
+      Incidentally, the proof that $ \QQ \bigcap F = \varnothing$ is:
+
+      Let $q \in \QQ$.  There is some $n$ sucht that $q =q_n$ in the enumeration.
+      Then $q \in J_n$, and hence $q \notin F$.
+
+      \qed
   \end{enumerate}
 \end{solution}
 
@@ -363,11 +386,37 @@
     V$.  To see this, let $v \in V$.  Pick some $w \in V$.  Then $v
     \in \{ v + w - w : v, w, w \in V \}$.  We are also told that
     $\phi(V + V - V) < \infty$.  Since $\phi$ is monotone, this
-    implies $\phi(V) < \infty$.
+    implies $\phi(V) < \infty$.  Also, however, we can pick a
+    countable sequence $\{v_1, v_2, v_3, ...\}$ from $(V + V - V)$
 
     Now, $\phi$ is monotone and finitely additive, so we can look at
-    TODO
-
+    $$
+    \bigcup \limits _ { i = 1}^N (V + v_i) \subseteq (V + V - V)
+    $$
+    Taking measures, using monotonicity, 
+    $$
+    \phi( \bigcup  \limits _ {i=1}^N (V + v_i) <= \phi(V + V - V)
+    $$
+    By finite additivity,
+    $$
+    \sum  \limits _ {i=1}^N \phi((V + v_i)) <= \phi(V + V - V) < \infty
+    $$
+    Using translation invariance, 
+    $$
+    \sum  \limits _ {i=1}^N \phi(V) < \infty
+    $$
+    For all N, so we get
+    $$
+    \phi(V) \sum \limits_{i=1} ^ N 1 < \infty
+    $$
+    So 
+    $$
+    \phi(V) \times N < \infty, \forall N
+    $$
+    Forcing
+    $$ \phi(V) = 0
+    $$
+    \qed
 \end{enumerate}
 \end{solution}
 
