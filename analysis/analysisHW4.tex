@@ -2,9 +2,10 @@
 \usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
 \geometry{letterpaper}                   % ... or a4paper or a5paper or ...
 %\geometry{landscape}                % Activate for for rotated page geometry
-%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{graphicx}
 \usepackage{amssymb}
+\usepackage{mathrsfs}
 \usepackage{epstopdf}
 \usepackage{url}
 %\usepackage{verbatim}
@@ -150,7 +151,7 @@
 
     True by definition.
     \item
-      $      \mu ^ * $ is countably monotone.  That is, if $A_1, A_2, ... \subseteq \mathcal{P}$ and
+      $      \mu ^ * $ is countably monotone.  That is, if $A_1, A_2, ... \subseteq \mathscr{P}$ and
       $A \subseteq \bigcup \limits _ {n=1} ^ {\infty} A_n$, then
       $\mu ^ * (A) \leq \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i)$.
 
@@ -171,7 +172,7 @@
       as needed.
 
       Case two, all of the $A_i$ are finite, but there are an infinite
-      number of them that have at least one element.
+      number of them that have at least one (new/distinct) element.
 
       Then, $\mu ^*(A_i) = 1$ for an infinite number of $i$.  So
       $   \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i) = \infty $. 
@@ -183,7 +184,8 @@
 
       In the third case, all but finitely many of the $A_i$ are zero,
       and the others (at least one or it would be case 1) are finite.
-      In this case, the union is finite, and $\mu^* (A) = 1 \leq \sum \limits _ {i=1} ^ {\infty} \mu ^* ( A_i)$.
+      In this case, the union is finite, and $\mu^* (A) = 1 \leq \sum
+      \limits _ {i=1} ^ {\infty} \mu ^* ( A_i)$.
 
       In all cases, the definition of an outer measure are fulfilled.
   \end{enumerate}
@@ -292,30 +294,80 @@
       $$
       \sum \limits _ {i=1} ^ \infty \ell(I_i) >= \sum \limits _ { i = 1} ^ \infty \ell(K_i )
       $$
-      TODO
+      
       
   \end{enumerate}
 \end{solution}
 
 \begin{exercise}
-  Let $ \phi : \mathcal{P}(\RR) \to [0, \infty]$ and suppose that
+  Let $ \phi : \mathscr{P}(\RR) \to [0, \infty$ and suppose that
   $\phi$ is translation invarient (i.e. $ \phi ( A + t) = \phi (A) $
   for all $ A \subseteq \RR, t \in \RR$).  Let $V$ be a subset of $\RR$ such that
   for each $r \in \RR$ there is exactly one $v \in V$ such that $v - r \in \QQ$.
   Prove:
   \begin{enumerate}[(a)]
   \item
-    If $ \phi$ countably monotone and $ \phi (\RR) > 0$, then $\phi >
-    0$.
+    Let ${r_1, r_2, ... }$ be an enumeration of $\QQ$.
+    
   \item
     If $\phi$ is monotone, finitely additive, and $\phi(V + V - V) < \infty$, then
-    $\phi(V) = 0$.  ($V + V - V = \{ v_1 + v_2 - v_3 \in V\}$)
+    $\phi(V) = 0$.  ($V + V - V = \{ v_1 + v_2 - v_3 : v_1, v_2, v_3 \in V\}$)
   \end{enumerate}
 \end{exercise}
 \begin{solution}
-\begin{enumerate}[(a)]
-\item
-  first answer
+  These are basically the two contradictory halves of the Worse News
+  Theorem shown in class (but with variations that make a new proof
+  necessary).  
+  \begin{enumerate}[(a)]
+  \item
+
+    First, lets enumerate the rationals $\{ q_1, q_2, q_3, ... \}$ 
+    
+    Let $A_i = q_i + V$ be translated copies of the set $V$.
+
+    $ \RR = \bigcap \limits _ {i=1} ^ \infty A_i$.  To see this, let $x \in \RR$.  If $x \in V$, then
+    $ x \in A_k$ where $q_k = 0$.  Otherwise, let $v_0$ be such that $v_0 - x \in \QQ$.
+    That is $v_0 - x = q_m$.  Let $n$ be such that $q_n = -q_m$.  Then $x \in q_m + V$.  So, for all
+    $x \in \RR$, there is an index $i$ so $x \in A_i$.  So $\RR \subseteq \bigcap \limits _ {i=1} ^ \infty A_i$.
+
+    The other direction is obvious, all the $A_i \subseteq \RR$.  
+
+    Let's examine $A_i \cap A_j$.  Let $x \in A_i$.  $x \in A_i$ means
+    $x = v_0 + q_i$ for some unique $v_0 \in V$. By assumption, there
+    is just one such $v_0$ that $v_0 - x \in \QQ$.  But then $A_j = V + q_j$, so if $x \in A_j$, then
+    there would be $q_j$ also so that $v_1 - x \in \QQ$.  So $A_i \cup A_j = \varnothing$.
+
+    Since $\phi$ is countably monotone and $\phi (\RR) > 0$, and $\RR = \bigcup \limits _ {n = 1} ^ \infty A_n$,
+    $$
+    \phi ( \RR ) \leq \sum \limits _ {n=1} ^ \infty \phi (A_i)
+    $$
+
+    But $\phi(A_i) = \phi(A_j), i, j \in \NN$ due to translation invariance, which is $\mu(V)$.
+
+    Also, since $\phi(\RR) > 0$, so the above inequality works out to be:
+
+    $$
+    0 < \phi(\RR) \leq \sum \limits _ {n=1} ^ \infty \mu(v)
+    $$
+
+    Now, if $\mu(V) = 0$, that produces a contradiction:
+
+    $ 0 < \phi( \RR) \leq 0$
+
+    So $\mu(V) > 0$.
+
+    \qed
+    
+  \item
+    We are told $\phi(V + V - V) < \infty$.  Now, $V \subseteq V + V -
+    V$.  To see this, let $v \in V$.  Pick some $w \in V$.  Then $v
+    \in \{ v + w - w : v, w, w \in V \}$.  We are also told that
+    $\phi(V + V - V) < \infty$.  Since $\phi$ is monotone, this
+    implies $\phi(V) < \infty$.
+
+    Now, $\phi$ is monotone and finitely additive, so we can look at
+    TODO
+
 \end{enumerate}
 \end{solution}
 
