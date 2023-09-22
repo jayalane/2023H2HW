@@ -35,6 +35,7 @@
 \newtheorem*{defn}{Definition}
 \newtheorem*{claim}{Claim}
 
+\def\pmod{+'}
 \def\calA{\mathcal{A}}
 \def\calB{\mathcal{B}}
 \def\calC{\mathcal{C}}
@@ -113,7 +114,6 @@
 
     It is a group homomorphism.  Let $a + \ZZ, b + \ZZ \in \ZZ / n\ZZ$.
 
-\def\pmod{+'}
     Then, let $ a = mn + r$, $b = qn + s$, $ 0 \leq r, s < n$.  Let $\pmod$ be the operation in $\ZZ_n$. 
     $$
     \phi (\langle a \rangle) + \phi(\langle b \rangle) = (r \pmod s). 
@@ -180,7 +180,7 @@
   \item
     Let $G$ be a group.  An \textbf{automorphism} of $G$ is an
     isomorphism from $G$ to $G$. Let $\Aut(G)$ be the set of all
-    isomorphisms from $G$ to $G$. In one (possibly long sentence,
+    isomorphisms from $G$ to $G$. In one (possibly long) sentence,
     explain why $\Aut(G)$ is a subgroup of $S_G$ (the group of all permutations of $G$).
   \item
     Let $G$ be a group.  Let $a \in G$.  Let $f_a : G \to G$ be
@@ -197,186 +197,183 @@
     Prove that $Z(G)$ is a normal subgroup of $G$ and that $\Inn(G) \simeq G / Z(G)$.
   \end{enumerate}
 \end{exercise}
-  \begin{solution}
-    \begin{enumerate}[(a)]
-      \item
-      An isomorphism on $G$ takes each member of $G$ to another member $G$ which corresponds to defining a permutation among the members of $G$ treated as arbitrary symbols
+\begin{solution}
+  \begin{enumerate}[(a)]
+  \item
+    An isomorphism on $G$ takes each member of $G$ to another member $G$ which corresponds to defining a permutation among the members of $G$ treated as arbitrary symbols
+  \item
+    \begin{itemize}
     \item
+      $f_a$ preserves the group operation:
+      
+      $$
+      f_a(x_1) f_a(x_2) = a x_1 a^{-1} a x_2 a ^{-1} = a x_1 x_2 a^ {-1} = f_a ( x_1 x_2 )
+      $$
+    \item
+      and inverse:
+      
+      $$
+      f_a(x) f(x ^ {-1}) = a x a^ { _1} a x ^ {-1} a = a x a ^ {-1} a x ^ {-1} a ^ {-1} = a x x ^ {-1} a ^ {-1} = a 1 a ^{-1} = f_a(1)
+      $$
+      
+    \item
+      $f_a$ is a 1-1 map from $G$ to $G$:
+      
+      Suppose $f_a(x_1) = f_a(x_2)$
+      
+      $$
+      a x_1 a^ {-1} = a x_2 a ^ {-1}
+      $$
+      multiplying on the left by $a^{-1}$:
+      $$
+      x_1 a^ {-1} = x_2 a ^ {-1}
+      $$
+      and on the right by $a$:
+      $$
+      x_1 = x_2
+      $$
+    \item
+      And onto; given $x \in G$, $ y= a^ {-1} x a \in G$ also, as $G$ is a group.
+      But then
+      $$
+      f_a(y) = a y a ^ {-1} = a a ^ {-1} x a a ^ {-1} = x
+      $$
+    \end{itemize}
+    \qed
+  \item
+    Prove that $\Inn(G)$ is a subgroup of $\Aut(G)$
+    \begin{itemize}
+    \item
+      $\Inn(G)$ is non-empty: the identity map $f_1 : x \to x$ is in $\Inn(G)$.
+    \item
+      $\Inn(G)$ is closed under composition.  Let $x \in G$.  
+      
+      $$
+      f_a \circ f_b (x) = f_a(bxb^{-1}) = a b x b^{-1} a^{-1} = (ab) x (ab)^ {-1} = f_{ab} (x)
+      $$
+      
+      So $f_a \circ f_b = f _ {ab} \in \Inn(G)$.
+      
+    \item
+      $\Inn(G)$ is closed under inverses; let $x \in G$.
+      
+      $$
+      f_a \circ f_{a^{-1}} (x)  = f_a(a ^ {-1} x a) = a a^ {-1} x a a^{-1} = x = 1 x 1 = f_{1}(x)
+      $$
+      
+      So $f_a ^ {-1} = f_{a^{-1}} \in \Inn(G)$.
+      
+      \qed
+      
+    \item
+      Prove that the center is a normal subgroup.
       \begin{itemize}
-        \item
-          $f_a$ preserves the group operation:
-          
-        $$
-        f_a(x_1) f_a(x_2) = a x_1 a^{-1} a x_2 a ^{-1} = a x_1 x_2 a^ {-1} = f_a ( x_1 x_2 )
-        $$
       \item
-        and inverse:
-
-         $$
-        f_a(x) f(x ^ {-1}) = a x a^ { _1} a x ^ {-1} a = a x a ^ {-1} a x ^ {-1} a ^ {-1} = a x x ^ {-1} a ^ {-1} = a 1 a ^{-1} = f_a(1)
+        Non empty: $1 \in Z(G)$. ( $1y = y1$, for $y \in G$).
+      \item
+        Closed under operation:
+        
+        Let $x, y \in Z(G)$.  Given $z \in G$,
+        
+        $$
+        z (xy) = (zx) y = (xz) y = x (zy) = x (yz) = xy(z)
         $$
         
-        \item
-          $f_a$ is a 1-1 map from $G$ to $G$:
-
-          Suppose $f_a(x_1) = f_a(x_2)$
-
-          $$
-          a x_1 a^ {-1} = a x_2 a ^ {-1}
-          $$
-          multiplying on the left by $a^{-1}$:
-          $$
-          x_1 a^ {-1} = x_2 a ^ {-1}
-          $$
-          and on the right by $a$:
-          $$
-          x_1 = x_2
-          $$
-        \item
-          And onto; given $x \in G$, $ y= a^ {-1} x a \in G$ also, as $G$ is a group.
-          But then
-          $$
-          f_a(y) = a y a ^ {-1} = a a ^ {-1} x a a ^ {-1} = x
-          $$
-      \end{itemize}
-      \qed
-    \item
-      Prove that $\Inn(G)$ is a subgroup of $\Aut(G)$
-      \begin{itemize}
+        So $xy \in Z(G)$.
       \item
-        $\Inn(G)$ is non-empty: the identity map $f_1 : x \to x$ is in $\Inn(G)$.
+        Closed under inverses:
+        
+        Let $x \in Z(G)$.  Given $z \in G$,
+        \begin{align*}
+          xz & = zx & \\
+          x^{-1} x z & = x^{-1} z x & \\
+          z & = x^{-1} z x & \\
+          z x ^ {-1} & = x^{-1} z x x ^ { -1} & \\
+          z x ^ {-1} = x^ { -1} z
+        \end{align*}
+        
+        So $x^{-1} \in Z(G)$.
+        
       \item
-        $\Inn(G)$ is closed under composition.  Let $x \in G$.  
-
+        Normal.
+        
+        Given $ g \in G$, $c \in Z(G)$:
+        
         $$
-        f_a \circ f_b (x) = f_a(bxb^{-1}) = a b x b^{-1} a^{-1} = (ab) x (ab)^ {-1} = f_{ab} (x)
-          $$
-
-        So $f_a \circ f_b = f _ {ab} \in \Inn(G)$.
-
-      \item
-        $\Inn(G)$ is closed under inverses; let $x \in G$.
-
+        g c g ^ {-1} = c g g^{-1} = c \in Z(G)
         $$
-        f_a \circ f_{a^{-1}} (x)  = f_a(a ^ {-1} x a) = a a^ {-1} x a a^{-1} = x = 1 x 1 = f_{1}(x)
-        $$
-
-        So $f_a ^ {-1} = f_{a^{-1}} \in \Inn(G)$.
-
+        
+        Since $g,c $ were arbitrary, so $Z(G) \trianglelefteq G$.
+        
         \qed
-
-      \item
-        Prove that the center is a normal subgroup.
-        \begin{itemize}
-        \item
-          Non empty: $1 \in Z(G)$. ( $1y = y1$, for $y \in G$).
-        \item
-          Closed under operation:
-          
-          Let $x, y \in Z(G)$.  Given $z \in G$,
-
-          $$
-          z (xy) = (zx) y = (xz) y = x (zy) = x (yz) = xy(z)
-          $$
-
-          So $xy \in Z(G)$.
-        \item
-          Closed under inverses:
-
-          Let $x \in Z(G)$.  Given $z \in G$,
-          \begin{align*}
-            xz & = zx & \\
-            x^{-1} x z & = x^{-1} z x & \\
-            z & = x^{-1} z x & \\
-            z x ^ {-1} & = x^{-1} z x x ^ { -1} & \\
-            z x ^ {-1} = x^ { -1} z
-          \end{align*}
-
-          So $x^{-1} \in Z(G)$.
-
-        \item
-          Normal.
-
-          Given $ g \in G$, $c \in Z(G)$:
-
-          $$
-          g c g ^ {-1} = c g g^{-1} = c \in Z(G)
-          $$
-
-          Since $g,c $ were arbitrary, so $Z(G) \trianglelefteq G$.
-
-          \qed
-
-          Prove that $ \Inn(G) \simeq G / Z(G)$
-
-          Let $\phi : G \to \Inn(G)$ be defined as $\phi (g) = f_g$ where
-          $f_g$ is as above.  We will show that $\Ker(\phi) = Z(G)$ establishing
-          the isomorphism (and the normality as well, making the prior argument redundant).
-
-          $ \Ker(\phi) = \{ f_g \in \Inn(G) : \phi(f_g) = f_1 \}$
-
-          If $\phi(f_g) = f_1$, that means for all $x \in G$, $f_g(x) = f_1(x)$ or
-
-          $$
-          gxg^{-1} = 1x1^{-1}
-          $$
-
-          Simplifying:
-
-          $$
-          gx = xg
-          $$
-
-          Which since $x$ was arbitrary $x \in G$ is the criterion for $ g \in Z(G)$.
-
-          That is, $\phi ^ -1(1) \subseteq  Z(G)$.
-
-          To see the other direction, let $z \in Z(G)$.  $\phi(z) = f_z$.
-
-          Applying that to arbitrary $x \in G$, $f_z(x) = zxz^{-1} = x$, by definition of Z(G).
-
-          So $f_z = f_1$ and $\phi^{-1} (1) = Z(G)$.
-
-          \qed
-
-        \end{itemize}
+        
+        Prove that $ \Inn(G) \simeq G / Z(G)$
+        
+        Let $\phi : G \to \Inn(G)$ be defined as $\phi (g) = f_g$ where
+        $f_g$ is as above.  We will show that $\Ker(\phi) = Z(G)$ establishing
+        the isomorphism (and the normality as well, making the prior argument redundant).
+        
+        $ \Ker(\phi) = \{ f_g \in \Inn(G) : \phi(f_g) = f_1 \}  $
+        
+        If $\phi(f_g) = f_1$, that means for all $x \in G$, $f_g(x) = f_1(x)$ or
+        
+        $$
+        gxg^{-1} = 1x1^{-1}
+        $$
+        
+        Simplifying:
+        
+        $$
+        gx = xg
+        $$
+        
+        Which since $x$ was arbitrary $x \in G$ is the criterion for $ g \in Z(G)$.
+        
+        That is, $\phi ^ {-1}(1) \subseteq  Z(G)$.
+        
+        To see the other direction, let $z \in Z(G)$.  $\phi(z) = f_z$.
+        
+        Applying that to arbitrary $x \in G$, $f_z(x) = zxz^{-1} = x$, by definition of Z(G).
+        
+        So $f_z = f_1$ and $\phi^{-1} (1) = Z(G)$.
+        
+        \qed
+        
       \end{itemize}
-    \end{enumerate}
+    \end{itemize}
+  \end{enumerate}
 \end{solution}
-
-  \begin{exercise}
-    Let $G$ be a group with a normal subgropup $N$ of order 5 such that $G/N$ is isomorphic to the
-    symmetric group $S_4$.  Prove:
-    \begin{enumerate}[(a)]
-    \item
-      $|G| = 120$
-    \item
-      G has a normal subgroup of order $20$.  
-    \end{enumerate}
-  \end{exercise}
-  \begin{solution}
-    \begin{enumerate}[(a)]
-    \item
-      If $G/N \simeq S_4$, the $|G| = |N| [G:N]$ by Lagrange's
-      Theorem.  The index of N in G is the size of the image of $G$
-      under the natural homomorphism $\phi: G \to G/N$.  We are told
-      $G\N$ is isomorphic to the symmetric group $S_4$, so the index is the
-      order of $S_4$ which is $4!$ or $24$.  So |G| = 5 \times 24 = 120.
-    \item
-      $A_4$ has a normal subgroup of order $4$, the group of double
-      transpositions, which we saw in homework 2 (although did not
-      prove normality at the time,
-      https://groupprops.subwiki.org/wiki/Symmetric_group:S4 seems to
-      show it.
-
-      By the Correspondence Theorem from class, the normality of $N$
-      in $G$ gives us a bijection from subgroups of $G$ containing $N$
-      and subgroups of $G/N$.  $G/N$ is $S_4$ and contains this normal
-      subgroup of order $4$, $K$, so we can conclude there is a normal subgroup H
-      of order $ |N| \times  |K| = 5 \times 4 = 20$.  
-      
-    \end{enumerate}
-  \end{solution}
+  
+\begin{exercise}
+  Let $G$ be a group with a normal subgropup $N$ of order 5 such that $G/N$ is isomorphic to the
+  symmetric group $S_4$.  Prove:
+  \begin{enumerate}[(a)]
+  \item
+    $|G| = 120$
+  \item
+    G has a normal subgroup of order $20$.  
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}[(a)]
+  \item
+    If $G/N \simeq S_4$, the $|G| = |N| [G:N]$ by Lagrange's
+    Theorem.  The index of N in G is the size of the image of $G$
+    under the natural homomorphism $\phi: G \to G/N$.  We are told
+    $G/N$ is isomorphic to the symmetric group $S_4$, so the index is the
+    order of $S_4$ which is $4!$ or $24$.  So $|G| = 5 \times 24 = 120$.
+  \item
+    $A_4$ has a normal subgroup of order $4$, the group of double
+    transpositions, which we saw in homework 2 (although did not
+    prove normality at the time,
+    https://groupprops.subwiki.org/wiki/Symmetric\_group:S4 seems to
+    show it.)  By the Correspondence Theorem from class, the normality of $N$
+    in $G$ gives us a bijection from subgroups of $G$ containing $N$
+    and subgroups of $G/N$.  $G/N$ is $S_4$ and contains this normal
+    subgroup of order $4$, $K$, so we can conclude there is a normal subgroup H
+    of order $ |N| \times  |K| = 5 \times 4 = 20$.  
+  \end{enumerate}
+\end{solution}
 
 
 \begin{comment}
