@@ -1,0 +1,163 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{epstopdf}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+
+
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+%\def\NN{\mathbb{Z}_{> 0}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+\def\fancyU{\mathscr{U}}
+\def\fancyL{\mathscr{L}}
+\def\fancyV{\mathscr{V}}
+\def\fancyP{\mathscr{P}}
+%\def\sp{\mathrm{span}} %messes up align enviroment
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt
+}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\textbf{HW 5 - MATH 231A - Fall 2023 - Chris Lane}
+
+\begin{exercise}
+  Prove: For every $A \subseteq \RR$,
+
+  $$
+  \lim \limits _{n \to \infty} \lambda ^*(A \cap [-n, n]) = \lambda^*(A)
+  $$
+
+\end{exercise}
+\begin{solution}
+\end{solution}
+
+\begin{exercise}
+  \begin{enumerate}[(a)]
+  \item
+    Prove: A set $U$ in $\RR ^ d$ is open if and only if $U$ is the union of a countable collection of open balls.  
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}[(a)]
+  \item
+    Proving ``if'':
+
+    If a set $U$ is a collection of countable collection of open balls, then let
+    $a \in U$.
+
+    $U = \bigcup \limits _{n=1} ^ {\infty} B(p_n, r_n)$
+
+    $a$ is in $U$ so there is one member of the union it is in, say
+    $B(p_n, r_n)$.  That is, $ a \in B(p_n, r_n)$.  $|p_n - a| < r$,
+    where $| p_n - a| $ is the normal Euclidean distance.  Then the
+    ball $B(a, r - |p_n - a|) \subseteq B(p_n, r_n) \subseteq U$,
+    showing openness of $U$.
+
+    Proving ``only if'':
+
+    Enumerate all pairs of rationals, $(q_i, r_i)$.  Let $U$ be an
+    open set.  For each $a \in U$, there is a $B(a, r) \subseteq U$.
+    By the density of $\QQ$, there is a pair $(q_i, r_i)$ such that
+    $|a-q_i| < r_i$. Then $B(q_i, r_i) \subseteq B(a, r) \subseteq U$.  
+
+    The set of all chosen pairs, however, as a subset of a countable
+    set, is countable. Enumerate it indexed by $j$ as $(q_j, r_j)$,
+    $j \in \NN$.  Then $U = \bigcup \limits _{j=1} ^ \infty B(q_j,
+    r_j)$, as it was constructed such that all $a \in U$ are in some
+    $B(q_j, r_j)$, all of which are in $U$.
+
+    \qed
+  \item
+    Let $\fancyU$ be the collection of all open sets in $\RR^d$. Let
+    $\fancyV$ be the collection of all open balls in $\\R^d$.  Prove
+    $\sigma(\fancyU) = \sigma(\fancyV)$.
+
+    First, $\sigma(\fancyU) \subseteq \sigma(\fancyV)$:
+
+    Let $U$ be an open set in $\RR^d$.  
+
+    
+
+    
+  \end{enumerate}
+\end{solution}
+
+\begin{comment}
+\begin{exercise}
+  problem
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  first answer
+\end{enumerate}
+\end{solution}
+\end{comment}
+
+
+\end{document}
+
