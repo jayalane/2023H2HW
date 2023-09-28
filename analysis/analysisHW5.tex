@@ -98,13 +98,27 @@
 \begin{exercise}
   \begin{enumerate}[(a)]
   \item
-    Prove: A set $U$ in $\RR ^ d$ is open if and only if $U$ is the union of a countable collection of open balls.  
+    Prove: A set $U$ in $\RR ^ d$ is open if and only if $U$ is the union of a countable collection of open balls.
+  \item
+    Let $\fancyU$ be the collection of all open sets in $\RR^d$. Let $\fancyV$ be the collection of all open balls in $\RR ^d$.  Prove: $\sigma(\fancyU) = \sigma(\fancyV)$.
+  \item
+    Prove: If $(I_\alpha)_{\alpha \in A}$ is a collection of intervals
+    in $\RR$ such that $I_\alpha \cap I_\beta \neq \varnothing$ for
+    any two $\alpha, \beta \in A$, then $\bigcup \limits _ { \alpha
+      \in A} I_alpha$ is an interval.
+  \item
+    Prove: A set $U$ in $\RR$ is open if and only if $U$ is the union
+    of a countable collection of disjoint open intervals.  
+    
+    
   \end{enumerate}
 \end{exercise}
 \begin{solution}
   \begin{enumerate}[(a)]
   \item
+    \label{ex2a}
     Proving ``if'':
+    
 
     If a set $U$ is a collection of countable collection of open balls, then let
     $a \in U$.
@@ -138,7 +152,20 @@
 
     First, $\sigma(\fancyU) \subseteq \sigma(\fancyV)$:
 
-    Let $U$ be an open set in $\RR^d$.  
+    Let $U$ be an open set in $\RR^d$.  By Exercise \ref{ex2a}, there
+    are balls $B(q_j, r_kj), k \in \ZZ$, such that $U = \bigcup
+    \limits _ {j=1}^\infty B(q_j, r_j)$.  Since $\sigma(\fancyV)$ is
+    closed under finite unions, $U \in \sigma(\fancyV)$.  Since the
+    basis (generators?) of $\sigma(\fancyU) \in \sigma(\fancyV)$,
+    the inclusion of the $\sigma$-algebras follows.
+
+    For $\sigma(\fancyV) \subseteq \sigma(\fancyU)$, it's rather
+    trivial since open balls are open sets, so the basis (generators?)
+    of $\sigma(\fancyU)$ are in $\sigma(\fancyV)$, the inclusion of
+    the $\sigma$-algebras follow.
+
+  \item
+    
 
     
 
