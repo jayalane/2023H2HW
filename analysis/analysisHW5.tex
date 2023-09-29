@@ -91,8 +91,59 @@
   \lim \limits _{n \to \infty} \lambda ^*(A \cap [-n, n]) = \lambda^*(A)
   $$
 
+  If $\lambda^*(A) = \infty$, then it's straightfoward, if the $\lim$ is less than $\infty$, then $\lambda^*(A)$
+  must be finite as well.  
+
+  So assuming $\lambda ^*(A) < \infty$, we have
+
+  Let $ \varepsilon < 0 $ be given.  $\lambda ^*(A)$ is a $\inf$ so there is an
+  actual set of intervals such that:
+
+  $$
+  \sum \limits _ {i = 1} ^{\infty} \ell(I_i) < \lambda^*(A) + frac{\varepsilon}{2}
+  $$
+
+  Since the sum converges to something less than infinity, there is also an $N$ such that
+  
+  $$
+  \sum \limits_{i=N}^{\infty} \ell(I_i) < \frac{\varepsilon}{2} 
+  $$
+
+  Then we have a finite number of intervals.  Let
+
+  $$
+  n = \max{\sup_i  {I_i}, - \inf_i {I_i}, i < N}
+  $$
+
+  Then,
+
+  \begin{align*}
+    \sum \limits _{i = 1}^{\infty} \ell(I_i) & \leq \lambda^*(A) + \frac{3 \varepsilon}{2} & \\
+    \sum \limits _{i = 1}^N \ell(I_i) + \sum \limits _ {i = N}^\infty \ell(I_i) & \leq \lambda^*(A) + \frac{3 \varepsilon}{2} & \\
+    \sum \limits _{i=1}^N \ell(I_i \cap [-n, n] ) + \frac{\varepsilon}{3} & \leq \lambda^*(A) + \frac{3 \varepsilon}{2} & \\
+    \sum \limits _{i=1}^N \ell(I_i \cap [-n, n] ) & \leq \lambda^*(A) + \varepsilon
+  \end{align*}
+
+    Since $I_i \cap [-n, n]$ is $I_i$ for all $n > N$,
+    
+    $$
+    \lim \limits_{n=1}^{\infty} ( \sum \limits _{i=1}^N \ell(I_i \cap [-n, n] ) )  \leq \lambda^*(A) + \varepsilon 
+    $$
+
+    Since $\varepsilon$ was arbitrary, they are equal.
+
+    $$
+    \lim \limits_{n=1}^{\infty} ( \lambda ^*( A  \cap [-n, n] ) )  = \lambda^*(A)
+    $$
+  
+  
+  
 \end{exercise}
 \begin{solution}
+  $ \lambda ^*(A \cap [-n, n]) = \inf _ {\textrm{all covers of $A \cap [-n, n]$}} \{ \sum \limits _ {n=1}^\infty \ell(I_i), A \subseteq \bigcup \limits _{i=1} ^ {\infty} \} $
+
+  So given some $\varepsilon > 0$, we'll show $\lambda ^* (A)$
+
 \end{solution}
 
 \begin{exercise}
@@ -100,12 +151,15 @@
   \item
     Prove: A set $U$ in $\RR ^ d$ is open if and only if $U$ is the union of a countable collection of open balls.
   \item
-    Let $\fancyU$ be the collection of all open sets in $\RR^d$. Let $\fancyV$ be the collection of all open balls in $\RR ^d$.  Prove: $\sigma(\fancyU) = \sigma(\fancyV)$.
+    Let $\fancyU$ be the collection of all open sets in $\RR^d$. Let
+    $\fancyV$ be the collection of all open balls in $\RR ^d$.  Prove:
+    $\sigma(\fancyU) = \sigma(\fancyV)$.
   \item
     Prove: If $(I_\alpha)_{\alpha \in A}$ is a collection of intervals
     in $\RR$ such that $I_\alpha \cap I_\beta \neq \varnothing$ for
-    any two $\alpha, \beta \in A$, then $\bigcup \limits _ { \alpha
-      \in A} I_alpha$ is an interval.
+    any two $\alpha, \beta \in A$,
+    then $\bigcup \limits _ { \alpha \in A} I_\alpha$ is an interval.
+    
   \item
     Prove: A set $U$ in $\RR$ is open if and only if $U$ is the union
     of a countable collection of disjoint open intervals.  
@@ -147,26 +201,83 @@
     \qed
   \item
     Let $\fancyU$ be the collection of all open sets in $\RR^d$. Let
-    $\fancyV$ be the collection of all open balls in $\\R^d$.  Prove
+    $\fancyV$ be the collection of all open balls in $\RR^d$.  Prove
     $\sigma(\fancyU) = \sigma(\fancyV)$.
 
     First, $\sigma(\fancyU) \subseteq \sigma(\fancyV)$:
 
     Let $U$ be an open set in $\RR^d$.  By Exercise \ref{ex2a}, there
-    are balls $B(q_j, r_kj), k \in \ZZ$, such that $U = \bigcup
-    \limits _ {j=1}^\infty B(q_j, r_j)$.  Since $\sigma(\fancyV)$ is
+    are balls $B(q_j, r_{kj}), k \in \ZZ$, such
+    that $U = \bigcup \limits _ {j=1}^\infty B(q_j, r_j)$.
+    Since $\sigma(\fancyV)$ is
     closed under finite unions, $U \in \sigma(\fancyV)$.  Since the
     basis (generators?) of $\sigma(\fancyU) \in \sigma(\fancyV)$,
     the inclusion of the $\sigma$-algebras follows.
 
     For $\sigma(\fancyV) \subseteq \sigma(\fancyU)$, it's rather
     trivial since open balls are open sets, so the basis (generators?)
-    of $\sigma(\fancyU)$ are in $\sigma(\fancyV)$, the inclusion of
-    the $\sigma$-algebras follow.
+    of $\sigma(\fancyV)$ are in $\sigma(\fancyU)$, the inclusion of
+    the $\sigma$-algebras follows.
 
   \item
-    
+    \label{ex2c}
+    Let $(I_\alpha)_{\alpha \in A}$ be a collection of intervals.  Then
+    let $J = \bigcup \limits _ { \alpha \in A} I_\alpha$.  Let $a =
+    \inf(J)$ and $b = \sup(J)$.  Suppose $c$ is in $(a, b)$, i.e.  $
+    a< c < b$.  The claim is that $c \in J$.
 
+    Suppose not.  Then, for every $I_\alpha$, $c \notin I_\alpha$.
+    Now, there must be some $\alpha_1$ such that $(c - (c-a) / 2) \in
+    J_{\alpha_1}$ (since otherwise, $a$ would not be the $\inf(J)$).
+    Likewise, there must be some $\alpha_2$ such that $(c + (b -c) /2
+    ) \in J_{\alpha_2}$.  Now, $I_{\alpha_1}$ and $I_{\alpha_2}$ are
+    intervals.  Since $c \notin I_{\alpha_1}$ and $c \notin I_{\alpha_2}$,
+    it must be that $I_{\alpha_1} \cap I_{\alpha_2} = \varnothing$ (because
+    every $x \in I_{\alpha_1}$ is greater than
+    $a$ and less than $c$, while every $y \in I_{\alpha_2}$ is
+    greater than $c$ and less than $b$.
+
+    But that contradicts none of the intervals having an empty overlap.
+
+    So for all $c$ such that $ a < c < b$, $c \in J$.  Clearly,
+    $ x < a$ implies that $x \notin J$, by the definition of $\inf$.
+    Likewise, $x > b$ implies that $x \notin J$, by the definition of
+    $\sup$.  So the only points to examine are $a$ and $b$.  There are four
+    cases; either $\inf J \in J$ or not; either $\sup J \in J$ or not.  These
+    correspond to the four types of intervals $(a,b)$, $[a, b)$, $(a,b]$, and
+    $[a, b]$.  In all cases the result is true.
+
+  \item
+    A countable union of disjoint open intervals is open, so
+    that direction is trivial.
+
+    Given an open set, $U$, that is the union of a countable number of
+    open intervals, by Exercise \ref{ex2a}.  To show the result, we
+    need to coalesce all the overlapping intervals.  Enumerate the
+    rationals in $U$.  For each $q_i \in U$, $q_i$ is in some
+    intervals, could be finite or infinitely many; Let $I_{i,j}$ be the
+    intervals containing $q_i$ and $ k = \max{j}$.
+    Then, as they are overlapping,
+
+    $$
+    J_i = \bigcup \limits _ {j = 1} ^ k I_{i, j}
+    $$
+
+    And the $J_i$ are intervals, by Exercise \ref{ex2c}.
+
+    Make $J'_i$ be open intervals with the same limits as $J_i$.  The points in $U$ will be
+    interior points, not at the boundary; by construction of the open balls, every point was in the
+    interior. 
+
+    Now let $U' = \bigcup \limits _{i=1} ^ \infty J'_i$.
+
+    Now let $x \in U$. Then the construction of the open intervals in
+    Exercise \ref{ex2c}, had an 
+    
+      
+
+    There's not really space in the real line for an uncountable,
+    non-overlapping, set of open intervals. 
     
 
     
