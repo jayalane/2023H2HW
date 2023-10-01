@@ -1,0 +1,312 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+\newtheorem*{claim}{Claim}
+
+\def\pmod{+'}
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+%\def\NN{\mathbb{Z}_{> 0}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+\def\Aut{\operatorname{Aut}}
+\def\Inn{\operatorname{Inn}}
+\def\Ker{\operatorname{Ker}}
+%\def\sp{\mathrm{span}} %messes up align enviroment
+\newcommand{\Mod}{\ (\mathrm{mod}\ )}
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt}
+
+%\title{\parbox{14cm}{\centering{  Interior points of circle and sphere packings}}}
+\begin{document}
+
+\textbf{HW 6 - MATH 221A - Fall 2023 - Chris Lane}
+%\today
+
+\begin{exercise}
+  Let $R$ be a ring and $I$ be an additive subgroup of $R$.  Prove or
+  disprove: $I$ is an ideal if and only if (r+I)(s+I) is a coset of
+  $I$ for all $r, s \in R$.
+\end{exercise}
+\begin{solution}
+  Prove or disprove? 
+\end{solution}
+
+\begin{exercise}
+  If $R$ is a field, what are the units in $R[X]$?  Justify your answer.  
+\end{exercise}
+\begin{solution}
+  If $R$ is a field, the units of $R[X]$ :
+
+  $$
+  \{ a \in R[X] : \textrm{ for some } b \in R[X], a \cdot b = 1 _ {R[X]} \}
+  $$
+
+  Now, $1_{R[X]} = 1$, so we want:
+
+  $$
+  (a_0 + a_1 x + a_2 x^2 + ... a_n x^n) ( b_0 + b_1 x + ... b_m x^m) = 1
+  $$
+
+  Since the $x$ are just symbols here, equality means equality of all the coefficients.
+
+  $$
+  a_0 b_0 + (a_0 b_1 + b_0 a_1 ) x + ... + a_n b_m x^ {n+m} = 1
+  $$
+  
+  Or,
+  \begin{align*}
+    a_0 b_0 & = 1 & \\
+    a_0 b_1 + b_0 a_1 & =0 \\
+    ...& & \\
+    a_n b_m & = 0
+  \end{align*}
+
+  \begin{claim}
+    For a field, the product of two polynomials, all of the
+    coefficients being zero except for the zeroth one implies all the
+    coefficients of the factors are zero except for the zeroeth one.  
+  \end{claim}
+  \begin{proof}
+    By induction on $n$, starting with $n = 1$ (the result is
+    trivial if one of the polynomials is just a constant).
+
+    Base case:
+
+    $$
+    (a_0 + a_1x) (b_0 + a_1x) =  1
+    $$
+
+    So
+
+    \begin{equation}
+      \label{eq1}
+      a_0 b_1 + a_1 b_0 = 0
+    \end{equation}
+
+    and
+    
+    $$
+    a_0 b_0 = 1
+    $$
+    
+    So in particular, since R is a field, they are both $\neq 0$. Also: 
+
+    $$
+    a_1 b_1 = 0
+    $$
+    
+    So in particular one of them $ = 0$, again because this is a field.
+    We can assume $a_0 = 0$. So \ref{eq1} becomes:
+
+    $$
+    a_1 b_0 = 0
+    $$
+    
+    But since we know $b_0 \neq 0$, we know $a_1 = 0$.  That proves the base case.
+
+    For the induction step, if the first polynomial is of degree $n$,
+
+    $$
+    a_0 + a_1 x + a_2 + x^2 + ... + a_n x^ n
+    $$
+
+    Then if:
+
+    $$
+    (a_0 + a_1 x + a_2 x^2 + ... + a_n x^ n) (b_0 + b_1 x + b_2 x^2 + ... + b_m x^ m) = 1
+    $$
+
+    Then $1 = a_0 b_0$. Looking at the degree $n+m$ coeffients, $0 = a_n b_m$.
+
+    Looking at the degree $n+m -1$ cofficients, $0 = a_{n_1} b_m + a_n b_{m-1}$.
+
+    Multiplying each side there by $a_n$, we get $0 = a_{n_1} a_n b_m + a_n ^2 b_{m-1}$, but $a_n b_m = 0$, so
+    $ 0 = a_{n_1} 0 + a_n^2 b_{m-1}$ or $a_n^2 b_{m-1} = 0$.
+
+    Similarly, $ a_n^{i +1} b_{m - i} = 0$.
+
+    Taking this down to $b_0$, we get $a_n^{m+1} b_0 = 0$.  Then we can multiply by $a_0$, getting
+    $ a_n^{m+1} a_0 b_0 = 0$, or $a_n^{m+1} = 0$, which makes
+
+    $$
+    a_0 + a_1 x + a_2 + x^2 + ... + a_n x^ n = a_0 + a_1 x + a_2 + x^2 + ... + a_{n-1} x^ {n-1}
+    $$
+
+    a polynomial of degree $n-1$, proving the induction case.  
+  \end{proof}
+
+  So for a unit, all of the higher degree coefficients are 0, leaving us with
+
+  $$
+  \{ a \in R: a \neq 0 \}
+  $$
+  \qed
+  
+\end{solution}
+
+\begin{exercise}
+  Let $M_n(R)$ be the ring of $n$ by $n$ matrices with coefficients
+  in the ring $R$. If $C_k$ is the subset of $M_n(R)$ consisting of
+  matrices that are $0$ except perhaps in column $k$, show tyhat
+  $C_k$ is a left ideal of $M_n(R)$.  SImilarly, if $R_k$ consists
+  of matrices that are $0$ except perhaps in row $k$, then $R_k$ is a
+  right ideal of $M_n(R)$.  
+\end{exercise}
+\begin{solution}
+\end{solution}
+\begin{exercise}
+  Prove: If $R$ is a commutative ring whose only principal ideals
+  are ${0} = \langle 0 \rangle$ and $ R = \langle 1 \rangle$, then
+  $R$ is a field.
+\end{exercise}
+\begin{solution}
+  Given an arbitrary element $c \in R, c \neq 0$.
+  Consider $\langle c \rangle$.  It cannot be ${0}$ as $c \neq 0$.
+  So $\langle c \rangle = \langle 1 \rangle $.
+  That means, $ 1 \in \langle c \rangle$.
+
+  By the linear formation of $\langle c \rangle$, this means there is
+  a $d \in R$ such that $1 = d c$ (where the sum is just over $1$
+  element, $c$.  But then $d$ is a multiplicative inverse of $c$.  
+  
+  
+\end{solution}
+\begin{exercise}
+  Prove: If $R$ is a ring and $(R, +)$ is cyclic, then every ideal in $R$ is principal.  
+\end{exercise}
+\begin{solution}
+  Let $I$ be an ideal.
+
+  Each $i \in I, i \neq 0$, is $i=a^{k_i}$, for some $k, k>0$, because $R$ is cyclic.
+
+  Then there is an $i' \in I$ where $k'$ is the smallest of the $k_i$
+  (as a subset of $\NN$ there is a smallest).
+
+  Claim:  $ \langle i' \rangle = I$.
+
+  Let $j \in I$.  Since $j \in R$, there is $j \in \ZZ$ such that $j = a^m$.
+
+  Now, by the Euclidean algorithm, there are $n, r \in \ZZ$ such that
+
+  $$
+  m = k' n + r, r<k'
+  $$
+
+  The claim is equivalent to showing that $r=0$.  Supppose not: then,
+  $$
+  m = k' n + r, r<k'
+  $$
+  implies
+  $$
+  a^m = a^(k'n + r)
+  $$
+
+  implies (note the slightly confusing use of exponentiation to
+  represented repeateed $+$ operations in a ring; the multiplicative
+  notation would have been more confusing tho as this is repeated
+  addition, not ring multiplication).  
+
+  $$
+  j = a^(k'n) + a^r
+  $$
+
+  implies
+
+  $$
+  j + (-(a^{k'}n) = a^r
+  $$
+
+  Now, $j + (-(a^{k'}n)) \in I$ as it is closed under + and - (as + inverse operation).
+
+  That means $a^r \in I$.  But $ r < k'$ which is a contradiction.  So
+  $r=0$, and the claim holds, and we have shown every ideal is generated by one element, that is
+  every ideal is principal.
+  \qed
+  
+  
+\end{solution}
+\begin{exercise}
+  Let $I_1, ... I_n$ be ideals in a ring $R$.  Suppose $R/\cap_{i=1}^n
+  I_i$ is isomorphic to $R/I_1 \times ... \times R/I_n$ via the map
+  $a+\cap_{i=1}I_i \mapsto (a + I_1, ... , a+ I_n)$.  Show that $I_1,
+  ... , I_n$ are pairwise relatively prime.
+\end{exercise}
+\begin{solution}
+\end{solution}
+
+\begin{comment}
+  \begin{exercise}
+    problem
+  \end{exercise}
+  \begin{solution}
+    \begin{enumerate}[(a)]
+    \item
+      first answer
+    \end{enumerate}
+  \end{solution}
+\end{comment}
+
+\end{document}
