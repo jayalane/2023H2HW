@@ -4,6 +4,7 @@
 %\geometry{landscape}                % Activate for for rotated page geometry
 %\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{graphicx}
+\usepackage{datetime}
 \usepackage{amssymb}
 \usepackage{epstopdf}
 \usepackage{url}
@@ -83,7 +84,9 @@
 \begin{document}
 
 \textbf{HW 6 - MATH 221A - Fall 2023 - Chris Lane}
-%\today
+
+Date: \hhmmsstime{} \ \today \ \ Git hash: 
+\input{/home/jayalane/hw/.git/refs/heads/main}
 
 \begin{exercise}
   Let $R$ be a ring and $I$ be an additive subgroup of $R$.  Prove or
@@ -91,7 +94,49 @@
   $I$ for all $r, s \in R$.
 \end{exercise}
 \begin{solution}
-  Prove or disprove? 
+  I will attempt a counter example.
+
+  Let $R'$ be a commutative ring and $R'[X]/x^2$ be a quotient of the
+  polynomial ring over $R'$. So $R'[X]/x^2$ is our $R$.  (That is $x^2 = 0$.)
+
+  Let $G = \langle x \rangle$ but our additive subgroup.  That is
+
+  $$
+  G = \{ a_0 x : a_0 \in R' \}
+  $$
+
+  $G$ is an additive subroup:
+
+  \begin{enumerate}[(a)]
+  \item
+    $x \in G$, hence non-empty.
+  \item
+    If $a_0 x, a_1x \in G$, then $(a_0 + a_1)x \in G$, so closed
+    under addition.
+  \item
+    $a_0 x + (-a_0)x = (a_ + (-a_0)) x = 0 * x = 0$, so closed
+    under inverses.
+  \end{enumerate}
+
+  It's normal as $+$ is commutative in $R'$. 
+  
+  The (additive) cosets of $G$, are $ \{ c + G : c \in R \} $,
+
+  We will examine $(c + G) ( d + G)$.
+
+  $c = c_0 + c_1 x$ and $d = d_0 + d_1 x$, for $c_0, c_1, d_0, d_1 \in R'$.
+
+  \begin{align*}
+    (c + G) (d + G) &= \{ (c_0 + c_1 x + a_0 x) ( d_0 + d_1 x + a_1 x): a_0 \in G \} \\
+    &= \{ (c_0 d_0 + c_0 d_1 x + c_0 a_1 x^2 + c_1 d_0 x + c_1 d_1 x^ 2 + c_1 a_1 x^2 + a_0 d_0 x + a_0 c_1 x^2 + a_0 ^2 x^2 : a_0, a_1 \in G \} \\
+    &= \{ (c_0 d_0 + c_0 d_1 x + c_1 d_0 x + a_0 d_0 x : a_0 \in G) \}  
+  \end{align*}
+
+  Now, the latter expression is $ \{ c_0 d_0 + a x : a \in R' \} $ so it is also
+  an additive coset of $G$, as $c_0 d_0 $ is indepedent of the choice of $a_0, a_1 \in G$.
+
+  But $G$ is not an ideal of $R$ ($R'[X]/x^2)$).  For example, 
+    
 \end{solution}
 
 \begin{exercise}
@@ -230,7 +275,9 @@
 
   By the linear formation of $\langle c \rangle$, this means there is
   a $d \in R$ such that $1 = d c$ (where the sum is just over $1$
-  element, $c$.  But then $d$ is a multiplicative inverse of $c$.  
+  element, $c$.  But then $d$ is a multiplicative inverse of $c$.  If
+  an arbitrary non-zero element has a multiplicative inverse, then the
+  ring is a field. 
   
   
 \end{solution}
@@ -256,12 +303,15 @@
   $$
 
   The claim is equivalent to showing that $r=0$.  Supppose not: then,
+
   $$
   m = k' n + r, r<k'
   $$
+
   implies
+
   $$
-  a^m = a^(k'n + r)
+  a^m = a^{(k'n + r)}
   $$
 
   implies (note the slightly confusing use of exponentiation to
@@ -270,7 +320,7 @@
   addition, not ring multiplication).  
 
   $$
-  j = a^(k'n) + a^r
+  j = a^{(k'n)} + a^r
   $$
 
   implies
@@ -295,6 +345,12 @@
   ... , I_n$ are pairwise relatively prime.
 \end{exercise}
 \begin{solution}
+
+  We need to show $R = I_i + I_j$ for some $I_i, I_j, i \neq j$.
+
+  Let $ r \in R$ be an arbitrary member of $R$.
+
+  Now, the coset of $r$ in  $R/\cap_{i=1}^n I_i$ is $r + i$, 
 \end{solution}
 
 \begin{comment}
