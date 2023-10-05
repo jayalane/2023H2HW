@@ -1,0 +1,155 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{epstopdf}
+\usepackage{datetime}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+
+
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+%\def\NN{\mathbb{Z}_{> 0}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+\def\fancyU{\mathscr{U}}
+\def\fancyL{\mathscr{L}}
+\def\fancyV{\mathscr{V}}
+\def\fancyP{\mathscr{P}}
+%\def\sp{\mathrm{span}} %messes up align enviroment
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt
+}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\textbf{HW 5 - MATH 231A - Fall 2023 - Chris Lane}
+Date: \hhmmsstime{} \ \today \ \ Git hash: 
+% $ \input{/home/jayalane/hw/.git/refs/heads/main} $
+
+\begin{exercise}
+  Prove or disprove: If $ |f| $ is measurable, then $f$ is measurable.
+\end{exercise}
+\begin{solution}
+  Counterexample:
+
+  Let $V$ be a Vitali set over $[0,1]$.  Then let $f$ be defined:
+
+  $$
+  f(x) = \begin{cases}
+    1, \textrm{ if } x \in V,
+    -1 \textrm{ if } x \notin V
+  \end{cases}
+  $$
+
+  Then $|f(x)| = 1$, identically.  But $f(x)$ is not measurable, as $
+  { x : f(x) = 1 } = V$ the pre-image of ${1}$ is the Vitali set,
+  which is not measurable (Borel or Lebesgue).
+\end{solution}
+
+\begin{exercise}
+  If $ f: \RR \to \RR$ is increasing or decreasing, then $f$ is Borel
+  measurable (and hence Lebesgue measurable.
+
+  Assume, without loss of generality (as $ \{ f \geq a \} $ is just as good as $ \{ f \leq a \}$,
+  that $f$ is increasing.  That is:
+
+  $$
+  x_0 < x_1 \textmf { implies } f(x_0) < f(x_1)
+  $$
+
+  Pick an $a \in \RR$.
+
+  $$
+  J = \{ x \in \RR : f(x) \geq a \}
+  $$
+
+  is the set we need to show is in $\fancyB(\RR)$.  There are two cases, one
+  where $ J = \varnothing \in fancyB(\RR)$.
+
+  Second case, there is at least one $x_0 \in J$.
+  Let $x_1 = \inf \limits _ { x \in \RR } \{ f(x) \geq a \}$.
+  
+  Then $[x_1, \infty\] \subseteq J$.  To show this, let $x \in J$, $x$
+  
+  
+\end{exercise}
+\begin{solution}
+\end{solution}
+
+
+\begin{comment}
+\begin{exercise}
+  problem
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  first answer
+\end{enumerate}
+\end{solution}
+\end{comment}
+
+
+\end{document}
+
