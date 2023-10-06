@@ -37,6 +37,9 @@
 \newtheorem*{claim}{Claim}
 
 \def\pmod{+'}
+\def\boldr{\boldsymbol{r}}
+\def\boldc{\boldsymbol{c}}
+
 \def\calA{\mathcal{A}}
 \def\calB{\mathcal{B}}
 \def\calC{\mathcal{C}}
@@ -99,7 +102,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   Let $R'$ be a commutative ring and $R'[X]/x^2$ be a quotient of the
   polynomial ring over $R'$. So $R'[X]/x^2$ is our $R$.  (That is $x^2 = 0$.)
 
-  Let $G = \langle x \rangle$ but our additive subgroup.  That is
+  Let $G = \langle x \rangle$ be our additive subgroup.  That is
 
   $$
   G = \{ a_0 x : a_0 \in R' \}
@@ -160,7 +163,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   $$
   a_0 b_0 + (a_0 b_1 + b_0 a_1 ) x + ... + a_n b_m x^ {n+m} = 1
   $$
-  
+   
   Or,
   \begin{align*}
     a_0 b_0 & = 1 & \\
@@ -261,11 +264,105 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   right ideal of $M_n(R)$.  
 \end{exercise}
 \begin{solution}
+  First, $C_k$ is an additive subgroup of $M_n(R)$.
+  \begin{enumerate}[(a)]
+  \item
+    Non-empty
+
+    e.g.
+    
+    \small
+    \[
+      \begin{bmatrix}
+        0 & 0 & ... & 0 & a_{1k} & 0 & ... & 0 \\
+        0 & 0 & ... & 0 & a_{2k} & 0 & ... & 0 \\
+        & \ \vdots & & \ \vdots  & & & \ \vdots \\
+        0 & 0 & ... & 0 & a_{nk} & 0 & ... & 0 \\
+      \end{bmatrix}
+    \]
+    \normalsize
+    
+  \item
+    Closed under addition
+
+    \small
+    \[
+      \begin{bmatrix}
+        0 & ... & 0 & a_{1k} & 0 & ... & 0 \\
+        0 & ... & 0 & a_{2k} & 0 & ... & 0 \\
+        \ \vdots & & \ \vdots  & & & \ \vdots \\
+        0 & ... & 0 & a_{nk} & 0 & ... & 0 \\
+      \end{bmatrix} + \begin{bmatrix}
+        0 & ... & 0 & b_{1k} & 0 & ... & 0 \\
+        0 & ... & 0 & b_{2k} & 0 & ... & 0 \\
+        \ \vdots & & \ \vdots  & & & \ \vdots \\
+        0 & ... & 0 & b_{nk} & 0 & ... & 0 \\
+      \end{bmatrix} = \begin{bmatrix} 
+        0 & ... & 0 & a_{1k} + b_{1k}& 0 & ... & 0 \\
+        0 & ... & 0 & a_{2k} + b_{2k}& 0 & ... & 0 \\
+        \ \vdots & & \ \vdots  & & & \ \vdots \\
+        0 & ... & 0 & a_{nk} + b_{nk}& 0 & ... & 0 \\
+      \end{bmatrix} \in C_k
+    \]
+    \normalsize
+    
+      \item
+    Closed under inverses
+
+    \small
+    \[
+      \begin{bmatrix}
+        0 & ... & 0 & a_{1k} & 0 & ... & 0 \\
+        0 & ... & 0 & a_{2k} & 0 & ... & 0 \\
+        \ \vdots & & \ \vdots  & & & \ \vdots \\
+        0 & ... & 0 & a_{nk} & 0 & ... & 0 \\
+      \end{bmatrix} + \begin{bmatrix}
+        0 & ... & 0 & -a_{1k} & 0 & ... & 0 \\
+        0 & ... & 0 & -a_{2k} & 0 & ... & 0 \\
+        \ \vdots & & \ \vdots  & & & \ \vdots \\
+        0 & ... & 0 & -a_{nk} & 0 & ... & 0 \\
+      \end{bmatrix} = \begin{bmatrix} 
+        0 & ... & 0 & a_{1k} - a _{1k}& 0 & ... & 0 \\
+        0 & ... & 0 & a_{2k} - a_{2k}& 0 & ... & 0 \\
+        \ \vdots & & \ \vdots  & & & \ \vdots \\
+        0 & ... & 0 & a_{nk} - a_{nk}& 0 & ... & 0 \\
+      \end{bmatrix} = 0
+    \]
+    \normalsize
+
+\item
+  $C_k$ is also a left-ideal.  Let $M \in M(R)$ be a matrix and $C \in C_k$.  We will
+  write this multiplication in ``column of row vectors $\times$ row of column vectors'' notation.
+
+  \[
+  M = \begin{bmatrix}
+    \boldr_1 & \\
+    \boldr_2 & \\
+    \boldr_3 & \\
+    \ \vdots & \\
+    \boldr_n & \\
+  \end{bmatrix}, C_k = \begin{bmatrix}
+    0 & 0 & ... & 0 & \boldc & 0 & ... & 0
+  \end{bmatrix}
+ \]
+
+  Then, $M \times C$ is:
+  \[
+  M \times C = \begin{bmatrix}
+    \boldr_1 \cdot 0 & \boldr_1 \cdot 0 & ... & \boldr_1 \cdot 0 & \boldr_1 \cdot c & \boldr_1 \cdot 0 & ... & \boldr_1 \cdot 0 \\
+    \boldr_2 \cdot 0 & \boldr_2 \cdot 0 & ... & \boldr_2 \cdot 0 & \boldr_2 \cdot c & \boldr_2 \cdot 0 & ... & \boldr_2 \cdot 0 \\
+    \ \vdots &        &  & & \ \vdots & & & \ \vdots \\
+    \boldr_n \cdot 0 & \boldr_n \cdot 0 & ... & \boldr_n \cdot 0 & \boldr_n \cdot c & \boldr_n \cdot 0 & ... & \boldr_n \cdot 0 \\
+  \end{bmatrix} \in C_k
+ \]
+  
+
+  \end{enumerate}
 \end{solution}
 \begin{exercise}
-  Prove: If $R$ is a commutative ring whose only principal ideals
-  are ${0} = \langle 0 \rangle$ and $ R = \langle 1 \rangle$, then
-  $R$ is a field.
+  Prove: If $R$ is a commutative ring whose only principal ideals are
+  ${0} = \langle 0 \rangle$ and $ R = \langle 1 \rangle$, then $R$ is
+  a field.
 \end{exercise}
 \begin{solution}
   Given an arbitrary element $c \in R, c \neq 0$.
@@ -339,18 +436,61 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   
 \end{solution}
 \begin{exercise}
-  Let $I_1, ... I_n$ be ideals in a ring $R$.  Suppose $R/\cap_{i=1}^n
-  I_i$ is isomorphic to $R/I_1 \times ... \times R/I_n$ via the map
+  Let $I_1, ... I_n$ be ideals in a ring $R$.
+  Suppose $R/\cap_{i=1}^n I_i$ is isomorphic to $R/I_1 \times ... \times R/I_n$ via the map
   $a+\cap_{i=1}I_i \mapsto (a + I_1, ... , a+ I_n)$.  Show that $I_1,
   ... , I_n$ are pairwise relatively prime.
 \end{exercise}
 \begin{solution}
 
-  We need to show $R = I_i + I_j$ for some $I_i, I_j, i \neq j$.
+  Choose $ i \neq j$.  Assume without loss of generality that $i=1$,
+  $j=2$.  Further, let $I = I_1$ and $J = I_2$.
 
-  Let $ r \in R$ be an arbitrary member of $R$.
+  There is an element of the product:
 
-  Now, the coset of $r$ in  $R/\cap_{i=1}^n I_i$ is $r + i$, 
+  \[
+  (0 + I, 1 + J, 0 + I_3, ... , 0 + I_4)
+  \]
+
+  Since there is an isomorphism from  $R/\cap_{i=1}^n I_i$,
+  there is a member of that ring, $a + \cap_{i=1}^n I_i$ such that
+
+  \[
+  \phi(a) =   (0 + I, 1 + J, 0 + I_3, ... , 0 + I_4)
+  \]
+  
+  So, there exists an $x \in \bigcap \limits _{i=1} ^ n$, $x \in I$, also $x \in J$, such that:
+
+  \[
+  a + x = 0 + i, \textrm{ some } i \in I
+  \]
+
+  or
+  \[
+  a = i - x
+  \]
+  
+  which means $a \in I$.  For $J$,:
+
+  \[
+  a + x = 1 + j, \textrm{ some } j \in J
+  \]
+  
+  So
+
+  \[
+  i - x + x - j = 1
+  \]
+
+  Therefore, we have produced:
+
+  \[
+  i - j = 1, i \in I, j \in J
+  \]
+
+  Or, $I + J = R$, $I_1$ $I_2$ are relatively prime
+  \qed
+
 \end{solution}
 
 \begin{comment}
