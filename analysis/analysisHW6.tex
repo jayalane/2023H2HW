@@ -48,7 +48,6 @@
 \def\QQ{\mathbb{Q}}
 \def\ZZ{\mathbb{Z}}
 \def\NN{\mathbb{N}}
-%\def\NN{\mathbb{Z}_{> 0}}
 \def\Nzero{\mathbb{Z}_{\geq 0}}
 \def\EE{\mathbb{E}}
 \def\PP{\mathbb{P}}
@@ -56,12 +55,12 @@
 \def\diam{\mathrm{diam}}
 \def\sp{\mathrm{span}}
 \def\ker{\mathrm{ker}}
+\def\fancyA{\mathscr{A}}
 \def\fancyU{\mathscr{U}}
 \def\fancyL{\mathcal{L}}
 \def\fancyV{\mathscr{V}}
 \def\fancyP{\mathscr{P}}
 \def\fancyB{\mathscr{B}}
-%\def\sp{\mathrm{span}} %messes up align enviroment
 \newcommand{\rbr}[1]{\left( {#1} \right)}
 \newcommand{\sbr}[1]{\left[ {#1} \right]}
 \newcommand{\cbr}[1]{\left\{ {#1} \right\}}
@@ -86,7 +85,7 @@
 
 \textbf{HW 6 - MATH 231A - Fall 2023 - Chris Lane}
 Date: \hhmmsstime{} \ \today \ \ Git hash: 
-% $ \input{/home/jayalane/hw/.git/refs/heads/main} $
+$ \input{/home/jayalane/hw/.git/refs/heads/main} $
 
 \begin{exercise}
   Prove or disprove: If $ |f| $ is measurable, then $f$ is measurable.
@@ -111,6 +110,8 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 \begin{exercise}
   If $ f: \RR \to \RR$ is increasing or decreasing, then $f$ is Borel
   measurable (and hence Lebesgue measurable).
+\end{exercise}
+\begin{solution}
 
   Assume, without loss of generality (as $ \{ f \geq a \} $ is just as good as $ \{ f \leq a \}$),
   that $f$ is increasing.  That is:
@@ -126,27 +127,82 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   $$
 
   is the set we need to show is in $\fancyB(\RR)$.  There are two cases, one
-  where $ J = \varnothing \in fancyB(\RR)$.
+  where $ J = \varnothing \in \fancyB(\RR)$.
 
   Second case, there is at least one $x_0 \in J$.
   Let $x_1 = \inf \limits _ { x \in \RR } \{ f(x) \geq a \}$.
   
-  Then, there are two subcases.  If $f(x_1) < a$,
-  then $f^{-1} ((a,  \infty)) = (x_1, \infty)$.  If $f(x_1) \geq a$,
-  then $f^{-1} ((a, \infty)) = [x_1, \infty)$.
-  In either case, the pre-image is a Borel
+  Then, there are two subcases for the left border of the pre-image.
+  If $f(x_1) < a$, then $f^{-1} ((a, \infty)) = (x_1, \infty)$.
+  If $f(x_1) \geq a$,
+  then $f^{-1} ((a, \infty)) = [x_1, \infty)$.  In either case, the pre-image is a Borel
   set and $f$ is measureable.
-    
-  To see that the interior of both intervals is in the pre-image,
-  let $x \in (x_1, \infty)$.  $x_1 < x$ so $f(x_1) \leq f(x)$, so $f(x) \geq a$
-  or else $x_1$ is not an $\inf $ of $ \{ f(x) \geq a \}$.  
 
-  To see that the pre-image is in the intervals (plus maybe $x_1$),
-  let $b \in (a, \infty)$, $a<b$, if there is an $x \in \RR$ where $f(x) = b$, then
-  $a \leq x$ (otherwise we 
+  To see that the interior of the interval is in the pre-image,
+  $(x_1, \infty) \subseteq f^{-1}((a, \infty))$ let $x \in (x_1, \infty)$.  $x_1 < x$
+  so $f(x_1) \leq f(x)$, so $f(x) \geq a$
+  or else $x_1$ is not an $\inf $ of $ \{ f(x) \geq a \}$.  
+  
+  To see that the pre-image is in the interval (plus maybe $x_1$),
+  let $b \in f^{-1}(a, \infty)$, $a<b$. Then there is an $x \in \RR$ where $f(x) = b$,
+  then $x_1 \leq x$ (otherwise we have $x \leq x_1$  but $f(x) \geq f(x_1)$).  \qed
+  
+\end{solution}
+
+\begin{exercise}
+  Let $\fancyA$ be a $\sigma$-algebra on a set $X$. Prove: If $(f_n)$ is a sequence of
+  measurable functions $f_n : X \to \RR$, then
+
+  \[
+  A = \{ x \in X : \lim \limits_{n \to \infty} = L \textrm{ for some } L \in \RR \}.
+  \]
+  and
+  \[
+  B = \{ x \in X : \lim \limits_{n \to \infty} = L \textrm{ for some } L \in \OR \}.
+  \]
   
 \end{exercise}
 \begin{solution}
+  The sequence $(p_n (x)) = \inf \limits _{k \geq n} f_k (x)$ are
+  measurable and $ (q_n(x)) = \inf \limits _{k \geq n} f_k (x)$ are
+  measurable. By the squeeze lemma, the points $x$
+  where $\lim \limits _{n \to \infty} = L$ for some $L$ are
+  just where those two
+  sequences (which always converge in $\OR$ as they are
+  increasing and decreasing respectively) equal to each other.  So $A$
+  looks like:
+
+  \[
+  A = \{ x \in X: \lim \limits _ { n \to \infty } p_n(x) = \lim \limits _ {n \to \infty } q_n(x) \textrm{ and }
+  \lim \limits _{n \to \infty} p_n(x) < \infty \}
+  \]
+
+  Or, as the intersection of two sets:
+  
+  \[
+  A = \{ x \in X: \lim \limits _ { n \to \infty } p_n(x) = \lim \limits _ {n \to \infty } q_n(x) \} \bigcap \{ 
+  \lim \limits _{n \to \infty} p_n(x) < \infty \}
+  \]
+
+  The second set is measurable:
+
+  \[
+  \{ \lim \limits _{n \to \infty} p_n(x) < \infty \}
+  \]
+
+  as this is of the form $f < k$ which is measurable by a lemma in class.
+
+  The first set
+
+  \[
+  \{ x \in X: \lim \limits _ { n \to \infty } p_n(x) = \lim \limits _ {n \to \infty } q_n(x) \}
+  \]
+
+  which is of the form of $f = g$ where $f$ and $g$ are measurable and hence measure by another result in class.
+
+  The logic for $B$ is the same except you don't use the intersection with $(p_n(x)) < \infty$.  
+  
+  
 \end{solution}
 
 
