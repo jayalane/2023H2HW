@@ -1,0 +1,325 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{epstopdf}
+\usepackage{datetime}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+
+
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+\def\fancyA{\mathscr{A}}
+\def\fancyU{\mathscr{U}}
+\def\fancyL{\mathcal{L}}
+\def\fancyV{\mathscr{V}}
+\def\fancyP{\mathscr{P}}
+\def\fancyB{\mathscr{B}}
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt
+}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\textbf{HW 7 - MATH 231A - Fall 2023 - Chris Lane}
+
+Date: \hhmmsstime{} \ \today \ \ Git hash: 
+\input{/Users/chlane/src/jayalane/2023H2HW/.git/refs/heads/main} 
+
+\begin{exercise}
+  Let  $(X, \fancyA)$ be a measurable space.  Let $E$ be measurable. 
+  \begin{enumerate}[(a)]
+  \item
+    Let $f, g : E \to \overline \RR$ be measurable functions.  Prove $fg$ is measurable.
+  \item
+    Let  $f_n : E \to \overline \RR$ be a measurable function for each $n \in \NN$.  Prove
+    $ \sup _n f_n$ is easurable.  
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  \begin{lemma}
+    If $f : E \to \overline \RR$ is measurable, then $f^2$, (defined as
+    $f^2(x) = f(x) f(x)$ not $f(f(x))$), is measurable. 
+  \end{lemma}
+  \begin{proof}
+    Given $\alpha \in \RR$ we want to show
+
+    \[
+    G = \{ x \in X : \overline f^2(x) \leq \alpha \} \in \fancyA
+    \]
+
+    There are three cases.  If $\alpha < 0$, then $G = \varnothing \in \fancyA$
+
+    If $\alpha = 0$, then
+
+    \[
+    G = \{ x \in X: \overline f^2 (x) \leq 0 \} = \{ x \in E : f(x) = 0 \} \cup E^c
+    \]
+
+    Here $G \in \fancyA$ as the union of two measurable sets.
+
+    For thhe final case, $\alpha > 0$, and $\sqrt{\alpha}$ exist and are real. We proceed like this:
+    \begin{align*}
+      \{ x \in X : f^2(x) \leq \alpha \} & = \{ x \in E : -\sqrt{\alpha} \leq f(x) \leq \sqrt{\alpha} \} \cup 
+      E^c \\
+      & = ( \{ x \in E : f(x) \geq -\sqrt{\alpha} \} \cup E^c ) \cap { f(x) \leq \sqrt{\alpha} } \cup E^c
+    \end{align*}
+
+    Each set there is in $\fancyA$ and so their finite unions, complements and intersections are in
+    $\fancyA$.  Therefore $G \in \fancyA$, and $\overline f^2: X \to \overline \RR $ is measurable 
+  \end{proof}
+
+  Now we show a sequence of combining mesaureable functions to get the result that $\overline f \overline g: X \to \overline \RR$ is measureable:
+
+  $f, g$ are measurable, given.
+
+  So $(f + g)$ is measurable, $\overline f + \overline g = \overline {( f + g)} $
+
+  From the above lemma, $f^2$ and $g^2$ are measurable, as are $-f^2$ and $-g^2$.
+
+  $ (f+g)^2$ is measurable.
+
+  $(f^2 + 2 fg + g^2)$ is measurable (just pointwise expanding prior line).
+
+  $(f^2 + 2 fg + g^2 - f^2 - g^2)$ is measurable (adding in $-f^2$ and $-g^2$)
+
+  $2 f g $ is measurable.
+
+  $ 1/2 \times 2 f g$ is measurable.
+
+  $ f g$ is measurable.  
+  \qed
+  
+\item
+  $\sup \limits _{n} f_n$
+
+  First of all, note that if $x \in E^c$,
+
+  $f_n(x) = 0 = \sup \limits _ {n} f_n$.
+
+  I think perhaps that is sufficient to use the result for functions
+  on $X$ to conclude the the $\sup$ is measurable, however, being more explicit:
+  
+  So given some $\alpha \in \RR$,
+
+  \[
+  G = \{ x \in X : \sup \limits _{n} f_n(x) >  \alpha \}
+  \]
+
+  we want to show $G \in \fancyA$.
+
+  \[
+  G = \bigcup \limits _ {n=1} ^ \infty \{ x \in X : \overline f_x(x) > \alpha \}
+  \]
+
+  Since the $\overline f_n$ are measurable,  $\{ x \in X : \overline f_x(x) > \alpha \} \in \fancyA$,
+  and $G$, being the countable union of measurable sets, is measurable.
+  \qed
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+  Let $(X, \fancyA)$ be a measurable space.  Let $f, g : X \to \overline \RR$ be measurable
+  functions.  
+\begin{enumerate}[(a)]
+\item
+  Let $f, g : X \to \overline \RR$ be measurable functions.
+  Prove $E = \{ x \in X : g(x) \neq 0 \}$ is measurable and that
+  the function $f/g$ with domain $E$ is measurable. 
+\item
+  Let $f, g : X \to \overline \RR$ be measurable functions.
+  Prove $E = X \\ \{ x \in X : f(x) = -g(x) = \infty\} \cup \{ x \in X : f(x) = -g(x) = - \infty \}$ is measurable
+  and that the function with domain $E$ is measurable.  
+\item
+  Let $f_n, g : X \to \overline \RR$ be measurable functions for
+  each $n \in \NN$.  In HW6, we showed $E = \{ x \in X : lim_n f_n(x) \textrm{ converges go a number in } \RR \}$
+  is measurable.  Prove that the function $\lim_n f_n$ with the domain $E$ is measurable.
+
+  
+\end{enumerate}
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}[(a)]
+  \item
+    $g$ is a measurable function, and the constant function $0$ is
+    measurable, so by the lemma in class of 26 Sep 23, the
+    set $E^c = \{ x \in X : g(x) = 0\} $ is measurable; complements of
+    measurable sets being measurable, $E$ is measurable.
+
+    Now, $f / g : E \to \overline \RR$ has domain $E$, as does $1 / g : E \to \overline E$.
+
+    I'll first show $1/g$ is measurable on $E$, then use problem 1
+    above to conclude $f/g$ is measurable.
+    
+    \begin{lemma}
+    $1/g$ is measurable on $E$.  
+    \end{lemma}
+    \begin{proof}
+    Given some $\alpha \in \RR$, we'll test for 
+
+    \[
+    G = \{ x \in \RR : \overline{\frac{1}{g(x)}}  < \alpha \} \in \fancyA
+    \]
+
+    There are three cases, depending on the sign of $\alpha$.  First, if $\alpha = 0$,
+
+    \[
+    \{ x \in \RR : \overline{\frac{1}{g(x)}} < 0 \}
+    \]
+
+    is the same as
+
+    \[
+    \{ x \in \RR: g(x) < 0 \} 
+    \]
+
+    which is clearly in $\fancyA$ as $g$ is measurable.
+
+    Secondly, we have $\alpha < 0$.  This means $G \subseteq E$.
+
+    \begin{align*}
+    G & =  \{ x \in \RR : \overline{\frac{1}{g(x)}} < \alpha \} \\
+    & = \left( \{ x \in \RR : g(x) < 0 \} \cap \{ \frac{1}{g(x)} < \alpha \} \right) \bigcup
+    \left( \{ x \in \RR : g(x) > 0 \} \cap \{ \frac{1}{g(x)} < \alpha \} \right)\\
+    & = \left( \{ x \in \RR : g(x) < 0 \} \cap \{ \frac{1}{\alpha} < g(x) \} \right) \bigcup
+    \left( \{ x \in \RR : g(x) > 0 \} \cap \{ \frac{1}{\alpha} > g(x) \} \right)
+    \end{align*}
+
+    (Because
+
+    \[
+    \alpha < 0, g < 0, \frac{1/g} < \alpha, \textrm{ imply } 1 > \alpha g \textrm{ implies } \frac{1}{\alpha} < g
+    \]
+
+    and
+    
+    \[
+    \alpha < 0, g > 0, \frac{1/g} < \alpha, \textrm{ imply } 1 < \alpha g \textrm{ implies } \frac{1}{\alpha} > g
+    \]
+    
+    But all these are measurable by the basic theorem from 26 Sep on
+    the various types of tests for measurable functions. It's
+    important to note that when we are given that $g$ is measurable,
+    we can conclude all the tests are true; to prove $1/g$ is
+    measurable we have to stick to one test.
+
+
+    The third case is very similar.  We have $\alpha > 0$.  This means $E^c \subseteq G$.  
+
+    \begin{align*}
+    G & =  \{ x \in \RR : \overline{\frac{1}{g(x)}} < \alpha \} \\
+    & = \left( \{ x \in \RR : g(x) < 0 \} \cap \{ \frac{1}{g(x)} < \alpha \} \right) \bigcup
+    \left( \{ x \in \RR : g(x) > 0 \} \cap \{ \frac{1}{g(x)} < \alpha \} \right)\\
+    & = \left( \{ x \in \RR : g(x) < 0 \} \cap \{ \frac{1}{\alpha} > g(x) \} \right) \bigcup
+    \left( \{ x \in \RR : g(x) > 0 \} \cap \{ \frac{1}{\alpha} < g(x) \} \right)
+    \end{align*}
+
+    (Because
+
+    \[
+    \alpha > 0, g < 0, \frac{1/g} < \alpha, \textrm{ imply } 1 > \alpha g \textrm{ implies } \frac{1}{\alpha} > g
+    \]
+
+    and
+    
+    \[
+    \alpha > 0, g > 0, \frac{1/g} < \alpha, \textrm{ imply } 1 < \alpha g \textrm{ implies } \frac{1}{\alpha} < g
+    \]
+    
+    But all these are measurable by the basic theorem from 26 Sep on
+    the various types of tests for measurable functions. It's
+    important to note that when we are given that $g$ is measurable,
+    we can conclude all the tests are true; to prove $1/g$ is
+    measurable we have to stick to one test.
+
+    In all three cases, $G \in \fancyA$
+
+    \end{proof}
+    So $f$ and $1\g$ are measurable on $E$. So by Exercise 1(a), their product $f/g$ is measurable on $E$.   
+
+  \item
+    TODO
+    \item TODO
+  \end{enumerate}
+\end{solution}
+ 
+
+\begin{comment}
+\begin{exercise}
+  problem
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  first answer
+\end{enumerate}
+\end{solution}
+\end{comment}
+
+
+\end{document}
+
