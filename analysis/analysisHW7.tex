@@ -57,10 +57,12 @@
 \def\ker{\mathrm{ker}}
 \def\fancyA{\mathscr{A}}
 \def\fancyU{\mathscr{U}}
+\def\fancyU{\mathscr{U}}
 \def\fancyL{\mathcal{L}}
 \def\fancyV{\mathscr{V}}
 \def\fancyP{\mathscr{P}}
 \def\fancyB{\mathscr{B}}
+\def\limn{\lim \limits _n}
 \newcommand{\rbr}[1]{\left( {#1} \right)}
 \newcommand{\sbr}[1]{\left[ {#1} \right]}
 \newcommand{\cbr}[1]{\left\{ {#1} \right\}}
@@ -95,7 +97,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
     Let $f, g : E \to \overline \RR$ be measurable functions.  Prove $fg$ is measurable.
   \item
     Let  $f_n : E \to \overline \RR$ be a measurable function for each $n \in \NN$.  Prove
-    $ \sup _n f_n$ is easurable.  
+    $ \sup _n f_n$ is measurable.  
   \end{enumerate}
 \end{exercise}
 \begin{solution}
@@ -122,14 +124,14 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 
     Here $G \in \fancyA$ as the union of two measurable sets.
 
-    For thhe final case, $\alpha > 0$, and $\sqrt{\alpha}$ exist and are real. We proceed like this:
+    For the final case, $\alpha > 0$, and $\sqrt{\alpha}$ exist and are real. We proceed like this:
     \begin{align*}
       \{ x \in X : f^2(x) \leq \alpha \} & = \{ x \in E : -\sqrt{\alpha} \leq f(x) \leq \sqrt{\alpha} \} \cup 
       E^c \\
-      & = ( \{ x \in E : f(x) \geq -\sqrt{\alpha} \} \cup E^c ) \cap { f(x) \leq \sqrt{\alpha} } \cup E^c
+      & = ( \{ x \in E : f(x) \geq -\sqrt{\alpha} \} \cup E^c ) \cap ( \{ x \in X : f(x) \leq \sqrt{\alpha} \} \cup E^c ) 
     \end{align*}
 
-    Each set there is in $\fancyA$ and so their finite unions, complements and intersections are in
+    As $f$ is measurable, each set there is in $\fancyA$ and so their finite unions, complements and intersections are in
     $\fancyA$.  Therefore $G \in \fancyA$, and $\overline f^2: X \to \overline \RR $ is measurable 
   \end{proof}
 
@@ -173,7 +175,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   we want to show $G \in \fancyA$.
 
   \[
-  G = \bigcup \limits _ {n=1} ^ \infty \{ x \in X : \overline f_x(x) > \alpha \}
+  G = \bigcup \limits _ {n=1} ^ \infty \{ x \in X : \overline f_n(x) > \alpha \}
   \]
 
   Since the $\overline f_n$ are measurable,  $\{ x \in X : \overline f_x(x) > \alpha \} \in \fancyA$,
@@ -196,10 +198,8 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   and that the function with domain $E$ is measurable.  
 \item
   Let $f_n, g : X \to \overline \RR$ be measurable functions for
-  each $n \in \NN$.  In HW6, we showed $E = \{ x \in X : lim_n f_n(x) \textrm{ converges go a number in } \RR \}$
+  each $n \in \NN$.  In HW6, we showed $E = \{ x \in X : \limn f_n(x) \textrm{ converges go a number in } \RR \}$
   is measurable.  Prove that the function $\lim_n f_n$ with the domain $E$ is measurable.
-
-  
 \end{enumerate}
 \end{exercise}
 \begin{solution}
@@ -216,7 +216,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
     above to conclude $f/g$ is measurable.
     
     \begin{lemma}
-    $1/g$ is measurable on $E$.  
+    $1/g$ is measurable on $E$. 
     \end{lemma}
     \begin{proof}
     Given some $\alpha \in \RR$, we'll test for 
@@ -234,12 +234,12 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
     is the same as
 
     \[
-    \{ x \in \RR: g(x) < 0 \} 
+    \{ x \in \RR: g(x) = 0 \} 
     \]
 
-    which is clearly in $\fancyA$ as $g$ is measurable.
+    ($\overline{\frac{1}{g}}$ is only zero in $X$ where $g(x) = 0$) which is clearly in $\fancyA$ as $g$ is measurable; this set is $E$.  
 
-    Secondly, we have $\alpha < 0$.  This means $G \subseteq E$.
+    Secondly, we have $\alpha < 0$.  (In this case $G \subseteq E$).  
 
     \begin{align*}
     G & =  \{ x \in \RR : \overline{\frac{1}{g(x)}} < \alpha \} \\
@@ -252,13 +252,13 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
     (Because
 
     \[
-    \alpha < 0, g < 0, \frac{1/g} < \alpha, \textrm{ imply } 1 > \alpha g \textrm{ implies } \frac{1}{\alpha} < g
+    \alpha < 0, g < 0, \frac{1}{g} < \alpha, \textrm{ imply } 1 > \alpha g \textrm{ implies } \frac{1}{\alpha} < g
     \]
 
     and
     
     \[
-    \alpha < 0, g > 0, \frac{1/g} < \alpha, \textrm{ imply } 1 < \alpha g \textrm{ implies } \frac{1}{\alpha} > g
+    \alpha < 0, g > 0, \frac{1}{g} < \alpha, \textrm{ imply } 1 < \alpha g \textrm{ implies } \frac{1}{\alpha} > g
     \]
     
     But all these are measurable by the basic theorem from 26 Sep on
@@ -302,8 +302,44 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
     So $f$ and $1/g$ are measurable on $E$. So by Exercise 1(a), their product $f/g$ is measurable on $E$.   
 
   \item
-    TODO
-  \item TODO
+    \begin{align*}
+      E & = X \setminus \left( \{ x \in X : f(x) = -g(x) = \infty \} \cup \{ x\in X : f(x) = -g(x) = -\infty \} \right) \\\
+      & = X \setminus \left( ( \{ x \in X : f(x) = \infty \} \cap \{ x \in X : g(x) = -\infty \} ) \cup ( \{ x \in X : f(x) = -\infty \} \cap
+      \{ x \in X : g(x) = \infty \} ) \right) \\
+    \end{align*}
+    Each of these are measurable sets of the form $ \{ x \in X : f(x) = a, a \in \overline \RR \} $ or intersections, unions, or set
+    differences, hense measurable, hence $E$ is measurable.
+
+    For $f + g$, it is clearly defined on $X \setminus E$.  Let $\alpha \in \RR$ be given.
+
+    We need to show $ \{ x \in X : f(x) + g(x) < \alpha \} $.  We use the enumerate the rationals trick.
+
+    Our set is equivalent to $ \{ x \in X : \textrm{ there exists } q_i \in \QQ \textrm{ such that } f(x) < q_i < \alpha - g(x) \}$.
+
+    This works out to be
+
+    $\bigcup \limits _{q_i \in \QQ} ( \{ x \in X : f(x) < q_i \} \cap \{ x \in X : g(x) < \alpha - q_i \} ) $
+      
+    Again, this is a countable union of intersections of measurable sets, and hence measurable.  \qed
+    
+  \item
+    Given an $\alpha$, we will show that
+
+    \[
+    A = \{ x \in X : \limn f_n(x) < \alpha \}
+    \]
+
+    is measurable.  Let $q_k = \sup \limits _ { n geq k } f_n$.  This
+    is measurable as a $\sup$ of measurable functions. 
+
+    Then the intersection: 
+
+    \[
+    A = \bigcap \limits _ { n = 1} ^ \infty \{ x \in X : q_n(x) < \alpha \}
+    \]
+
+    shows that $A$ is measurable.  \qed
+        
   \end{enumerate}
 \end{solution}
 
@@ -326,15 +362,15 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 \begin{solution}
 \begin{enumerate}[(a)]
 \item
-  The image of $f$ is in $[0, \infty$, so $f^-(x) = 0$, for all $x \in X$.
+  The image of $f$ is in $[0, \infty]$, so $f^-(x) = 0$, for all $x \in X$.
 
-    So $\int f = \int f^+$.  $\int f+$ always exists as $f^_$ is non-negative and it gets
-    defintion two for $int f^+$, the $\sup$ which always exists in $[0, \infty]$
+    So $\int f = \int f^+$.  $\int f^+$ always exists as $f^-$ is non-negative and it gets
+    defintion two for $\int f^+$, the $\sup$ which always exists in $[0, \infty]$
 
     Let $s$ an arbitrary member in the set
 
     \[
-    \{  \int s : 0 \leq s \leq f, s \mathrm{ simple } \}
+    \{  \int s : 0 \leq s \leq f, s \ \  \textrm{ simple } \}
     \]
 
     $ s = \sum \limits_{i = 1}^\infty a_i \one_{A_i} $ for some $a_i \in \RR$ and $A_i \in \fancyA$.
@@ -352,7 +388,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 \item
   $\int f$ being extended integrable means at least one of $\int f^+$, $\int f^-$ is finite.
 
-  Section (a) above applies to both $f^+$ and $f^-$ as they are both $\geq 0$.
+  Section (a) above applies to both $f^+$ and $f^-$ as they are both $ \geq 0$.
 
   So $\int cf = \int (cf)^+ - \int(cf)^-$.  Three cases based on $c$:
 
@@ -383,14 +419,14 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   f(x) =  \one_{[0, 1]} - \one_{[-2, -1]}
   \]
 
-  So $f^+ =  \one_{[0, 1]}$ and $\int f^+ = \mu([0,1]) = 1.$
+  So $f^+ =  \one_{[0, 1]}$ and $\int f^+ = \mu([0,1]) = 1$.
 
   Likewise, $f^- =  \one_{[-2, -1]}$ and $\int f^- = \mu([0,1]) = 1$.
 
   So $\int f \mathop{d \mu} = 1 - 1 = 0$.
 
-  However, if we set $c$ to $\infty$, then $ \int c f^+ = c \int f^+ = \infty 1 = \infty$ and
-  also  $ \int c f^- = c \int f^- = \infty 1 = \infty$ and neither $\int f^-$ nor $\int f^-$ is finite, so
+  However, if we set $c$ to $\infty$, then $ \int c f^+ = c \int f^+ = \infty \times 1 = \infty$ and
+  also  $ \int c f^- = c \int f^- = \infty \times 1 = \infty$ and neither $\int f^-$ nor $\int f^-$ is finite, so
   $\int c f$ is not defined.  
   \qed
   
@@ -398,13 +434,65 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 \end{solution}
 
 \begin{exercise}
-\begin{enumerate}[(a)]
-\item
-  $(f_n) $ is increasing and $f_1$ is integrable.
+  \begin{enumerate}[(a)]
+  \item
+    $(f_n) $ is increasing and $f_1$ is integrable.
+    
+    $\int f_1$ is integrable meaning $ \int f_1^+  < \infty $ and $\int f_1 ^- <  \infty$.
+    
+    So define $g_n = f_n + f_1^-$.  Now, $g_1 = f_1^+ - f_1^- + f_1^- = f_1+ \geq 0$.
+    
+    Now, $f_n \leq f_{n+1}$ so $f_n + f_1^- \leq f_{n+1} + f_1^-$, so
+    
+    \[
+    0 \leq g_1 \leq g_2 \leq g_3 ...
+    \]
+    
+    So the sequence $(g_n)$ satisfies the conditions for the Monotone convergence theorem, and
+    
+    \[
+    \int g = \lim_{n \to \infty} \int g_n
+    \]
+    
+    That is
+    
+    \begin{align*}
+      \int \limn (f _n + f_1 ^ -) &= \limn \int (f_n + f_1^+) \quad \textrm { definition of } g_n \\ 
+      \int \left[ \limn ( f_n) + \limn f_1^- \right] &= \limn \left[ \int f_n + \int f_1^- \right] \quad ,  \ \textrm{ as } \int a + b = \int a + \int b \textrm{ for measurable functions } \\
+      \int \limn ( f_n) + \int \limn {f_1^-} &= \limn \int f_n + \limn \int f_1^- \quad \textrm{ pointwise, } f_1^- \textrm{ is constant w.r.t. } n \\
+      \int \limn ( f_n) & = \limn \int f_n  \\
+    \end{align*}
+    
+    \qed
+    
+  \item
+    
+    If $(f_n)$ is decreasing, and $f_1$ is integrable, and $f = \limn fn$, this case reduces to (a) by letting $g_n = - f_n$ and $g = \limn g_n$.  The integrability
+    condition is the same, and the $f_1 \geq f_2 \geq f_3 ...$ transforms into $g_1 \leq g_2 \leq g_3 ...$.
+    
+    So (a) applies and $ \limn \int g_n = \int g$.  Then, multiplying by $-1$ again, we get
+    
+    \[
+    \limn \int f_n = \int f
+    \]
+    
+    as desired. \qed
+    
+  \item
+    If $0 \leq f_n \leq f$ is given, the we let $g_n = \sup \limits _ {n \leq k} \{f_k\}$.  Then $0 \leq g_n$ and $g_1 \leq g_2 \leq ...$
 
-  $\int f_1$ is integrable meaning $ \int f_1^+  < \infty $ and $\int f_1 ^- <  \infty$.
+    In this case, $g_n$ satisfy the requirements of the monotone convergence theorem, and
 
-  f_1 
+    \[
+    \limn \int g_n = \int \limn g_n
+    \]
+
+    $ \limn g_n = \limn f_n$, as we are given $(f_n)$ converges,
+    $\sup$ of the tail of the sequence will converge to the same
+    point.
+
+
+\end{enumerate}
   
 \end{exercise}
 \begin{solution}
@@ -426,7 +514,62 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   
 \end{exercise}
 \begin{solution}
+
+  Given $ \varepsilon > 0, \varepsilon \in \RR$.  
+  
+  Set $f_n = \min(f, n)$.  
+  
+  Then we have $0 \leq f_1 \leq f_2 \leq ... \leq f$
+
+  $f$ is measurable, and $f_1$ is bounded below, so the monotone convergence theorem applies and
+
+  \[
+  \limn \int f_n = \int \limn f_n = \int f
+  \]
+
+  So, by the definition of limits, there is a $j \in \NN$ such that
+
+  \[
+  \int f - \int f_j < \varepsilon
+  \]
+
+  Now, for this $j$, $X$ is partitioned into $ B = \{ x \in X : f(x) \leq j \}$
+  and $ C = \{ x \in X : f(x) > j \} $.
+
+  \[
+  \int f_j = \int _ C n + \int _B f
+  \]
+
+  $ \int f < \infty$, say $\int f = N$.  So
+
+  \[
+  \int f_j = \int _C n + \int _B f
+  \]
+
+  Combined this we get
+
+  \[
+  \int _X f - \int _B f - \int _C n < \varepsilon
+  \]
+  
+  However, $\int_x f - \int_B f  = \int_C f$. 
+
+  So this becomes
+  
+  \[
+  \int_C f - \int_C n < \varepsilon
+  \]
+
+  \[
+  \int_C (f - n) < \varepsilon
+  \]
+
+  Now, for some general $A \in \fancyA$ with $\mu(A) < \mu(B)$,
+
+  $\int f \one _ A $
+
   TODO
+  
 \end{solution}
 \begin{exercise}
   \begin{enumerate}[(a)]
@@ -436,23 +579,131 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   \item
     Find a measurable function $f: \RR \to \RR$ that is not equal to a
     continuous function almost everywhere but is not is continuous a.e.
+  \end{enumerate}
 \end{exercise}
 \begin{solution}
   \begin{enumerate}[(a)]
   \item
-    TODO
+    Let
+
+    \[
+    f = \begin{cases}
+      0, x < 0 \\
+      1, x \geq \\
+    \end{cases}
+    \]
+
+    Then $f$ is continuous everywhere except at 0.  However, there is
+    no measure zero set such that $f = g$ for a continuous $g$.  To
+    show this, look at a neighborhood of $0$.  If a function $g = f$
+    a.e. then any interval $I = [-\eta, 0]$, $\eta > 0$, of non-zero measure,
+    will have to contain points $a \in [ -\eta, 0]$ where $g(a) = 0$; other
+    wise $f \neq g$ on the whole of $I$, which has measure $\eta$.
+
+    Likewise, any interval $J = [0, \varepsilon]$, of non-zero measure, will
+    have to contain points $b \in [0, \varepsilon]$ where $g(b) = 1$.
+
+    However, this means that for any $ \varepsilon < 1$, there does not exist a
+    $\delta$ to establish continuity of $g$ at $0$:
+
+    \[
+    | x - 0 | < \delta \textrm{ implying } g(x) - g(0) < \varepsilon
+    \]
+
+    Hence $g$ cannot be continous at 0.  
+    
+    
   \item
-    TODO
+    The classic counter-example $ f = \one_{\QQ}$ is useful here.
+
+    $f(x) = 0$ for all $x \notin \QQ$.  Since $\lambda(\QQ) = 0$, this
+    says $f$ and $0$ are equal almost everywhere, and $0$ is of course
+    continuous.
+
+    However, $f$ is discontinuous everywhere, as every open interval has
+    points that map $1$ away from each other.  
+    
   \end{enumerate}
 \end{solution}
 \begin{exercise}
   Let $(X, \fancyA, \mu)$ be a measure space.
   Let $f, g: X \to \overline \RR$ be measurable, integrable
-  functions. Prove: $f=g$ a.e iff $\int \_E f = \int _E g$
+  functions. Prove: $f=g$ a.e iff $\int _E f = \int _E g$
   for every $E \in \fancyA$.  
 \end{exercise}
 \begin{solution}
-  TODO
+  First the forward ``if'' direction.
+
+  Assume $f = g$ almost everywhere, given some $E \in \fancyA$.
+
+  Let
+
+  \[
+  A = \{ x \in X : f(x) = g(x) \}
+  \]
+
+  and
+
+  \[
+  B = \{ x \in X : f(x) \neq g(x) \}
+  \]
+
+  The assumption means $\mu(B) = 0$.
+
+  The $X = A \cup B$ so the given $E = ( E \cap A ) \cup (E \cap B) $
+
+  So
+
+  \begin{align*}
+    \int _E f &= \int _ X f \one _ E \\
+    &= \int _X f ( \one _ {E \cap A} + \one {E \cap B}) \\
+    &= \int _X f \one _ { E \cap A} + \int f \one _ {E \cap B} \\
+    &= \int _{E \cap A} f + \int _ {E \cap B} f  \\
+  \end{align*}
+
+  \begin{lemma}
+    If $\mu(F) = 0$, and $f$ integrable, then
+    $ \int _ F f = 0$.
+  \end{lemma}
+
+  \begin{proof}
+    $f \one_ {E \cap B} = 0$, a.e., so by a theorem from class Tuesday,
+
+    $ \int | f  \one_ {E \cap B} | \leq 0$.  Since $ | \int g | \leq \int | g|$, for $g$
+    measurable, this means $ \int _F f = 0$.   
+  \end{proof}
+
+  So $\int _{E \cap B} f = 0$.  But on $E \cap A$, $f = g$, so $\int _ {E \cap A} f = \int _ {E \cap A} g$.
+
+  Putting it together, $ \int _E f = \int _E g $.
+
+  For the backward ``only if'':
+
+  Hint is to do prove by contradiction. Assume there is an $A \subseteq X$ such that
+  $\mu ( A) > 0$ and $ \int _ A ( f - g) = 0$.
+
+  Let $A_n = (A \cap \{ x \in X : f(x) - g(x) > \frac{1}{n} \} $.
+
+  Then $A = \bigcup \limits _n A_n$ and $A_1 \subseteq A_2 \subseteq A_3 ...$
+
+  By , $\mu(A) =  \limn \mu(A_n) > 0$.  So, there exists $N \in \NN$ such that
+  $\mu(A_j) > \frac{1}{N}$.  That is
+
+  \[
+  \mu(A \cap \{ x \in X : f(x) - g(x) > \frac{1}{N} \})
+  \]
+
+  But this gives rise to a simple function
+
+  $ 0 \leq s \leq f$ such that
+
+  $s = \frac{1}{N} \one _ {A_j}$ and $\int s \geq \frac{1}{N}$.
+
+  Then, $\int _ {A} f - g > \frac{1}{N}$ by the definition of $\sup$.
+
+  But this is a contraction, so there is no such $A$.  \qed
+  
+  
 \end{solution}
 
 \begin{comment}
