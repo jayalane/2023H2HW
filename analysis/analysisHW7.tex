@@ -135,7 +135,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
     $\fancyA$.  Therefore $G \in \fancyA$, and $\overline f^2: X \to \overline \RR $ is measurable 
   \end{proof}
 
-  Now we show a sequence of combining mesaureable functions to get the result that $\overline f \overline g: X \to \overline \RR$ is measureable:
+  Now we show a sequence of combining mesaureable functions to get the result that $\overline f \overline g: X \to \overline \RR$ is measurable:
 
   $f, g$ are measurable, given.
 
@@ -329,7 +329,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
     A = \{ x \in X : \limn f_n(x) < \alpha \}
     \]
 
-    is measurable.  Let $q_k = \sup \limits _ { n geq k } f_n$.  This
+    is measurable.  Let $q_k = \sup \limits _ { n \geq k } f_n$.  This
     is measurable as a $\sup$ of measurable functions. 
 
     Then the intersection: 
@@ -360,80 +360,94 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 \end{exercise}
 
 \begin{solution}
-\begin{enumerate}[(a)]
-\item
-  The image of $f$ is in $[0, \infty]$, so $f^-(x) = 0$, for all $x \in X$.
-
+  \begin{enumerate}[(a)]
+  \item
+    The image of $f$ is in $[0, \infty]$, so $f^-(x) = 0$, for all $x \in X$.
+    
     So $\int f = \int f^+$.  $\int f^+$ always exists as $f^-$ is non-negative and it gets
     defintion two for $\int f^+$, the $\sup$ which always exists in $[0, \infty]$
-
+    
     Let $s$ an arbitrary member in the set
-
+    
     \[
     \{  \int s : 0 \leq s \leq f, s \ \  \textrm{ simple } \}
     \]
-
+    
     $ s = \sum \limits_{i = 1}^\infty a_i \one_{A_i} $ for some $a_i \in \RR$ and $A_i \in \fancyA$.
-
+    
     So $cs = \sum \limits_{i = 1} ^ \infty c \one_{A_i}$.  $c$ is constant to the limit variables,
     so $cs = c \sum \limits_{i=1} ^ \infty \one_{A_i}$.
-
+    
     So $\int cs = c \int s$ (where $\int$ is definition 1, for simple functions).
-
+    
     Since $s$ was arbitrary and $c$ is just multiplying all the members of the set by $c$,
     the $\sup$ is just multiplied by $c$.  So $\int cf \mathop{d \mu} = c \int f \mathop{d \mu}$ as required.  
     
-
+    
+    
+  \item
+    $\int f$ being extended integrable means at least one of $\int f^+$, $\int f^-$ is finite.
+    
+    Section (a) above applies to both $f^+$ and $f^-$ as they are both $ \geq 0$.
+    
+    So $\int cf = \int (cf)^+ - \int(cf)^-$.  Three cases based on $c$:
+    
+    If $c = 0$, then $(cf)(x) = 0$, for all $x \in \RR$, and all the integrals are zero and equal.
+    
+    If $c > 0$, then $(cf)^+ = cf^+$, $(cf)^- = cf^-$, and by the above exercise,
+    $\int (cf+) = c \int f+$, and $\int (cf)^- = c \int f^-$, and $\int cf = c \int f$; if one
+    of the integrals was $\infty$ or $- \infty$, $c$ times that integral is still the same.
+    
+    If $c < 0$, then $(cf)^+ = cf^-$, and $(cf)^- = cf^+$, and by the
+    above exercise, $\int (cf+) = (-c) \int f^-$,
+    and $\int (cf)^- = (-c) \int f^+$, and:
+    
+    \begin{align*}
+      \int (cf) & = \int(cf) ^ + - \int(cf)^- \\
+      & = (-c) \int^- - (-c) \int f^+ \\
+      & = c \int f^+ - c \int f^- \\
+      & = c \int f
+    \end{align*}
+    
+    As required.  \qed  
+    
+    
+  \item
+    Let $f : \RR \to \RR$ be defined:
+    
+    \[
+    f(x) =  \one_{[0, 1]} - \one_{[-2, -1]}
+    \]
+    
+    So $f^+ =  \one_{[0, 1]}$ and $\int f^+ = \mu([0,1]) = 1$.
+    
+    Likewise, $f^- =  \one_{[-2, -1]}$ and $\int f^- = \mu([0,1]) = 1$.
+    
+    So $\int f \mathop{d \mu} = 1 - 1 = 0$.
+    
+    However, if we set $c$ to $\infty$, then $ \int c f^+ = c \int f^+ = \infty \times 1 = \infty$ and
+    also  $ \int c f^- = c \int f^- = \infty \times 1 = \infty$ and neither $\int f^-$ nor $\int f^-$ is finite, so
+    $\int c f$ is not defined.  
+    \qed
+    
+  \end{enumerate}
   
-\item
-  $\int f$ being extended integrable means at least one of $\int f^+$, $\int f^-$ is finite.
-
-  Section (a) above applies to both $f^+$ and $f^-$ as they are both $ \geq 0$.
-
-  So $\int cf = \int (cf)^+ - \int(cf)^-$.  Three cases based on $c$:
-
-  If $c = 0$, then $(cf)(x) = 0$, for all $x \in \RR$, and all the integrals are zero and equal.
-
-  If $c > 0$, then $(cf)^+ = cf^+$, $(cf)^- = cf^-$, and by the above exercise,
-  $\int (cf+) = c \int f+$, and $\int (cf)^- = c \int f^-$, and $\int cf = c \int f$; if one
-  of the integrals was $\infty$ or $- \infty$, $c$ times that integral is still the same.
-
-  If $c < 0$, then $(cf)^+ = cf^-$, and $(cf)^- = cf^+$, and by the
-  above exercise, $\int (cf+) = (-c) \int f^-$,
-  and $\int (cf)^- = (-c) \int f^+$, and:
-
-  \begin{align*}
-    \int (cf) & = \int(cf) ^ + - \int(cf)^- \\
-    & = (-c) \int^- - (-c) \int f^+ \\
-    & = c \int f^+ - c \int f^- \\
-    & = c \int f
-  \end{align*}
-
-  As required.  \qed  
-
-  
-\item
-  Let $f : \RR \to \RR$ be defined:
-
-  \[
-  f(x) =  \one_{[0, 1]} - \one_{[-2, -1]}
-  \]
-
-  So $f^+ =  \one_{[0, 1]}$ and $\int f^+ = \mu([0,1]) = 1$.
-
-  Likewise, $f^- =  \one_{[-2, -1]}$ and $\int f^- = \mu([0,1]) = 1$.
-
-  So $\int f \mathop{d \mu} = 1 - 1 = 0$.
-
-  However, if we set $c$ to $\infty$, then $ \int c f^+ = c \int f^+ = \infty \times 1 = \infty$ and
-  also  $ \int c f^- = c \int f^- = \infty \times 1 = \infty$ and neither $\int f^-$ nor $\int f^-$ is finite, so
-  $\int c f$ is not defined.  
-  \qed
-  
-\end{enumerate}
 \end{solution}
 
 \begin{exercise}
+  
+  \begin{enumerate}[(a)]
+  \item
+    $(f_n) $ is increasing and $f_1$ is integrable.
+  \item
+    $(f_n) $ is decreasing  and $f_1$ is integrable.
+  \item
+    $ 0 \leq f_n \leq f$
+  \end{enumerate}
+  
+\end{exercise}
+
+\begin{solution}
   \begin{enumerate}[(a)]
   \item
     $(f_n) $ is increasing and $f_1$ is integrable.
@@ -454,7 +468,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
     \int g = \lim_{n \to \infty} \int g_n
     \]
     
-    That is
+    That is:
     
     \begin{align*}
       \int \limn (f _n + f_1 ^ -) &= \limn \int (f_n + f_1^+) \quad \textrm { definition of } g_n \\ 
@@ -490,17 +504,9 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
     $ \limn g_n = \limn f_n$, as we are given $(f_n)$ converges,
     $\sup$ of the tail of the sequence will converge to the same
     point.
-
-
-\end{enumerate}
-  
-\end{exercise}
-\begin{solution}
-\begin{enumerate}[(a)]
-\item
-  first answer
-\end{enumerate}
+  \end{enumerate}
 \end{solution}
+
 \begin{exercise}
   Let $(X, \fancyA, \mu)$ be a measure space.  Prove:
   If $f: X \to [0, \infty]$ is measurable and $ f < \infty$, then
@@ -511,8 +517,10 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   \[
   \int f \one_A < \varepsilon
   \]
-  
+
+
 \end{exercise}
+
 \begin{solution}
 
   Given $ \varepsilon > 0, \varepsilon \in \RR$.  
@@ -568,7 +576,10 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 
   $\int f \one _ A $
 
-  TODO
+  Giving up at this point, just not tieing the pieces together; I think the key is that
+  for a different set of small measure, it's got to be smaller than $n$ and so closer
+  still to $f$ than $f_n$.
+  
   
 \end{solution}
 \begin{exercise}
@@ -588,8 +599,8 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 
     \[
     f = \begin{cases}
-      0, x < 0 \\
-      1, x \geq \\
+      0, \quad x < 0 \\
+      1, \quad x \geq 0\\
     \end{cases}
     \]
 
