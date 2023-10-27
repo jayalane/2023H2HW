@@ -1,0 +1,326 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{epstopdf}
+\usepackage{datetime}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+
+
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+\def\fancyA{\mathscr{A}}
+\def\fancyU{\mathscr{U}}
+\def\fancyU{\mathscr{U}}
+\def\fancyL{\mathcal{L}}
+\def\fancyV{\mathscr{V}}
+\def\fancyP{\mathscr{P}}
+\def\fancyB{\mathscr{B}}
+\def\limn{\lim \limits _n}
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt
+}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\textbf{HW 8 - MATH 231A - Fall 2023 - Chris Lane}
+
+Date: \hhmmsstime{} \ \today \ \ Git hash: 
+\input{/Users/chlane/src/jayalane/2023H2HW/.git/refs/heads/main} 
+
+\begin{exercise}
+  Let $(X, \fancyA, \mu)$ be a measure space.
+  Let $f_n : X \to \overline \RR (n = 1, 2, 3 ...) $ be a sequence of measurable
+  functions.  Let $f: X \to \overline \RR $ be a measurable function.
+  Suppose $0 \leq f_n$ a.e.  Suppose $f_n(x)$ is an increaseing
+  sequence for a.e. $x in X$.  Suppose $\limn f_n = f$ a.e.  Prove:
+  $\limn \int f_n = \int f$.
+  \end{exercise}
+\begin{solution}
+
+  Let
+  \begin{align*}
+    A_i &= \{ x \in X : f _ n (x ) < 0 \}, \quad & \mu(A_i) = 0 \\
+    B_i &= \{ x \in X : f _ n (x ) > f_{n+1} \}, \quad & \mu(B_i) = 0 \\
+    C_i &= \{ x \in X : \limn f _ n (x ) \neq f(x) \}, \quad & \mu(C_i) = 0
+  \end{align*}
+
+  Let $D = \cup _i A_i \bigcup \cup _i B_i \bigcup \cup _ i C_i$.
+
+  Then $\mu(D) = 0$, being the countable union of measure zero sets.
+
+  Then let:
+
+  \[ 
+  F_n = \one _ D f _n
+  \]
+
+  and
+
+  \[
+  F = \one _D f
+  \].
+
+  Then $0 \leq F_n$, $F_n \leq F_{n+1}$, and $\limn F_n = F$, all for all $x \in X$.
+
+  Then by the base Monotone Convergence Theorem,
+
+  \[
+  \int F = \limn \int F_n
+  \]
+
+  But $F = f$ a.e., so
+
+  \[
+  \int F = \int f
+  \]
+
+  By the corollary to the ``almost everywhere'' theorems in class.  
+  
+  Alternatively and in more detail.
+
+  \[
+  \int f = \int \limits {\one_D^c} f + \int \limits _ {\one _D} \leq \infty \int \one _D ^c + \int F = 0 + \int F
+  \]
+
+  So $\int f \leq \int F$ but
+
+  \[
+  \int F = \int F^+ - \int F^- = \int F^+
+  \]
+
+  as $ 0 \leq F $. So 
+
+  \[
+  \int F = \int \one_D f^+ \leq \int f^+
+  \]
+
+  And
+
+  \[
+  \int f^+ = \int f^+ \one_D + \int f^+ \one_D ^ c \leq \infty \times 0 + \int F^+ 
+  \]
+
+  So
+
+  \[
+  \int f^+ \leq \int F^+
+  \]
+
+  So
+
+  \[
+  \int f \leq \int F
+  \]
+
+  and $\int f = \int F$.  And so $\limn \int f  = \int f$.  \qed
+\end{solution}
+
+\begin{exercise}
+\end{exercise}
+\begin{solution}
+\end{solution}
+
+\begin{exercise}
+  Let $(X, \fancyA, \mu)$ be a measure space.
+  Suppose $f : X \to \overline \RR$ is measurable and integrable.  Prove:
+  
+  \begin{enumerate}[(a)]
+  \item
+    $ \{ x \in X : f(x) \neq 0 \}$ is $\sigma$-finite.
+  \item
+    There exists a sequence of sets $A_1, A_2, ... \in \fancyA$ such that $\mu(A_n) < \infty$ for all $n$
+    and $f \one _ {A_n} \to f$ pointwise.  (Hint: $A_n = \cup _ { i = 1 } ^ {n} = E_i$.)  
+  \item
+    For every $\epsilon > 0$, there exists $ A \in \fancyA$ such that $\mu(A) <\infty$ and
+    $| \int f - \int f \one _A | \leq \epsilon$.  
+  \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  \label{ex3a}
+  Let $E_n = \{ x \in X : | f(x) |  > \frac{1}{n} \}$.  If we can show that $\mu(E_n) < \infty$ then
+  since $B = \cup _ n E_n = \{ x \in X : f(x) \neq 0 \}$ we will have shown that $B$ is $\sigma$-finite.
+
+  To show $\mu(E_n)$ is finite:
+
+  \begin{align*}
+    \int f & < \infty \ f \textrm{ integrable} \\
+    \int f^+ & < \infty \ f \textrm{ integrable} \\
+    \int f^- & < \infty \ f \textrm{ integrable} \\
+    \int f^+ + \int f^- & < \infty \\
+    \int |f|  & < \infty \\
+  \end{align*}
+
+  So on $\one_{E_n}$ we get:
+  \[
+  \int \limits _{\one_{E_n}} |f | \leq   \int |f | \leq \infty
+  \]
+
+  But also:
+
+  \[
+  \int \limits _ {\one_{E_n}} |f|  > \frac{1}{n} \mu(E_n) 
+  \]
+
+  Combining these,
+
+  \[
+  \frac{1}{n} \mu(E_n) < \int \limits _{\one_{E_n}} |f| \leq \int |f| < \infty
+  \]
+
+  Or
+  
+  \[
+  \mu(A_n) < \infty \times n = \infty
+  \]
+
+  As needed.  \qed
+
+\item
+  \label{ex3b}
+  Taking the $E_n$ from Exercise 3 \ref{ex3a}, define $A_n = \cup _ {i \leq n} E_i$ and  let $x \in X$ be specified.
+
+  If $f(x) \neq 0$, then $f(x) > \frac{1}{N}$ for some $N \in \NN$.  Then the $A_n$ contain $x$ for $ n \geq N$
+  and the sequence clearly converges there to $f(x)$ as its identitically equal to $f(x)$ after $N$.
+
+  So we need to show that the limit
+  of $\limn \one _ { A_N} f(x) = f(x)$ when $f(x) = 0$.  But this is obvious because the sequence is identically
+  zero which is also the desired convergence limit. \qed
+
+  \item
+
+    Starting with the case that $f = f^+$, and using $A_n$ from Exercise 3 \ref{ex3b}, we have $f_n = f \one_{A_n}$.
+
+    So then we get $ 0 \leq f_n \leq f$.  Exercise 3 \ref{ex3b} showed
+    $\limn f_n = f$ and $f_n \leq f_{n+1}$ by construction, so the
+    conditions of the monotone convergence theorem apply, and
+
+    \[
+    \int f = \limn f_n
+    \]
+
+    That is,
+    \[
+    \limn f \one _{A_n} = f
+    \]
+
+    By the definition of limit, given some $\epsilon > 0$, there is an $N \in \NN$ such that
+    for all $j \geq N$,
+
+    \[
+    | \int f - \int \one_{A_n} f | < \epsilon
+    \]
+
+    But this just means $A_n$ is the desired set of finite measure.
+
+    Now, for the case where $f \neq f^+$, we split it into two applications of the above,
+    choosing $N_1, N_2$ such that
+
+    \[
+    | \int f^+ - \int \one_{A_j} f^+ | < \frac{\epsilon}{3}, \ \ j \geq N_1
+    \]
+
+    and
+    
+    \[
+    | \int f^- - \int \one_{A_k} f^- | < \frac{\epsilon}{3}, \ \ j \geq N_2
+    \]
+
+    Then for $n = \max(N_1, N_2) + 1$, let $A$ be $A_n$.  
+    
+    \begin{align*}
+      | \int f - \int f \one _ A | &= | \int f^+ - \int f^- - \int f+ \one_A + \int f^- \one_A | \\
+       &= | \int f^+ - \int f^+ \one_A - (\int f^- - \int f^- \one_A) | \\
+      & \leq | \int f^+ - \int f^+ \one_A|  + | \int f^- - \int f^- \one_A | \\
+      & \leq \frac{\epsilon}{3} +  \frac{\epsilon}{3} \\
+      & < \epsilon
+    \end{align*}
+
+    As needed.  \qed
+    
+\end{enumerate}
+  
+  
+  
+\end{solution}
+
+
+\begin{comment}
+\begin{exercise}
+  problem
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  first answer
+\end{enumerate}
+\end{solution}
+\end{comment}
+
+
+\end{document}
