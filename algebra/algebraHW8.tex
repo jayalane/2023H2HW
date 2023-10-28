@@ -95,7 +95,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   Let $G$ act on left cosets of $H$ by multiplication.
   \begin{enumerate}[(a)]
   \item
-    Show that the kernel of the action is a subgroup if $H$.  
+    Show that the kernel of the action is a subgroup of $H$.  
   \item
     Show that the kernel of the action is $N = \cap _{x \in G} xHx^{-1}$.
   \item
@@ -131,22 +131,85 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   Suppose $G$ is a group that has no normal subgroups except $\{ 1 \}$ and $G$ itself (a group with this
   property is called \textbf{normal}. Show that if $G$ has a proper subgroup $H$ with index $n$,
   then $G$ is isomorphic to a subgroup of $S_n$. (Hint: use part (A) of the previous.)  Then show that if $G$
-  pis infinite, then every proper subgfoup $H$ of $G$ has infinite index. 
+  is infinite, then every proper subgroup $H$ of $G$ has infinite index. 
 \end{exercise}
 \begin{solution}
   The index $[G:H]$ is the number of left-cosets of $H$ in $G$.  Let
   $G$ act on these left cosets by multiplication.  For the purpose of
-  this exercise, number the left cosets $(aH)$ as $a_1$ through $a_n$;
+  this exercise, number the left cosets $(aH)$ as $a_1H$ through $a_nH$;
   identify $a_1$ with the coset $H$.  Now, we construct a homomorphism
-  $\phi$ from this group action to $S_n$. Given a $g \in G$, let
-  $\sigma_g = \phi(x \cdot \_ )$ be defined as:
+  $\phi$ from $g \in G$ via this group action to $S_n$. Given a $g \in G$,
+  let $\sigma = \phi(g)$ be defined:
 
-  $$
-  \sigma_g(i) = j : a_j = g \cdot a_i
-  $$
+  \[
+  \sigma(i) = j, \ \textrm{ where }  a_j = g \cdot a_i
+  \]
 
+  We just need to check that $\phi(x y) = \phi(x) \phi(y)$
+
+  \[
+  \phi(x y)(i) = (x y) (a_iH) = x ( y a_i H) = x (a_j H) = a_k H 
+  \]
+  where $y$ acts on $a_iH$ to $a_jH$ and $x$ acts on $a_jH $ to $a_k H$.
+
+  And
+  \[
+  \phi(x) \cdot \phi(y)(i) = \phi(x) \cdot (y a_i H) = \phi(x) (a_j H) = (a_k H)
+  \]
+
+  So $\phi$ preserves the group operation and is a homomorphism.  Now, what is $\ker(\phi)$?
+
+  The kernel will be normal in $G$ so it is either $\{ 1 \}$ or $G$.
+
+  If $\ker(\phi) = G$, then $\phi(g) = 1$, for all $g \in G$.  But that means
+  $gH = 1H$, for all $g \in G$.  i.e. $g \in H$ for all $g \in G$ which contradicts
+  $H$ being a proper subgroup of $G$.  So $\ker(\phi) = \{ 1 \}$, which means that
+  $\phi$ is 1-1, proving it is an isomorphism of $G$ into $S_n$.  \qed
+
+
+  In the case that $G$ is infinite, if a proper subgroup were to have finite index, the above would
+  show that that $G$ would be a subgroup of a finite group, $S_n$, in contradiction; hence all
+  proper subgroups have infinite index.
+
+  \qed
+\end{solution}
+
+\begin{exercise}
+  Let $G(x)$ be the stabilizer of $x$ under a group action (of group $G$ on a set $X$.) Show
+  that stabilizers of elements in the orbit of $x$ are conjugate subgroups. Explicitly, for
+  every $g \in G$ and $x \in X$ we have $G(g \cdot x) = gG(x)g^{-1}$.
+\end{exercise}
+\begin{solution}
+  Let $b \in G(x)$.  Then, $ b \cdot x = x$.  So $ b \cdot g^{-1} \cdot x = g^{-1} \cdot x$
+  and $g \cdot b \cdot g ^ { -1} \cdot x = g \cdot g ^ { -1 } \cdot x$.
+
+  That is,
+
+  \[
+  (gbg^{-1} \cdot x = g g^{-1} \cdot x
+  \]
+
+  Or TODO
   
-  
+\end{solution}
+
+\begin{exercise}
+  Let $G = D_8$ be the dihedral group of symmetries of the square.
+  \begin{enumerate}[(a)]
+    \item 
+      What is the stabilizer of a vertex?  of an edge?
+    \item
+      $G$ acts on the set of diagonals of the square.  What is the stabilizer of the diagonal?
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}[(a)]
+    \item 
+      The stabilizer of a vertex is the flips around the axis that goes between the vertex and the center.  For example, for the vertex $(1)$,
+      
+    \item
+      $G$ acts on the set of diagonals of the square.  What is the stabilizer of the diagonal?
+  \end{enumerate}
   
 \end{solution}
 
