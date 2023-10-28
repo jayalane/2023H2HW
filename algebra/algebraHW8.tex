@@ -1,0 +1,165 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{datetime}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+\newtheorem*{claim}{Claim}
+
+\def\pmod{+'}
+\def\boldr{\boldsymbol{r}}
+\def\boldc{\boldsymbol{c}}
+
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+%\def\NN{\mathbb{Z}_{> 0}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+\def\Aut{\operatorname{Aut}}
+\def\Inn{\operatorname{Inn}}
+\def\Ker{\operatorname{Ker}}
+%\def\sp{\mathrm{span}} %messes up align enviroment
+\newcommand{\Mod}{\ (\mathrm{mod}\ )}
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt}
+
+%\title{\parbox{14cm}{\centering{  Interior points of circle and sphere packings}}}
+\begin{document}
+
+\textbf{HW 7 - MATH 221A - Fall 2023 - Chris Lane}
+
+Date: \hhmmsstime{} \ \today \ \ Git hash: 
+\input{/Users/chlane/src/jayalane/2023H2HW/.git/refs/heads/main}
+
+\begin{exercise}
+  Let $G$ act on left cosets of $H$ by multiplication.
+  \begin{enumerate}[(a)]
+  \item
+    Show that the kernel of the action is a subgroup if $H$.  
+  \item
+    Show that the kernel of the action is $N = \cap _{x \in G} xHx^{-1}$.
+  \item
+    Show that, if $K$ is a normal subgroup of $G$ contained in $H$,
+    then $K \leq N$.  (Thus $N$ is the largest normal subgroup of $G$
+    contained in $H$; $N$ is called the core of $H$ in $G$).
+  \end{enumerate}
+\end{exercise}
+\begin{solution} 
+  \begin{enumerate}[(a)]
+  \item
+    Assuming the kernel of the action is $ N = \{ g \in G : g(aH) = H \ \textrm{ for all cosets } aH \}$,
+    we need to verify it is non-empty.  $1 \in N$ as $1 (aH) = 1aH = aH$.
+
+    Next we need to verify it is closed under the operation,
+    given $g_1, g_2 \in N$, $g_1(aH) = H$.  So $g_1 \cdot g_2 (aH) = g_1 (g_2aH) = g_1 (aH) = g_1 a H  = a H$.
+
+    And closed under inverses:  $g \in N$.  So for all $a \in G$, there are $h_1, h_2 \in H$ such
+    that $g a h_1 = h_2$.  Now, $1 \in N$, so $ 1 a h_2 = h_2$.  So $g^ {-1} g a h_2 = h_2$, and
+    $ g ^ {-1} g a h_1 h_1^{-1} h_2 = h_2$ or $ g ^ {-1}$
+
+    TODO
+    
+  \item
+    TODO
+  \item
+    TODO
+  \end{enumerate}
+    
+\end{solution}
+
+\begin{exercise}
+  Suppose $G$ is a group that has no normal subgroups except $\{ 1 \}$ and $G$ itself (a group with this
+  property is called \textbf{normal}. Show that if $G$ has a proper subgroup $H$ with index $n$,
+  then $G$ is isomorphic to a subgroup of $S_n$. (Hint: use part (A) of the previous.)  Then show that if $G$
+  pis infinite, then every proper subgfoup $H$ of $G$ has infinite index. 
+\end{exercise}
+\begin{solution}
+  The index $[G:H]$ is the number of left-cosets of $H$ in $G$.  Let
+  $G$ act on these left cosets by multiplication.  For the purpose of
+  this exercise, number the left cosets $(aH)$ as $a_1$ through $a_n$;
+  identify $a_1$ with the coset $H$.  Now, we construct a homomorphism
+  $\phi$ from this group action to $S_n$. Given a $g \in G$, let
+  $\sigma_g = \phi(x \cdot \_ )$ be defined as:
+
+  $$
+  \sigma_g(i) = j : a_j = g \cdot a_i
+  $$
+
+  
+  
+  
+\end{solution}
+
+\begin{comment}
+  \begin{exercise}
+    problem
+  \end{exercise}
+  \begin{solution}
+    \Begin{enumerate}[(a)]
+    \item
+      first answer
+    \end{enumerate}
+  \end{solution}
+\end{comment}
+
+\end{document}
