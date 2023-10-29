@@ -107,22 +107,79 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 \begin{solution} 
   \begin{enumerate}[(a)]
   \item
-    Assuming the kernel of the action is $ N = \{ g \in G : g(aH) = H \ \textrm{ for all cosets } aH \}$,
+    Assuming the kernel of the action is $ N = \{ g \in G : (gH)(aH) = (aH) \ \textrm{ for all cosets } aH \}$,
     we need to verify it is non-empty.  $1 \in N$ as $1 (aH) = 1aH = aH$.
 
     Next we need to verify it is closed under the operation,
-    given $g_1, g_2 \in N$, $g_1(aH) = H$.  So $g_1 \cdot g_2 (aH) = g_1 (g_2aH) = g_1 (aH) = g_1 a H  = a H$.
+    given $n_1, n_2 \in N$, need to check
+    \begin{align*}
+      (n_1 H) (aH) &= (aH) \\
+      (n_2 H) (aH) & = (aH) \\
+      (n_1 n_2 H) (aH) & = (n_1H)(n_2 H) (a H) \ \textrm { by defintion } \\
+      & = (n_1 H) (a H) \ \textrm{ since } n_2 \in N\\
+      & = (a H) \  \textrm{ since } n_1 \in N  \\
+    \end{align*}
 
-    And closed under inverses:  $g \in N$.  So for all $a \in G$, there are $h_1, h_2 \in H$ such
-    that $g a h_1 = h_2$.  Now, $1 \in N$, so $ 1 a h_2 = h_2$.  So $g^ {-1} g a h_2 = h_2$, and
-    $ g ^ {-1} g a h_1 h_1^{-1} h_2 = h_2$ or $ g ^ {-1}$
+    And closed under inverses:  $g \in N$.  So $(gH)(aH) = (aH)$.  
 
-    TODO
+    So $(g^{-1} H ) ( gH) = (g^{-1} g H) = (H)$ so $g^{-1} H$ = $1H$ so $g^{-1} \in N$.  
+    
+
+    Now we have to show it is contained in $H$.  Let $n \in N$.  Then $n \cdot 1 = 1H$, that is
+    $ n 1 h_1 = h_2$, for some $h_1, h_2 \in H$, or $n = h_2 h_1^{-1}$ and $n \in H$.  
     
   \item
-    TODO
+    $N \subseteq \cap _{x \in G} xHx^{-1}$ direction:
+
+    $n \in N$ means $n g h_1 = g h_2$, for some $h_1, h_2 \in H$ ($nH$ is identity in $G/H$).
+    So
+
+    \[
+    n (g h_1) (g h_1)^{-1} = g h_2 g (g h_1)^{-1}
+    \]
+
+    and
+
+    \[
+    n = g h_2 h_1 ^{-1} g ^ {-1}
+    \]
+
+    Or
+
+    \[
+    n = g h_3 g ^ {-1}
+    \]
+
+    That is $ n \in g H g ^ {-1}$.  That was for any $g \in G$ so $n$ is in the intersection for all $g \in G$:
+
+    \[
+    n \in \cap _{x \in G} xHx^{-1}
+    \]
+
+    For the $\cap _{x \in G} xHx^{-1} \subseteq N$ direction:
+
+    We have a member of the intersection $g$, for all $x \in G$, $g \in x H x ^ {-1}$.
+
+    So for each $x$, So there is an $h \in H$ such that $ n = x h x ^ {-1}$.  So $nx = xh$ so
+
+    $nxh^{-1}  = x $, but this is a way of saying $n x H = xH$ which is just $nH xH = xH$ i.e.
+
+    $nH = 1$ in $G/H$.
+
+    
   \item
-    TODO
+
+    Let $K$ be normal in $G$ and contained in $H$.
+
+    So for all $g \in G$, $g^{-1} K g \subseteq K$.  Let $aH$ be a left-coset of $G$.  Let $k \in K$.
+
+    $(kH)(aH) = (kaH)$
+
+    Then $ a^{-1}ka = k'$ for some $k'$ by normality, so $ka = ak'$ for some $k \in K \subseteq H$, so
+    $(kaH) = aH$, i.e. $k \cdot  a = a$ so $ k $ is in the kernel of the action, and hence in $N$.
+
+    \qed    
+
   \end{enumerate}
     
 \end{solution}
@@ -180,16 +237,23 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   every $g \in G$ and $x \in X$ we have $G(g \cdot x) = gG(x)g^{-1}$.
 \end{exercise}
 \begin{solution}
-  Let $b \in G(x)$.  Then, $ b \cdot x = x$.  So $ b \cdot g^{-1} \cdot x = g^{-1} \cdot x$
-  and $g \cdot b \cdot g ^ { -1} \cdot x = g \cdot g ^ { -1 } \cdot x$.
 
-  That is,
-
-  \[
-  (gbg^{-1} \cdot x = g g^{-1} \cdot x
+  \[ 
+  G(x) = \{ a \in G : a \cdot x = x \}
   \]
 
-  Or TODO
+  And
+  
+  \begin{align*}
+    G(g \cdot x) &= \{ a \in G : a \cdot g \cdot x = g \cdot x \} \\
+    &= \{ a \in G : ag \cdot x = g \cdot x \} \\
+    &= \{ a \in G : g^{-1}ag \cdot x = g^{-1}g \cdot x \} \\
+    &= \{ a \in G : g^{-1}ag \cdot x = 1 \cdot x \} \\
+    &= \{ a \in G : g^{-1}ag \cdot x = x \} \\
+    &= \{ b = ga g^{-1}  \in G : b \cdot x = x \} \\
+    &= g G(x) g^{-1}
+  \end{align*}
+
   
 \end{solution}
 
@@ -220,7 +284,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
       Each diagonal is fixed by four movements: the identity, flipping
       around that diagonal, flipping around the other diagonal (which
       reverses the vertices of our given diagonal but preserves the
-      diagonal) and rotating $180\degree$.  
+      diagonal) and rotating $180^{\circ}$.  
   \end{enumerate}
   
 \end{solution}
@@ -238,7 +302,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   For a tetrahedron, let the group of rotational movements also act on
   a face.  There are $4$ faces, so the orbit of a face is order $4$.
   Each face is left unchanged merely by the three plane rotations of
-  $120 \degree$, so the order of the rotational groupis $4 \times 3$
+  $120 ^{\circ}$, so the order of the rotational groupis $4 \times 3$
   or $12$.
 \end{solution}
 
@@ -271,7 +335,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   $ g = R^2 = (1 3) (2 4)$.  The first cycle can have $n$ choices as can the
   second cycle, so there are $n^2 $ choices.
 
-  $ g = R^3$ = (1 4 3 2)$.  Like $R$ all vertices must be the same color, so there
+  $ g = R^3 = (1 4 3 2)$.  Like $R$ all vertices must be the same color, so there
   are $n$ choices.
 
   $ g = F = (1) (2 4) (3) $.  There are $n^3$ choices with 3 cycles.
@@ -285,13 +349,13 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   So
 
   \[
-  |X / G| = \frac{1}{8} \( n^4 + n + n^2 + n + n^3 + n^2 + n^ 3 + n^2 \)
+  |X / G| = \frac{1}{8} \left( n^4 + n + n^2 + n + n^3 + n^2 + n^ 3 + n^2 \right)
   \]
 
   Simplifying a bit:  
   
   \[
-  |X / G| = \frac{1}{8} \( n^4 + 2n^3  + 3n^2 + 2n  \)
+  |X / G| = \frac{1}{8} \left( n^4 + 2n^3  + 3n^2 + 2n  \right)
   \]
 
 \end{solution}
