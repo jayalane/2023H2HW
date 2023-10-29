@@ -179,8 +179,39 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 \end{solution}
 
 \begin{exercise}
+  Let $(X, \fancyA, \mu)$ be a measure space.  For each $t \in [a,b]$, let $f_t : X \to \overline \RR$
+  be a measurable function.  Let $c \in [a, b]$.  Supposed $g: X \to [0, \infty ] $ is a measurable
+  integrable function.  Suppose:
+  \begin{enumerate}[(a)]
+  \item
+    $\lim_{t \to c} f_t(x) = f_c(x)$ for all $x \in X$.
+  \item
+    $|f_t(x)| \leq g(x)$ for all $t \in [a,b]$, $x \in X$.
+  \item
+    $g$ is finite.
+  \end{enumerate}
+
+  Prove:
+
+  \[
+  \lim \limits _ { t \to c} \int f_t(x) \mathop{d \mu(x)} = \int f_c(x) \mathop{d \mu(x)}
+  \]
 \end{exercise}
 \begin{solution}
+  Since $\lim _ {t \to c} f_t(x) = f_c(x)$ for all $x \in X$, for every sequence $t_n \in [a, b]$
+  converging to $c$, we have a nice sequence of functions $f_{t_n}$ converging to our
+  $f_c$.  We have $ | f_{t_n}(x) | \leq g(x)$ for all $x \in X$ and $\limn f_{t_n}(x) = f_c(x)$.
+
+  Therefore, by the base Dominated Cnvergence Theorem, $ \limn f_{t_n}(x) = \int f_c(x)$.
+
+  Since this is true for every sequence $t_n \to c$, it is true of the limit in $[a, b]$:
+
+  \[
+  \lim _{t \to c} \int f_t(x) \mathop{d \mu(x)} = \int f_c(x) \mathop{d \mu(x)}
+  \]
+
+  \qed
+  
 \end{solution}
 
 \begin{exercise}
