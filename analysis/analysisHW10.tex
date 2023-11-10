@@ -223,8 +223,8 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   In the other order, take some $\varepsilon > 0$ (to skip the line where $y = 0$; a line has measure zero in $\RR$ so the integrals won't change).  
 
   \begin{align*}
-    \int \limits _\varepsilon ^1  \int \limits _0 ^ 1 f \diff x \diff y & = \int \limits _\varepsilon^{\frac{1}{2}}  \left( \int \limits _0 ^ {\frac{1}{2}-y} \frac{1}{(x - \frac{1}{2})^3} \diff y \diff x  + \int \limits _0 ^ {\frac{1}{2}-y} \frac{1}{(x - \frac{1}{2})^3} \diff y \diff x \right) \diff y \diff x \\ 
-    & = \int \limits _\varepsilon^{\frac{1}{2}} 0  \diff y \diff x,  \ \ \textrm{, as the two } \diff x \textrm{ integrals are equal except the sign} \\
+    \int \limits _\varepsilon ^1  \int \limits _0 ^ 1 f \diff x \diff y & = \int \limits _\varepsilon^{\frac{1}{2}}  \left( \int \limits _0 ^ {\frac{1}{2}-y} \frac{1}{(x - \frac{1}{2})^3} \diff x  + \int \limits _{y + \frac{1}{2}}^1 \frac{1}{(x - \frac{1}{2})^3} \diff x \right) \diff y \\ 
+    & = \int \limits _\varepsilon^{\frac{1}{2}} 0  \diff y,  \ \ \textrm{ as the two } \diff x \textrm{ integrals are equal except the sign} \\
     & = 0 \\
   \end{align*}
 
