@@ -63,6 +63,9 @@
 \def\fancyP{\mathscr{P}}
 \def\fancyB{\mathscr{B}}
 \def\limn{\lim \limits _n}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+
 \newcommand{\rbr}[1]{\left( {#1} \right)}
 \newcommand{\sbr}[1]{\left[ {#1} \right]}
 \newcommand{\cbr}[1]{\left\{ {#1} \right\}}
@@ -113,30 +116,126 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 
   To see this, let $(x, y) \in X \times Y$.
 
-  Then $x \in X_{i_0} \quad \textrm{ for some } i_0 $.
+  Then $x \in X_{i_0}$ for some $i_0 $.
 
-  And  $y \in Y_{j_0} \quad \textrm{ for some } j_0 $.
+  And  $y \in Y_{j_0}$ for some $j_0 $.
 
   Then $(x, y) \in X_{i_0} \times Y_{j_0}$.
 
-  Since $X_i \times Y_j$ are measurable rectangles, $\mu \times
-  \nu(X_i \times Y_j) = \mu(X_i) \cdot \nu(Y_j) < \infty$ so the product space
+  Since $X_i \times Y_j$ are measurable rectangles, $(\mu \times
+  \nu)(X_i \times Y_j) = \mu(X_i) \cdot \nu(Y_j) < \infty$ so the product space
   is $\sigma-$finite.
   
 \end{solution}
 
 \begin{exercise}
-  
-\begin{enumerate}[(a)]
+  We use $\diff x$ and $\diff y$ to abbreviate $\diff \lambda(x)$
+  and $\diff \lambda(y)$, where $\lambda$ is Lebesgue measure on $\fancyL(\RR)$.
+  Lebesgue measure on $\RR^2$ is $\lambda^2 = \lambda \times \lambda$.  Let $E = [0,1 ] \times [0,1]$.
+  Determine whether the following integrals exist and whether any of them equals another.
+  \begin{enumerate}[(a)]
 \item
-  first answer
+  \[
+  f(x,y) = \frac{x^2 - y^2}{(x^2+y^2)^2}
+  \]
+\item
+  \[
+  f(x,y) = \frac{1}{(1-xy)^a}, \ \textrm{ where } (a > 0)
+  \]
+ \item
+   \[
+   f(x,y) = \begin{cases}
+     (x - \frac{1}{2})^{-3}, \  \textrm{ if } 0 < y < \left| x - \frac{1}{2} \right| \\
+     0, \  \textrm{ otherwise }
+   \end{cases}
+   \]
+      
 \end{enumerate}
   
 \end{exercise}
 \begin{solution}
 \begin{enumerate}[(a)]
 \item
-  first answer
+  This one is in the Wikipedia page on Fubini's theorem and seems a
+  rather common example of what happens when the conditions of
+  Fubnini's theorem are not met.  As I didn't consider the possibility
+  that the exercises would be examples where Fubini does not apply
+  until I read about this example, I feel bad just typing it in.
+  Also, I'm tired, and just spent pages of paper trying to integral
+  $\frac{x^2 - y^2}{x^2+y^2}$, no final square in the denominator,
+  using trig substitutions. I may ask to revise it tomorrow.
+  
+\item
+  First we will establish a condition of absolute integrability.  Everything is in $E$ so
+  $x$ and $y$ are in $[0,1]$.  
+
+  \begin{align*}
+    y & \leq 1 \\
+    yx & \leq x \\
+    1- yx & \geq 1 - x \\
+    \frac{1}{1 - yx} & \leq \frac{1}{1-x}\\
+    0 \leq  \frac{1}{(1 - yx)^a} & \leq \frac{1}{(1-x)^a} \textrm{ raising to a power } >0 \textrm{ does not reorder } [0,1] \\
+    0 \leq \int  \frac{1}{(1 - yx)^a} \diff \lambda^2 & \leq \int \frac{1}{(1-x)^a} \diff \lambda^2 \\
+  \end{align*}
+
+  I'm assuming some sort of projective property here where if $E \in \RR^2 = A \times B$ where
+  $\lambda(B) = 1$, then
+
+  \[
+  \int _ {E} f(x) \diff \lambda^2 = \int _A f(x) \diff \lambda
+  \]
+
+  I believe it would be shown by reducing to measurable rectangles where
+  one dimension was from the simple functions under $f$ and the other would just
+  be $B$, where multiplying by $\lambda(B)$ wouldn't change anything.  
+
+  If that holds, then the $\diff \lambda$ integral converges for $0 < a < 1$ and
+  diverges otherwise.
+
+  So at the very least the conditions for Fubini are met for $a<1$, and the three
+  integrals exist and are equal.  
+\item
+  I find this a better example of how weird it can do when the
+  conditions for Fubini are not met.
+
+  I won't do the exact calculations on $\int \left| f \right|$ but it's
+  basically $\int \frac{1}{x^3} \cdot x $ (the $(x - \frac{1}{2})$ is
+  taken to the negative three power, and then as one approaches 1/2,
+  its down weighted by the interval where it is non zero due to $y$
+  shrinking proportionately with $y$; $\int \frac{1}{x^2}$ however diverges
+  around $0$.
+
+  But we don't need to prove that; by showing $\int _ E f \diff x \diff y \neq \int _ E f \diff y \diff x$
+  Fubini assures us the $\int _E \left| f \right| $ cannot be finite.  
+
+
+  \begin{align*}
+  \int \limits _0^1  \int \limits _0 ^ 1 f \diff y \diff x & =   \int \limits _0^1  \int \limits _0 ^ {\abs{x - \frac{1}{2}}} \frac{1}{(x - \frac{1}{2})^3} \diff y \diff x \\
+  & =   \int \limits _0^1  \frac{1}{(x - \frac{1}{2})^3} \int \limits _0 ^ {\abs{x - \frac{1}{2}}} 1 \diff y \diff x \\
+  & =   \int \limits _0^1  \frac{1}{(x - \frac{1}{2})^3} y \rvert _ 0 ^ {\abs{x - \frac{1}{2}}} \diff x \\
+  & =   \int \limits _0^{\frac{1}{2}} \frac{1}{(x - \frac{1}{2})^3} (\frac{1}{2} - x) \diff x  + \\
+    & \quad \quad  \int \limits _{\frac{1}{2}}^{1} \frac{1}{(x -\frac{1}{2})^3} (x - \frac{1}{2} ) \diff x  \\
+    & = - \infty + \infty 
+  \end{align*}
+
+  So in that order, the integral fails to exist.  
+
+  In the other order, take some $\varepsilon > 0$ (to skip the line where $y = 0$; a line has measure zero in $\RR$ so the integrals won't change).  
+
+  \begin{align*}
+    \int \limits _\varepsilon ^1  \int \limits _0 ^ 1 f \diff x \diff y & = \int \limits _\varepsilon^{\frac{1}{2}}  \left( \int \limits _0 ^ {\frac{1}{2}-y} \frac{1}{(x - \frac{1}{2})^3} \diff y \diff x  + \int \limits _0 ^ {\frac{1}{2}-y} \frac{1}{(x - \frac{1}{2})^3} \diff y \diff x \right) \diff y \diff x \\ 
+    & = \int \limits _\varepsilon^{\frac{1}{2}} 0  \diff y \diff x,  \ \ \textrm{, as the two } \diff x \textrm{ integrals are equal except the sign} \\
+    & = 0 \\
+  \end{align*}
+
+  This would be clearer if I knew how to draw diagrams in LaTeX - the
+  odd definite integrals are the expression of the inequality defining
+  where $f$ is non-zero.
+  
+  That's true for all $\varepsilon$, therefor it is true for the
+  entire integral.  So the order changes the integral and the $f$ is
+  not Lebesgue integrable.
+  
 \end{enumerate}
 \end{solution}
 
