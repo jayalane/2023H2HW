@@ -1,0 +1,335 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{datetime}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+\newtheorem*{claim}{Claim}
+
+\def\pmod{+'}
+\def\boldr{\boldsymbol{r}}
+\def\boldc{\boldsymbol{c}}
+
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+%\def\NN{\mathbb{Z}_{> 0}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+\def\Aut{\operatorname{Aut}}
+\def\Inn{\operatorname{Inn}}
+\def\Ker{\operatorname{Ker}}
+%\def\sp{\mathrm{span}} %messes up align enviroment
+\newcommand{\Mod}{\ (\mathrm{mod}\ )}
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt}
+
+%\title{\parbox{14cm}{\centering{  Interior points of circle and sphere packings}}}
+\begin{document}
+
+\textbf{HW 9 - MATH 221A - Fall 2023 - Chris Lane}
+
+Date: \hhmmsstime{} \ \today \ \ Git hash: 
+\input{/Users/chlane/src/jayalane/2023H2HW/.git/refs/heads/main}
+
+  \begin{lemma}
+    For all integers $k, \ell \geq 0$ and $m \geq 1$,
+
+    \[
+    p ^ \ell \textrm{ divides }  { p^k m  \choose p^k } \ \ \textrm { if and only if } \ \ p ^ \ell \textrm{ divides } m
+    \]
+  \end{lemma}
+\begin{exercise}
+  Use the lemma above to prove the following generalization of Sylow's First Theorem.
+
+  \begin{theorem}
+    Let $G$ be a finite group such that $|G| = p^r m$, where $p \nmid m$ and $p$ is a prime.  For each
+    $ 0 \leq k \leq r$, $G$ has a subgroup of order $p^k$.
+  \end{theorem}
+\end{exercise}
+\begin{solution}
+  So let $\ell = k$ and $n = m p ^ {r - \ell}$.  
+
+  Then let $X$ be the set of subsets of $G$ of order $p ^ \ell$. Let $G$ act on $X$ by left multiplication.
+
+  \[
+  X = \{ S \subseteq G: |S| =  p^\ell \}
+  \]
+
+  \[
+  g \cdot S \to gS
+  \]
+
+  Then, $ p ^ \ell \mid |X| \ \textrm{ iff } p ^ \ell | n$ but by construction, $ p^\ell \nmid n$, so
+  $p^\ell \nmid |X|$.  Now
+  $|X| = \sum _ { x \in G} |O_{G_x} |$.  So there is an orbit, say $S \in X$ whose order is not divisible by $p^\ell$
+
+  (or else the total would be divisible by $p^\ell)$.   Let $P \subseteq G$ be the stabilizer of $S$ ,that is
+  $ P = \{ x \in X : gS = S\}$.  So for any given $s \in S$, we have $P s \subseteq S$ so that $|P| = |Ps|$ (as all
+  cosets are equal in size) and $|Ps| \leq |S| = p ^ \ell$ (orbit of $S$ under conjugation is not
+  divisible by $p ^ \ell$ but $S$ is a subset of size $p ^ \ell$.
+
+  Now, the orbit stabilizer theorem also gives us a condition, the orbit of $S$, $|O_S| = |G| / |P| = p^\ell n / |P|$.  The size of the  orbit of $S$ is not divisible by $p^\ell$ so $|P|$ must be and then is larger than $p^\ell$, hence $|P| = p^\ell$, and $P$ is the desired subgroup.  
+
+  
+\end{solution}
+
+\begin{exercise}
+  
+  \begin{enumerate}[(a)]
+  \item
+    If $G/Z(G)$ is cyclic, show that $G = G(Z)$, and therefore $G$ is abelian.
+  \item
+    Show that every group of order $p^2$ is abelian.  
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+  
+  \begin{enumerate}[(a)]
+  \item
+    Let $Z(G)$, the center of $G$, be written as $Z$.  Assume $G/Z$ is cyclic.  That means all $x \in G/Z$ can be written
+    as $ xZ = g^n Z$ for some fixed $g \in G$.  Now, examine $f \in G$.  We want to show that $fh = hf$ for all $h \in G$. 
+    We know that $f Z = g^n Z$ for some $ n \in \ZZ$.  That is, $f 1 = g^n z_1$ or $f = g^n z_1$ for some $z_1 \in Z$.
+    
+    Now pick some arbitrary $h \in G$.  Similar to $f$, $h = g^m z_2$ for some $m \in \ZZ$ and $z_2 \in Z$.
+    
+    So
+    
+    \begin{align*}
+      f \cdot h &= g^n \cdot z_1 \cdot g^m \cdot z_2 \\
+      &=  g^n \cdot g^m \cdot z_1 \cdot z_2 \textrm {, due to } z_1 \in Z  \\
+      &=  g^m \cdot g^n \cdot z_1 \cdot z_2 \textrm {, due to cyclicity } \\ 
+      &=  g^m \cdot g^n \cdot z_2 \cdot z_1 \textrm {, due to } z_1, z_2 \in Z \\
+      &=  g^m \cdot z_2 \cdot g^n \cdot z_1 \textrm {, due to } z_2 \in Z \\
+      &= h \cdot f
+    \end{align*}
+    
+    So $f$ commutes with all $h \in G$ and therefore $f\in Z$.  $f$ was arbitrary
+    so $G = Z$ and $G$ is abelian.  
+  \item
+    $|G| = p^2$, $p$ prime.  So $|Z(G)| \in \{ 1, p, p^2\}$.  There is an in class lemma to the
+    effect that for a p-subgroup the center is non-trivial; I'm not entirely certain that's meant to
+    apply when the p-subgroup isn't a subgroup but the group, but the logic is from the class equation;
+    if $|Z(G)| = 1$ and all the other orbits are multiples of $p$ due to the lack of factors of the
+    group order, the orbit sizes  won't add up to the group order.
+    
+    So we can eliminate $1$ as a contender for $|Z(G)|$.  If $|Z(G)| = p^2$, then it's abelian, as that
+    means all elements commute with one another.
+    
+    In the case $|Z(G)| = p$, then $|G / Z(G)| = |G| / |Z(G)| = p^2 / p = p$.  But then
+    the quotient is of prime order and hence must be cyclic, so by (a) the group is abelian.
+    
+  
+    \qed
+    
+  \end{enumerate}
+\end{solution}
+\begin{exercise}
+  Let $G$ be a group with $|G| = pqr$, where $p$, $q$, and $r$ are distinct primes and
+  (without loss of generality), $p > q > r$.  Prove :
+  \begin{enumerate}[(a)]
+  \item
+    $|G| \geq 1 + n_p (p-1) + n_q (q-1) + n_r (r - 1)$.
+  \item
+    If $n_p, n_q, n_r > 1$, then $np = qr$, $n_q \geq p$ and $n_r \geq q$.
+  \item
+    $|G|$ is not simple.
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}[(a)]
+  \item
+    Counting members of $G$ of various orders, we get:
+    one member at least of order one, $1$.
+
+    Members of Sylow p-subgroups, other than 1, have order $p$. We
+    have $n_p$ such subgroups; they don't intersect non-trivially
+    because the degree of the prime is one); they contribute $n_p (p-1)$ members at least.
+
+    Similarly, for $q$, they contribute $n_q (q-1)$ members at least.
+
+    And likewise for $r$, whose Sylow r-subgroups contribute $n_r (r - 1)$ members at least.
+
+    Adding them all together, we get as desired:
+
+    \[
+    | G | \geq  1 + n_p (p-1) + n_q (q-1) + n_r (r - 1)
+    \]
+
+  \item
+    The third Sylow theorem here gives us $n_p \equiv 1 (\mod p)$ as well as $n_p | qr$.  Since
+    $p >q$ and $p > r$, this forces $n_p$ to be $qr$.  The only choices given the prime factorization
+    here are $1$, $p$, $q$, $r$, $pq$, $qr$, $pr$ or $pqr$, but $n_p \equiv 1 (\mod p$ rules out
+    $p$, $pq$, $pr$ or $pqr$.  $p > q > r$ rules out $q$ or $r$, $n_p > 1$ rules out $1$ leaving just $n_p = qr$.
+
+    Similarly for $n_q$, we have $n_q \equiv 1 ( \mod q ) $ and $n_q | pr$.  We assume $  n_q > 1$
+    and $ r$ is too small to be $\equiv 1 (\mod q)$ so that leaves $n_q \geq p$ (it could be $p$ or $rp$).
+
+    The same logic applies to $n_r$, leaving it forced to be a multiple of $q$.
+
+    \qed
+  \item
+    Combining (a) and (b), and assuming simplicity (and the consequent forcing of the $n_i$s $>1$,
+    \begin{align*}
+    |G| \geq 1 + n_p (p -1) + n_q(q - 1) + n_r(r-1) \\
+    |G| \geq 1 + qr (p -1) + p(q - 1) + q(r-1) \\
+    |G| \geq 1 + qrp -qr + pq - p + qr-q \\
+    |G| \geq 1 + pqr + pq - p -q
+    \end{align*}
+
+    For two disctinct primes, $pq -p -q \geq 1$ as the smallest it could be is $2 \times 3 - 2 - 3 = 1$
+
+    So
+    \[
+    |G| \geq 1 + pqr + 1
+    \]
+
+    But $|G|$ is $pqr$, so there is a contradiction and the assumption of simplicity is proven false.
+    \qed
+  \end{enumerate}
+\end{solution}
+\begin{exercise}
+  Show that if $G$ is a grup of order 80, then $G$ is not simple.  
+\end{exercise}
+
+\begin{solution}
+  $|G| = 80 = 2^4 * 5$.
+
+  Looking at Sylow 2-subgroups, we get $n_2 \equiv 1 ( \mod 2)$ and $ n_2 | 5$, so
+  $n_2 \in \{ 1, 5\}$.  If $n_2 = 1$, we are done as that forces the Sylow 2-subgroup
+  to be normal.
+
+  So assume $n_1 = 5$.  Now looking at the Sylow 5-subgroups, we have $n_5  \equiv 1 (\mod 5)$
+  and $n_5 | 2^4$.  So $n_5 \in \{1, 16\} $.  Again, if $n_5 = 1$, we are done, so assume
+  $n_5 = 16$.  There's only 1 power of 5 in $|G|$ so they don't intersect non-trivially, so
+  that gives us $4 \times 16$  elements of order 5, leaving $80 - 64 = 16$ which is only
+  enough room for one Sylow p-subgroup, which is a contradiction, so either $n_2 = 1$ or $n_5 = 1$.
+  \qed
+  
+\end{solution}
+
+\begin{exercise}
+  Show that if $G$ is a grup of order $2^4 5^6$, then $G$ is not simple.  
+\end{exercise}
+
+\begin{exercise}
+  Prove: If $G$ is a group of order $p^r m$ where $ p \nmid m$, then $G$ has a subgroup
+  of index $n_p$
+\end{exercise}
+
+\begin{solution}
+  Let $X$ be the collection of Sylow p-subgroups of $G$.  So $|X| = n_p$.  Note that $G$ acts on $X$
+  by conjugation.  Let $P$ be any Sylow p-subgroup of $G$.  The stabilizer of $P$ is:
+
+  \[
+  N_G(P) = \{ g \in G : gPg^{-1} = P \}
+  \]
+
+  This is a subgroup: $ ePe = P$ so $e \in N_G(P)$.  And it's closed under the group operation:
+  \begin{align*}
+    f \cdot g \cdot P &= f \cdot gPg^{-1} \\
+    &= fgPg^{-1}f^{-1}  \\
+    &= fgP(fg)^{-1}  \\
+    &= fg \cdot P
+  \end{align*}
+\end{solution}
+
+  The index of $N_G(P)$ is $n_p$ as the Sylow p-subgroups are all conjugate to one another, .
+  \qed
+  
+\begin{solution}
+  $|G| = 80 = 2^4 * 5^6$.
+
+  Looking at Sylow 2-subgroups, we get $n_2 \equiv 1 ( \mod 2)$ and $ n_2 | 5$, so
+  $n_2 \in \{ 1, 5\}$.  If $n_2 = 1$, we are done as that forces the Sylow 2-subgroup
+  to be normal.
+
+  So assume $n_1 = 5$.  Now looking at the Sylow 5-subgroups, we have
+  $n_5 \equiv 1 (\mod 5)$ and $n_5 | 2^4$.  So $n_5 \in \{1, 16\} $.
+  Again, if $n_5 = 1$, we are done, so assume $n_5 = 16$.  Then by the
+  above problem, there is a subgroup of $G$ of order 16, which,
+  according to Homework 8, Problem 2, means that $G$ is isomorphic to
+  $S_{16}$.  However, this also is a contradiction, as $|S_{16}| = 16!$ but
+  $|G| = 2^4 * 5^6$.  $16!$ has only 5, 10, and 15 as multiplicands that carry a factor of
+  $5$, so the highest power of $5$ that divides $16$ is $5^3$, while $|G|$ carries $5^6$.
+
+  So $|G|$ cannot be simple.  
+  \qed
+  
+\end{solution}
+
+\begin{comment}
+  \begin{exercise}
+    problem
+  \end{exercise}
+  \begin{solution}
+    \begin{enumerate}[(a)]
+    \item
+      first answer
+    \end{enumerate}
+  \end{solution}
+\end{comment}
+
+
+\end{document}
