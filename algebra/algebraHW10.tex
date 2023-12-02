@@ -1,0 +1,231 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{datetime}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+\newtheorem*{claim}{Claim}
+
+\def\pmod{+'}
+\def\boldr{\boldsymbol{r}}
+\def\boldc{\boldsymbol{c}}
+
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+%\def\NN{\mathbb{Z}_{> 0}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+\def\Aut{\operatorname{Aut}}
+\def\Inn{\operatorname{Inn}}
+\def\Ker{\operatorname{Ker}}
+%\def\sp{\mathrm{span}} %messes up align enviroment
+\newcommand{\Mod}{\ (\mathrm{mod}\ )}
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt}
+
+%\title{\parbox{14cm}{\centering{  Interior points of circle and sphere packings}}}
+\begin{document}
+
+\textbf{HW 10 - MATH 221A - Fall 2023 - Chris Lane}
+
+Date: \hhmmsstime{} \ \today \ \ Git hash: 
+\input{/Users/chlane/src/jayalane/2023H2HW/.git/refs/heads/main}
+
+\begin{exercise}
+  \begin{enumerate}[(a)]
+  \item
+    Give an example of a group that has no composition series.  Justify.
+  \item
+    Given an example of two non-isomorphic groups that have composition series with the same
+    composition factors (up to rearrangement).  Justify.  
+  \end{enumerate}
+\end{exercise}
+  
+\begin{solution}
+  \begin{enumerate}[(a)]
+  \item
+    According to an in class theorem, ``Every finite group $G$ has a composition series'' so
+    it must be an infinite group.  Letting
+    \[
+      \{1\} = G_0 \trianglelefteq G_1 \hdots  \trianglelefteq G_n = \ZZ
+    \]
+
+    The only finite subgroup of $\ZZ$ is $\{ 1 \}$, so the last link
+    $G_0 \trianglelefteq G_1$ has to be between $\{ 1 \}$ and an
+  infinite group, which has to be isomorphic, as all subsets of $\ZZ$
+  are, to $\ZZ$ itself; the factor group then is $\ZZ$ which is not
+  simple.
+
+  So there is no composition series for $\ZZ$.
+
+  In fact, if you have a finite subnormal series for $\ZZ$ you can
+  refine it for ever; each subgroup of $\ZZ$ is just $n\ZZ$ for some
+  $n$.  If you have a set $k$ subgroups, take the next prime larger
+  than $ q = \prod \limits _ {i=1} ^ k n_i \\$; then $ p q
+  \ZZ$ will be a (normal due to Abelianness) subgroup of $G_1$ and
+  will refine the sequence.
+    
+\item
+  The smallest two groups I'm aware of that are of the same order
+  and not isomorphic are $\ZZ_4$ and the Klein four group, $\ZZ_2 \times \ZZ_2$.  In both cases,
+  \[
+    \{ 1 \} \trianglelefteq \ZZ_2 \trianglelefteq G
+  \]
+
+  is a composition series, with the factor groups being $\ZZ_2$ for
+  both segments of the series.
+    
+  \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+  Show that every finite $p-$group is solvable.
+\end{exercise}
+
+\begin{solution}
+  A solvable group is one with a composition series in which all the
+  factor groups are Abelian.  First, we'll note that all groups of
+  order $p^2$ for some prime $p$ are Abelian. Then we'll proceed on
+  induction on the power of $p$ in the group order.  (All $p-$groups
+  have order equal to $p^n$ for some $n$).
+  
+  So, given a group $G$ of order $p^n$, we first note that its
+  center $Z(G)$ is non-trivial, of order $p^k$, $0 < k \leq n$.
+  
+  If $k = n$, then $G$ is abelian and therefore solvable (as
+  whatever normal subgroups it has will have Abelian factors; or the
+  derived subgroup will be the identity since
+  $a b a^{-1} b^{-1} = 1$ for all $a, b$ in a commutitive group).
+  
+  So, looking at $Z(G)$ where $|Z(G)| = p^k$, $k < n$, $Z(K)$ is
+  normal in $G$.  $Z(G)$ is a $p-$group of order lower than $p^n$ so
+  is solvable by assumption.  Also, $G / Z(G)$ is a $p-$group of
+  order $p ^ { n - k}$, and therefore solvable by assumption. So by
+  a theorem in class, since both the normal subgroup $Z(G)$ and the
+  factor group $G/Z(G)$ are solvable, $G$ itself is solvable.
+  
+\end{solution}
+
+\begin{exercise}
+  \begin{enumerate}[(a)]
+  \item
+    Show that the groups $A_n$ and $S_n$ are solvable for $1 \leq n \leq 4$
+  \item
+    Show that if $G$ is a non-abelian simple group, then $G' = G$ and so $G$
+    is not solvable.  
+  \item
+    In class, we will prove that $A_n$ is simple for $n \geq 5$.  Using this result, show that
+    $A_n$ and $S_n$ are not solvable for $n \geq 5$. 
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}[(a)]
+  \item
+    a
+  \item
+    b
+  \item
+    c
+  \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+  Prove:
+  
+  \begin{enumerate}[(a)]
+  \item
+    If $G$ has a composition series, then $G$ is solvable if and only if the composition factors are
+    cyclic of prime order.
+  \item
+    If $G$ has a composition series and $G$ is solvable, then $G$ is finite.  
+  \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+  TODO
+\end{solution}
+
+\begin{exercise}
+  Let $G = D_6$.  Show that $G$ has a normal subgroup $N$ such that $N$ and $G/N$ are abelian,
+  but $G$ is not abelian.  
+\end{exercise}
+\begin{solution}
+  TODO
+\end{solution}
+
+\begin{comment}
+  \begin{exercise}
+    problem
+  \end{exercise}
+  \begin{solution}
+    \begin{enumerate}[(a)]
+    \item
+      first answer
+    \end{enumerate}
+  \end{solution}
+\end{comment}
+
+
+\end{document}
