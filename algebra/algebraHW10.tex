@@ -114,7 +114,7 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 
     The only finite subgroup of $\ZZ$ is $\{ 1 \}$, so the last link
     $G_0 \trianglelefteq G_1$ has to be between $\{ 1 \}$ and an
-  infinite group, which has to be isomorphic, as all subsets of $\ZZ$
+  infinite group, which has to be isomorphic, as all subgroups of $\ZZ$
   are, to $\ZZ$ itself; the factor group then is $\ZZ$ which is not
   simple.
 
@@ -123,8 +123,9 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   In fact, if you have a finite subnormal series for $\ZZ$ you can
   refine it for ever; each subgroup of $\ZZ$ is just $n\ZZ$ for some
   $n$.  If you have a set $k$ subgroups, take the next prime larger
-  than $ q = \prod \limits _ {i=1} ^ k n_i \\$; then $ p q
-  \ZZ$ will be a (normal due to Abelianness) subgroup of $G_1$ and
+  than $ q = \prod \limits _ {i=1} ^ k n_i $
+
+  Then $ p q \ZZ$ will be a (normal due to Abelianness) subgroup of $G_1$ and
   will refine the sequence.
     
 \item
@@ -183,11 +184,36 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 \begin{solution}
   \begin{enumerate}[(a)]
   \item
-    a
+    $S_1 = A_1= \{1\}$ which is solvable.
+
+    $S_2 = C_2$ which is solvable (one factor group of order two, which is abelian and simple.
+
+    $A_2$ I guess is just $\{1\}$ as there are no even permutations of 2 items.
+
+    $A_3 = C_3$ which is solvable (one factor group of order three, still abelian and simple).
+
+    $S_3$ has $A_3$ as a normal subgroup, and the factor group is $\ZZ_2$.  $A_3$ is solvable and
+    the factor group is of order two, simple and abelian.
+
+    $A_4$ is solvable, as the Klein subgroup is normal (from homework
+    4); the Klein subgroup is simple and abelian; the factor group is
+    of order 3, and hence abelian and simple.
+
+    $S_4$ has $A_4$ as a normal subgroup with factor group of order $2$, and so is solvable.  
   \item
-    b
+    The derived group $G'$ of $G$ is normal in $G$.  Since $G$ is simple, the only
+    normal subgroups are $\{1\}$ or $G$.  If the derived group were $\{1\}$, the group
+    would be abelian (there would be no non-identity commutators to generate it with).
+    So $G'$ must be $G$, and the sequence of derived groups will not reach $ \{ 1 \}$.  
   \item
-    c
+    The key thing to prove is that $A_n$ is non-abelian for $n>4$.  This can be proven just using
+    permutations on 5 symbols, which leave the other symbols unmoved. If $a = (1 2 3)$ and
+    $b = (1 4 5)$, then $ab = (1 4 5 2 3)$ but $ba = (1 2 3 4 5)$ which are not equal.  Since
+    $A_n$ is non abelian and simple, the derived group of $A_n$ is $A_n$, meaning the group is not solvable.
+
+    $S_n$ is therefore not solvable as $A_n$ is normal in $S_n$ (as the inverse image of 0 in the
+    ``number of cycles'' homomorphism from $S_n$ to $\ZZ_2$. 
+
   \end{enumerate}
 \end{solution}
 
@@ -204,7 +230,20 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 \end{exercise}
 
 \begin{solution}
-  TODO
+  \begin{enumerate}[(a)]
+  \item
+    If $G$ has a composition series, and the factors are all cyclic of prime order, then the factors are all abelian and $G$ is solvable by definition.
+
+    If $G$ is solvable, then the factor groups are abelian, by a theorem in class.  The series of derived groups yields a
+    composition series, in which the factor groups are all simple (or else it could be further refined).  But the only finite
+    simple abelian groups are the cyclic groups of prime order.
+  \item
+    There is a result which I think we proved earlier that no infinite group is simple, (as it contains $\ZZ$ which has
+    an infinite number of normal subgroups, and no composition series).  So if $G$ has a composition series, the factor
+    groups at each step are finite; the initial group $\{1\}$ is finite, and the total order of $G$ is just the
+    order of each factor group multiplied.  If the factor groups are all simple, then they are all finite, and the product, the
+    order of $G$, is finite.
+  \end{enumerate}
 \end{solution}
 
 \begin{exercise}
@@ -212,7 +251,85 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   but $G$ is not abelian.  
 \end{exercise}
 \begin{solution}
-  TODO
+  First, $G$ is not abelian.  We'e shown this on homework before, I think, but easy to see:
+
+  Writing the generators $R$ and $F$ as permutations, $R = (1 2 3 4 5 6)$ and $F = (2 6) ( 3 5) (1) 4)$, we can calculate:
+  \[
+  RF = (1 2 ) ( 3 6) ( 4 5)
+  \]
+  But
+  \[
+  FR = (1 6) ( 2 5) (3 4)
+  \]
+
+  Looking at the Sylow 2-subroups, the Sylow theorems give us
+  (as $|G| = 12 = 2^2 3$)
+  \[
+  n_2 \equiv 1 \mod{3}
+  n_2 | 3
+  \]
+  These imply $n_2 = 1$, making the Sylow 2-subgroup, N,  normal.
+  
+  $|N| = 2^2$ giving us two facts:  $|N|$ is abelian as its order
+  is $p^2$ for a prime, and $|G/N| = 3$, so the factor group
+  is of order 3, making it $C_3$ the cyclic group of prime order,
+  and there for also abelian.
+  \qed
+\end{solution}
+
+\begin{exercise}
+  Classify (up to isomorphism) all groups of order 175. 
+\end{exercise}
+\begin{solution}
+  Let $G$ be a group with $|G| = 175$.  $175 = 5^2 \times 7$.
+
+  Looking at the Sylow formulas (?) for $5$, we have $n_5 \equiv 1 \mod{5}$ and
+  $n_5 | 7$. The only solution is $n_5 = 1$.  Call the $2-$subgroup $H$.  
+
+  Likewise, looking at the Sylow formulas (?) for $7$, we have $n_7 \equiv 1 \mod{7}$ and
+  $n_7 | 25$. The only solution is $n_7 = 1$; call the $7-$subgroup $K$.  
+
+  This Sylow $p-$subgroups are respectively of order $25$ which is a
+  prime squared, and hence Abelian, and of order $7$, which is a
+  prime, and hence abelian. Due to the internal product theorem, since
+  both $H$ and $K$ are normal, and have trivial intersection (due to
+  Lagrange theorem and the relative primeness of primes), $G$ is
+  isomorphic to $H \times K$.  The direct product of abelian groups is
+  itself abelian.  Now, $|K| = 7$, a prime, so it is $\ZZ_7$.  $|H| =
+  25$ so it is either $\ZZ_{25}$ or $\ZZ_5 \times \ZZ_5$.  So the two
+  possibilities give us two possible $G$:
+
+  Either $G = \ZZ_7 \times \ZZ_{25}$ or $G = \ZZ_7 \times \ZZ_5 \times \ZZ_5$.
+
+\end{solution}
+
+\begin{exercise}
+  Find (up to isomorphism) all finite abelian groups such that
+  $\Aut(G)$ has odd order.  
+\end{exercise}
+\begin{solution}
+  $|\Aut(G)|$ is odd means $2 \nmid | \Aut(G)$.  Now, if any element $\phi \in \Aut(G)$ is
+  such that $\phi \neq I$ (where $I$ is the identity and $\phi^2 = I$, then,
+  because $(I, \phi)$ is a subgroup of $\Aut(G)$ of order two, 2 would divide
+  the order of $\Aut(G)$.
+
+  So the groups we are looking for all $\phi \in \Aut(G)$, $\phi \neq I$, $\phi ^2 \neq I$.
+
+  But, consider $\phi$ defined as $\phi : g \to g^{-1}$.  This is an automorphism
+  of any group, unless $ g = g ^ {-1}$ for all $g \in G$ (in which case it is
+  the identity automorphism).  That condition is equivalent to $g^2 = 1$, for all
+  $g \in G$.  Also, importantly, $ \phi ^2 = \phi$.  So a $G$ has an element
+  of order two in $\Aut(G)$ unless $g ^2 =1 $, for all $g \in G$.
+
+  So the groups we are looking consist only of elements of order 2 (plus the
+  identity).  Since $G$ is abelian by assumption, and all the members are of order
+  2, $G = \ZZ_2 ^ n$, for some $n$.  However, if $n >1$, then there are automorphisms
+  from permuting the representatives of each copy of $\ZZ_2$.  For example, for $\ZZ_2^2$,
+  the Klein group, $\Aut(G)$ is isomorphic to $S_3$ because there are three choices
+  for each non-identity to map two.  $|S_n|$ is even for $n \geq 2$, so to avoid
+  any even members of $\Aut(G)$, $n = 1$, which is to say $G = Z_2$.  So there's
+  just one non-trivial abelian group $G$ where $\Aut(G)$ is odd, $\ZZ_2$.  
+  
 \end{solution}
 
 \begin{comment}
