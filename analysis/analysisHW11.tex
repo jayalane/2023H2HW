@@ -1,0 +1,352 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{epstopdf}
+\usepackage{datetime}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+
+
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+\def\fancyA{\mathscr{A}}
+\def\fancyU{\mathscr{U}}
+\def\fancyU{\mathscr{U}}
+\def\fancyL{\mathcal{L}}
+\def\fancyV{\mathscr{V}}
+\def\fancyP{\mathscr{P}}
+\def\fancyB{\mathscr{B}}
+\def\limn{\lim \limits _n}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt
+}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\textbf{HW 11 - MATH 231A - Fall 2023 - Chris Lane}
+
+Date: \hhmmsstime{} \ \today \ \ Git hash: 
+\input{/Users/chlane/src/jayalane/2023H2HW/.git/refs/heads/main} 
+
+\begin{exercise}
+  (Embedding of $L^p$ Spaces).  Let $(X_i, \fancyA, \mu)$ be a measure space.
+  Let $1 \leq p < q < \infty$.  Note $p, q$ are not necessarily
+  conjugate exponents here.
+  \begin{enumerate}[(a)]
+  \item
+    If $(X, \fancyA, \mu) = (\RR , \fancyB ( \RR), \lambda)$ then
+    $L^q \nsubseteq L^p$ and     $L^p \nsubseteq L^q$.
+  \item
+    If $\mu(X) < \infty$, then $||f||_p \leq \mu(X)^{-p^{-1}-q^{-1}} || f|| _q$ and $L^q \subseteq L^p$. 
+  \end{enumerate}
+
+  
+\end{exercise}
+\begin{solution}
+  \begin{enumerate}
+  \item
+    Using the hint, we need a $a$ such that $pa < 1$ and $qa > 1$.
+    \[
+    a = \frac{2}{q + p}
+    \]
+    To see this $a$ works, start with $p < q$ so $p + p < p + q$
+    (adding $p$ to both sides) so $ \frac{p + p}{p + q} < 1$ (dividing
+    by $p + q$).
+
+    Also, $p < q$ so $ q + p < q + q$ (adding $q$ to both sides) so
+    $1 < \frac{q + q}{q + p}$ (dividing by $p + q$).
+
+    To show a function in $L^p$ but not in $L^q$, we'll set $f_1 = \one _ {(0, 1)} x^{-a}$.  
+
+    For $f_1$, $|| f_1 || ^p _p = \int _\RR |f_1(x)| ^ p \diff x = \int _ 0^1 \frac{1}{x^{ap}} \diff x $. 
+    Since $ap < 1$, this integral converges, so $f_1 \in L^p$.  However,
+    $|| f_1 || ^q _q = \int _\RR |f_1(x)| ^ q \diff x = \int _ 0^1 \frac{1}{x^{aq}} \diff x $.
+    Since $aq >1$, this integral diverges, so $f_2 \notin L^q$.
+
+    We'll set $f_2 = \one _ {(1, \infty)}x^{-a}$ to show a function in $L_q$ but not in $L_p$.
+    
+    For $f_2$, $|| f_2 || ^p _p = \int _\RR |f_2(x)| ^ p \diff x = \int _ 1^\infty \frac{1}{x^{ap}} \diff x $. 
+    Since $ap < 1$, and this is from $ 1 $ to $\infty$, this integral diverges, so $f_2 \notin L^p$.  Continuing, 
+    $|| f_2 || ^q _q = \int _\RR |f_2(x)| ^ q \diff x = \int _ 1^\infty \frac{1}{x^{aq}} \diff x $.
+    Since $aq >1$, and the integrationis from $1$ to $\infty$, this integral converges, so $f_2 \in L^q$.
+
+    \qed
+  \item
+    TODO 
+
+  \end{enumerate}
+\end{solution}
+
+
+\begin{exercise}
+  Let $(X, \fancyA, \mu) $ be a measure space.  If $1 \leq p < q < r \leq \infty$, then
+  \[
+  L^q \subseteq L^p + L^r,
+  \]
+
+  in other words, each $f \in L^q$ is the sum of a function in $L^p$ and a function in $L^r$. 
+\end{exercise}
+\begin{solution}
+  Let $E = \{ x \in X : | f(x) | > 1 \}$.  Let $f_1 = \one_E f$ and $f_2 = \one_{E^c} f$.
+
+  Then we claim $f_1 \in L^p$ and $f_2 \in L^r$.  We have $|f_1(x)| > 1$, for all $x \in E$.  Also, 
+  \[
+  p < q
+  \]
+  Since $|f(x)| > 1$, for $x \in E$, $\ln (|f(x)|) > 0$, so multiplying preserves the sense of the inequality:
+  \[
+  p \ln (|f(x)|) < q \ln (|f(x)|)
+  \]
+  $g(x)$ where $g(x) = e^x$ is monotonic, so it may be applied to both side:
+  \[
+  |(f(x)|^p < |f(x)|^q
+  \]
+  Integrating both sides:
+  \[
+  \int_E |f(x)|^p < \int_E |f(x)|^q < \int_\RR |f(x)|^q < \infty
+  \]
+  So $f_1 \in L^p$.
+
+  Similarly for $f_2$, $f_2(x) \leq 1$, so the inequality will change sense (and pick up
+  an equals case for when $f_2(x) = 1$).  
+  \[
+  q < r
+  \]
+  Since $|f_2(x)| \leq 1$, $\ln (|f(x)|) \leq 0$, so multiplying reverses the sense of the inequality:
+  \[
+  q \ln (|f(x)|) >= r \ln (|f(x)|)
+  \]
+  $g(x)$ where $g(x) = e^x$ is monotonic, so it may be applied to both side:
+  \[
+  |(f(x)|^q >= |f(x)|^r
+  \]
+  Integrating both sides:
+  \[
+  \int_{E^c} |f(x)|^r < \int_{E^c} |f(x)|^q < \int_\RR |f(x)|^q < \infty
+  \]
+  So $f_2 \in L^r$.
+
+  So for an arbitrary $f \in L^q$ we found $f_1 \in L^p$ and $f_2 \in L^r$ such that $f = f_1 + f_2$; $L^q \subseteq L^p + L^r$.
+
+  TODO $r = \infty$.  
+  
+  
+\end{solution}
+
+\begin{exercise}
+  Let $(X, \fancyA, \mu )$ be a measure space.  Let $S$ denote the set of measurable simple functions $s : X \to \RR$.  Let
+  $S_0$ denote the set of measurable simple functions $s : X \to \RR$ that vanish outside a set of
+  finite measure (i.e. that satisfy $\mu (\{ x: s(x) \neq 0\}) < \infty$).  
+\begin{enumerate}[(a)]
+\item
+  If $1 \leq p \leq \infty$, $S \cap L^p = S_0$.
+\item
+  If $f : X \to \RR$ is measurable and $(X, \fancyA, \mu)$ is
+  $\sigma-$finite, then there is a sequence $(s_n)$ in $S_0$ such that
+  $s_n \to f$ on $X$ and $|s_n|\uparrow |f|$ on $X$.  Hint: Simple Approximation Theorem.
+\item
+  If $f \in L^p$, and $1 \leq p < \infty$, then there is a sequence $(s_n)$ in $S_0$ such that
+  $s_n \to f$ on $X$ and $ |s_n| \uparrow |f|$ on $X$ and $|| s_n - f||_p \to 0$. Hint:
+  first show $E = \{ x \in X: | f(x)| ^p \neq 0 \}$ is $\sigma-$finite.  
+\end{enumerate}
+  
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  Let $s$ be a measurable simple function.  That is $s = \sum _{i=1}^{n} a_i \one _{A_i}$ for  $a_i \in \RR$ and $A_i \in \fancyA$.
+
+  Suppose it is in $L^p$.  That is $|| s||_p < \infty$.  That is $\int |s| ^p < \infty$.
+  First off, for $s$, $|s| =  \sum _{i=1}^{n} |a_i| \one _{A_i}$ as the $A_i$ are disjoint.
+  And, again by disjointness, $|s|^p =  \sum _{i=1}^{n} |a_i|^p \one _{A_i}$.  
+  So $\int |s|^p = \int \sum \left( |a_i|^p \one_{A_i} \right) = \sum |a_i|^p \int \one_{A_i} = \sum |a_i|^p \mu(A_i)$.
+  $\sum _ {i=1}^{n} |a_i|^p \mu(A) < \infty$ if and only if, for all $i<n$, $\mu(A_i) < \infty$, i.e. $s \in S_0$.
+  But then $\mu( \{ x : s(x) \neq 0 \}) =  \sum _{i=1}^{n} \mu( A_i ) < \infty$, so $s \in S_0$  
+  
+\item
+  $f$ is measureable, so there is a sequence of simple functions, $(s_n)$ such that $s_n \uparrow f$.  Also, $X$ is $\sigma-$finite,
+  so there is a sequence of set of finite measure, $M_n$ with $\mu( M_n) < \infty$, that
+  cover $X$, $ X = \bigcup \limits _ {i=1}^{\infty} M_n$.  Define
+  $t_n = \one_{M_n} s_n$.  $t_n$ is still simple, and still $t_n \uparrow f$, but because
+   $\mu( M_n ) < \infty, n \in \NN$, $t_n \in S_0$.  
+\item
+  Let $E = \{ x \in X : | f(x) | ^p \neq 0 \}$.  To show it is $\sigma-$finite, we need a cover of
+  sets of finite measure.  Let $E_n = \{ x \in X : |f(x)| ^ p \geq \frac{1}{n} \}$.  We can
+  see that $E = \cup _ {n=1}^{\infty} E_n$.  Now, to understand $\mu(E_n)$, we notice that $n |f(x)| ^ p \geq 1$,
+  so $\one_E(x) \leq n |f(x)|^p$, for every $x$.  So $\mu(E_n) = \int \one_{E_n} \leq \int n |f(x)| ^ p = n \int |f(x)| ^p \infty$ as
+  $f \in L^p$.
+
+  Also, analagous to (b), we have a simple sequence $(t_n)$ with $t_n \uparrow f$.  We can limit them to the
+  $E_n$, let $s_n = t_n \one_{E_n}$, and still they pointwise converge to $f$.  Moreover, 
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+  Let $X$ be a nonempty set.  Let $\mu$ be the counting measure on $(X, \fancyP(X))$. 
+  \begin{enumerate}[(a)]
+  \item
+    Every $f : X \to \overline \RR$ is measurable. 
+  \item
+    If $f: X \to [0, \infty]$, then
+\[
+\int f \diff{\mu} = \sup \left\{ \sum _ {e \in F} f(x) : F \subseteq X, F \textrm{ is finite} \right\}
+\]
+  \item
+    If $X = \{1, \hdots , n \}$, then $||f||_p = (\sum _{k=1} ^{n} | f(k)|^p)^{1/p}$
+  \item
+    If $X = \NN$, then $||f||_p = (\sum _{k=1} ^{\infty} | f(k)|^p)^{1/p}$
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  The sets $\{ x \in X: f(x) \leq a \} $ are just the subsets of $X$ with fewer than $a$ members.
+  If $a<=0$, it is $\varnothing$.  Since the $sigma-$algebra is the power set of $X$, the set of all subsets
+  of given finite orders are a member of the $sigma-$algebra.  
+\item
+  TODO - I'm just not sure how to go from arbitrary simple functions to sums over finite sets; maybe some splitting it
+  into finite and infinite measure cases. 
+\item
+  $||f||_p = ( \int |f|^p) ^{1/p} = (\int |f|^p  )^{1/p} = ( \sum_{k \in X} |f(k)|^p) ^{1/p}$ where the last step is by (b).  
+\item
+  By (b), the integral is the supremum of the sum for finite $F$. Since the quantities involved are all
+  positive, and $\NN = \cup_{n=1}^{\infty} \{ 1, 2, \hdots , n \}$, the supremum is just the limit of the
+  sum for (c),  $ ( \sum_{k \in X} |f(k)|^p ) ^{1/p}$.  
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+  Let $(\Omega, \fancyA, P)$ be a probability space.  Let $X$ be an r.v. on $(\Omega, \fancyA, P)$.  The
+  \textbf{distribution} of $X$ is the set function
+  \[
+  P_X = P(X^{-1}(B)) = P(X \in B)
+  \]
+  for each $B \in \fancyB(\RR)$.  Prove: the distribution of $X$, $P_X$,  is a probability measure on
+  $(\RR, \fancyB(\RR)$. 
+\end{exercise}
+\begin{solution}
+  There are three things to verify for a probability measure.  First, $P_X(\varnothing) = 0$.  This is to say,
+  $ P(X^{-1}(\varnothing) = P(X \in \varnothing) = 0$ as $P$ is a measure.
+
+  Secondly, $P_X(\RR) = P(X ^{-1}(\RR)) = P( \Omega ) = 1$ (as $P$ is from $\Omega$'s $\fancyA$ to $\RR$, the inverse
+  is everythin).
+
+  Thirdly, countable additivity of disjoint subsets.  First, the inverse image of disjoint subsets is disjoint; then
+  the result follows from the countable additivity of $P$.  
+\end{solution}
+
+\begin{exercise}
+  Let $X$ be an r.v. on a probability space $(\Omega, \fancyA, P)$.  Let $F$ be the cdf of $X$.  We use the notation
+  $F(c-) = \lim _ {t \to c^-}F(t)$. Let $a \leq b$ be real numbers.  
+  \begin{enumerate}[(a)]
+  \item
+    $P_X((a, b]) = F(b) - F(a)$
+  \item
+    $P_X((-\infty, a)) = F(a^-)$
+  \item
+    $P_X({a}) = F(a) - F(a^-)$
+  \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  As $P_X$ is a measure, $P_X((a, b]) = P_X((-\infty, b] \setminus (-\infty, a])$ Becuase P is a measure,
+  that is $P_X((-\infty, b]) -  P_X((-\infty, a]) = F(b) - F(a)$.
+          
+\item
+  $P_X (( - \infty, a)) = P_X \left( \bigcup \limits _{n = 1} ^{\infty} P_X ((- \infty, a - \frac{1}{n}]) \right)$.
+  Again because $P$ is a measure, this is $\lim P_X((-\infty, a - \frac{1}{n}]) = F(a^-)$. 
+\item
+  $P_X ({a}) = P_X \left( (-\infty, a] \setminus (-\infty, a) \right) = F(a) - F(a^-1)$ by definition and (b) respectively. 
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+  Uniqueness of the constructed probability measure with a given distribution.  
+\end{exercise}
+\begin{solution}
+TODO
+\end{solution}
+
+
+\begin{comment}
+\begin{exercise}
+  problem
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  first answer
+\end{enumerate}
+\end{solution}
+\end{comment}
+
+
+\end{document}
