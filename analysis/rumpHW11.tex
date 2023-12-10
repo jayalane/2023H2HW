@@ -1,0 +1,228 @@
+\documentclass[11pt,oneside]{article}
+\usepackage[hmargin=1in,vmargin=1in]{geometry}               % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{epstopdf}
+\usepackage{datetime}
+\usepackage{url}
+%\usepackage{verbatim}
+\usepackage{comment}
+\specialcomment{solution}{\textbf{Solution. }}{}
+%\excludecomment{solution}    %uncomment to remove solutions.
+
+%\usepackage{enumerate}
+
+%Use the enumitem package instead of enumerate
+\usepackage[shortlabels]{enumitem}
+%\usepackage{enumitem}
+%then it will support the same suntax as the enumerate package.
+%The enumerate package does not provide any extra configurations other than the label.
+
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex}
+\setlist[enumerate]{topsep=0pt,partopsep=0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\usepackage{amsmath,amsthm,amscd,amssymb}
+\usepackage{latexsym}
+\usepackage[colorlinks,citecolor=red,pagebackref,hypertexnames=false]{hyperref}
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+%\newtheorem{solution}{Solution}
+\newtheorem*{defn}{Definition}
+
+
+\def\calA{\mathcal{A}}
+\def\calB{\mathcal{B}}
+\def\calC{\mathcal{C}}
+\def\calT{\mathcal{T}}
+\def\OR{\overline{\mathbb{R}}}
+\def\RR{\mathbb{R}}
+\def\CC{\mathbb{C}}
+\def\FF{\mathbb{F}}
+\def\QQ{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
+\def\NN{\mathbb{N}}
+\def\Nzero{\mathbb{Z}_{\geq 0}}
+\def\EE{\mathbb{E}}
+\def\PP{\mathbb{P}}
+\def\supp{\mathrm{supp}}
+\def\diam{\mathrm{diam}}
+\def\sp{\mathrm{span}}
+\def\ker{\mathrm{ker}}
+\def\fancyA{\mathscr{A}}
+\def\fancyU{\mathscr{U}}
+\def\fancyU{\mathscr{U}}
+\def\fancyL{\mathcal{L}}
+\def\fancyV{\mathscr{V}}
+\def\fancyP{\mathscr{P}}
+\def\fancyB{\mathscr{B}}
+\def\limn{\lim \limits _n}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+
+\newcommand{\rbr}[1]{\left( {#1} \right)}
+\newcommand{\sbr}[1]{\left[ {#1} \right]}
+\newcommand{\cbr}[1]{\left\{ {#1} \right\}}
+\newcommand{\abr}[1]{\left\langle {#1} \right\rangle}
+\newcommand{\abs}[1]{\left| {#1} \right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\def\one{\mathbf{1}}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand*\wc{{}\cdot{}}
+%\newcommand*\wc{ \, \cdot \,}
+%wc for wildcard
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+\newcommand{\sgn}{\textup{sgn\,}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{11pt
+}
+\newtheorem{lemma}{Lemma}
+
+\begin{document}
+
+\textbf{HW 11 - MATH 231A - Fall 2023 - Chris Lane}
+
+Date: \hhmmsstime{} \ \today \ \ Git hash: 
+\input{/Users/chlane/src/jayalane/2023H2HW/.git/refs/heads/main} 
+
+\begin{exercise}
+  (Embedding of $L^p$ Spaces).  Let $(X_i, \fancyA, \mu)$ be a measure space.
+  Let $1 \leq p < q < \infty$.  Note $p, q$ are not necessarily
+  conjugate exponents here.
+  \begin{enumerate}[(a)]
+  \item
+    If $\mu(X) < \infty$, then $||f||_p \leq \mu(X)^{-p^{-1}-q^{-1}} || f|| _q$ and $L^q \subseteq L^p$. 
+  \end{enumerate}
+\end{exercise}
+
+\begin{solution}
+  \begin{enumerate}
+  \item
+    The hint in the grading was to use H\"{o}lder's inequality, which needs two
+    numbers $p'$, $q'$, that obey
+    \[
+      1 = \frac{1}{p'} + \frac{1}{q'}
+  \]
+
+  \begin{align*}
+    p' & = \frac{q}{p} \\
+    \frac{1}{p'} & = \frac{p}{q} \\
+    \frac{1}{p'} + \frac{1}{q'} & = 1 \\
+    \frac{p}{q}  + \frac{1}{q'} & = 1 \\
+    \frac{1}{q'}  & = 1 - \frac{p}{q}  = \frac{q - p}{q} \\
+    {q'}  & = \frac{q}{q - p} 
+  \end{align*}
+
+  Using these $p'$, $q'$, and $\| |f|^p \| \cdot 1 $ in H\"{o} inequality:
+  \[
+    \| |f|^p \cdot 1 \| \leq \| |f|^p || _ {p'} \| 1 \| _ {q'} 
+  \]
+  So subsituting in $p'$, $q'$:
+  \[
+    \int |f|^p \leq \| |f|^p \| _{\frac{q}{p}} \| 1 \| _{\frac{q}{q-p}} 
+  \]
+  Continuing: 
+  \[
+    \int |f|^p \leq \left( \int |f|^{p\frac{q}{p}} \right)^{\frac{p}{q}} \left( \int 1^{\frac{q}{q-p}} \right)^{\frac{q-p}{q}}
+  \]
+  And:
+  \[
+    \int |f|^p \leq \left( \int |f|^{q} \right)^{\frac{p}{q}} \left( \int 1 \right)^{\frac{q-p}{q}}
+  \]
+  Taking $p$th roots:
+  \[
+    \left( \int |f|^p \right) ^{\frac{1}{p}} \leq \left( \int |f|^{q} \right)^{\frac{1}{q}} \left( \int 1 \right)^{\frac{q-p}{qp}}
+  \]
+  Breaking it back out to norms:
+  \[
+    \| f^p \| \leq \| f \|^{q} \left( \mu(X) \right)^{\frac{q}{qp} - \frac{p}{qp}} 
+  \]  
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+  Let $(X, \fancyA, \mu) $ be a measure space.  If $1 \leq p < q < r = \infty$, then
+  \[
+  L^q \subseteq L^p + L^\infty,
+  \]
+
+  in other words, each $f \in L^q$ is the sum of a function in $L^p$ and a function in $L^\infty$. 
+\end{exercise}
+\begin{solution}
+  Let $E = \{ x \in X : | f(x) | > 1 \}$.  Let $f_1 = \one_E f$ and $f_2 = \one_{E^c} f$.
+
+  Then we claim $f_1 \in L^p$ and $f_2 \in L^\infty$.  We have $|f_1(x)| > 1$, for all $x \in E$.  Also, 
+  \[
+  p < q
+  \]
+
+  TODO $r = \infty$.  
+\end{solution}
+
+\begin{exercise}
+  Let $(X, \fancyA, \mu )$ be a measure space.  Let $S$ denote the set of measurable simple functions $s : X \to \RR$.  Let
+  $S_0$ denote the set of measurable simple functions $s : X \to \RR$ that vanish outside a set of
+  finite measure (i.e. that satisfy $\mu (\{ x: s(x) \neq 0\}) < \infty$).  
+\begin{enumerate}[(a)]
+\item
+  If $1 \leq p \leq \infty$, $S \cap L^p = S_0$.
+\item
+  If $f : X \to \RR$ is measurable and $(X, \fancyA, \mu)$ is
+  $\sigma-$finite, then there is a sequence $(s_n)$ in $S_0$ such that
+  $s_n \to f$ on $X$ and $|s_n|\uparrow |f|$ on $X$.  Hint: Simple Approximation Theorem.
+\item
+  If $f \in L^p$, and $1 \leq p < \infty$, then there is a sequence $(s_n)$ in $S_0$ such that
+  $s_n \to f$ on $X$ and $ |s_n| \uparrow |f|$ on $X$ and $|| s_n - f||_p \to 0$. Hint:
+  first show $E = \{ x \in X: | f(x)| ^p \neq 0 \}$ is $\sigma-$finite.  
+\end{enumerate}
+  
+\end{exercise}
+
+\begin{exercise}
+  Let $X$ be a nonempty set.  Let $\mu$ be the counting measure on $(X, \fancyP(X))$. 
+  \begin{enumerate}[(a)]
+  \item
+    If $f: X \to [0, \infty]$, then
+\[
+\int f \diff{\mu} = \sup \left\{ \sum _ {e \in F} f(x) : F \subseteq X, F \textrm{ is finite} \right\}
+\]
+  \end{enumerate}
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  TODO - I'm just not sure how to go from arbitrary simple functions to sums over finite sets; maybe some splitting it  into finite and infinite measure cases. 
+
+\end{enumerate}
+\end{solution}
+
+\begin{exercise}
+  Uniqueness of the constructed probability measure with a given distribution.  
+\end{exercise}
+\begin{solution}
+TODO
+\end{solution}
+
+
+\begin{comment}
+\begin{exercise}
+  problem
+\end{exercise}
+\begin{solution}
+\begin{enumerate}[(a)]
+\item
+  first answer
+\end{enumerate}
+\end{solution}
+\end{comment}
+
+
+\end{document}
