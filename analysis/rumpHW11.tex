@@ -144,7 +144,8 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   Breaking it back out to norms:
   \[
     \| f^p \| \leq \| f \|^{q} \left( \mu(X) \right)^{\frac{q}{qp} - \frac{p}{qp}} 
-  \]  
+  \]
+  \qed
 \end{enumerate}
 \end{solution}
 
@@ -153,42 +154,47 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
   \[
   L^q \subseteq L^p + L^\infty,
   \]
-
+  
   in other words, each $f \in L^q$ is the sum of a function in $L^p$ and a function in $L^\infty$. 
 \end{exercise}
 \begin{solution}
   Let $E = \{ x \in X : | f(x) | > 1 \}$.  Let $f_1 = \one_E f$ and $f_2 = \one_{E^c} f$.
 
-  Then we claim $f_1 \in L^p$ and $f_2 \in L^\infty$.  We have $|f_1(x)| > 1$, for all $x \in E$.  Also, 
+  Then we claim $f_1 \in L^p$ and $f_2 \in L^\infty$.  We have $|f_1(x)| > 1$, for all $x \in E$.
+
   \[
   p < q
   \]
+  Since $|f(x)| > 1$, for $x \in E$, $\ln (|f(x)|) > 0$, so
+  multiplying preserves the sense of the inequality:
+  \[
+  p \ln (|f(x)|) < q \ln (|f(x)|)
+  \]
+  $g(x)$ where $g(x) = e^x$ is monotonic, so it may be applied to both side:
+  \[
+  |(f(x)|^p < |f(x)|^q
+  \]
+  Integrating both sides:
+  \[
+  \int_E |f(x)|^p < \int_E |f(x)|^q < \int_\RR |f(x)|^q < \infty
+  \]
+  So $f_1 \in L^p$.
 
-  TODO $r = \infty$.  
+  For $f_2$, we have $ | f_2| (x) \leq 1 $ by construction.  So $ \| f_2 \| _\infty \leq 1$.
+  So $f_2 \in L^\infty$, 
+  
+  So for an arbitrary $f \in L^q$ we found $f_1 \in L^p$ and $f_2 \in L^\infty$ such that $f = f_1 + f_2$; $L^q \subseteq L^p + L^\infty$.
+
+  \qed
+  
 \end{solution}
 
-\begin{exercise}
-  Let $(X, \fancyA, \mu )$ be a measure space.  Let $S$ denote the set of measurable simple functions $s : X \to \RR$.  Let
-  $S_0$ denote the set of measurable simple functions $s : X \to \RR$ that vanish outside a set of
-  finite measure (i.e. that satisfy $\mu (\{ x: s(x) \neq 0\}) < \infty$).  
-\begin{enumerate}[(a)]
-\item
-  If $1 \leq p \leq \infty$, $S \cap L^p = S_0$.
-\item
-  If $f : X \to \RR$ is measurable and $(X, \fancyA, \mu)$ is
-  $\sigma-$finite, then there is a sequence $(s_n)$ in $S_0$ such that
-  $s_n \to f$ on $X$ and $|s_n|\uparrow |f|$ on $X$.  Hint: Simple Approximation Theorem.
-\item
-  If $f \in L^p$, and $1 \leq p < \infty$, then there is a sequence $(s_n)$ in $S_0$ such that
-  $s_n \to f$ on $X$ and $ |s_n| \uparrow |f|$ on $X$ and $|| s_n - f||_p \to 0$. Hint:
-  first show $E = \{ x \in X: | f(x)| ^p \neq 0 \}$ is $\sigma-$finite.  
-\end{enumerate}
-  
-\end{exercise}
+\stepcounter{exercise}
 
 \begin{exercise}
   Let $X$ be a nonempty set.  Let $\mu$ be the counting measure on $(X, \fancyP(X))$. 
   \begin{enumerate}[(a)]
+  \item
   \item
     If $f: X \to [0, \infty]$, then
 \[
@@ -199,10 +205,32 @@ Date: \hhmmsstime{} \ \today \ \ Git hash:
 \begin{solution}
 \begin{enumerate}[(a)]
 \item
-  TODO - I'm just not sure how to go from arbitrary simple functions to sums over finite sets; maybe some splitting it  into finite and infinite measure cases. 
+\item
+  Let $A = \{ \sum \limits _{e \in F} f(x) : F \subset X, \  F \textrm{ is finite} \} $.
+  
+  and $B = \{ \sum \limits _{i=1}^n  a_i \mu(A_i) : 0 \leq \sum \limits_{i=1} ^n a_i \one_{A_i} \leq f \} $
 
+  By definition, $\int f \diff{\mu} = \sup B$. We want to show $\sup A = \sup B$.
+
+  To show $\sup A \leq \sup B$, let $f_F \in B$.  That is:
+  \[
+    f_F (x) = \sum \limits _{e \in F} f(x), F \subset X, \textrm{ for some finite } F
+  \]
+
+  But, this is a simple function. We number the points in $F$ $\{ x_i \}$.  
+  \[
+    f_F (x) = \sum \limits _{i = 1}^{n} f(x_i)\one _{x_i}$
+  \]
+  That's to say, $ A \subseteq B$.  Thereforo, $\sup A \leq \sup B$.
+
+  For the other direction, 
+  
+  
 \end{enumerate}
 \end{solution}
+
+\stepcounter{exercise}
+\stepcounter{exercise}
 
 \begin{exercise}
   Uniqueness of the constructed probability measure with a given distribution.  
